@@ -5,7 +5,7 @@ defmodule Elastex.Mixfile do
   def project do
     [app: :elastex,
      version: "0.1.0",
-     description: "Data driven elixir client for Elasticsearch."
+     description: "Data driven elixir client for Elasticsearch.",
      package: package,
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
