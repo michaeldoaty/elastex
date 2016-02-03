@@ -1,4 +1,7 @@
 defmodule Elastex do
+  alias Elastex.Web
+  alias Elastex.Helper
+
 
   @doc """
   Creates a custom request.
@@ -45,43 +48,28 @@ defmodule Elastex do
 
 
   @doc """
-  Builds request for http call.
+  Builds the request and makes an http call.
+
+  This function returns `{:ok, response}` or `{:error, response}`.
+  Response will be a map containing body, headers, and status code.
+  Body will be `{:ok, value}` or `{:error, value}`.
   """
-  def build(req, conn) do
-    conn_url = Map.get(conn, :url, "")
-    req_url  = Map.get(req, :url, "")
-    headers  = Map.get(req, :headers, [])
-    options  = Map.get(req, :options, [])
-    params   = Map.get(req, :params, [])
-    body     = Map.get(req, :body, "")
+  def run(%{method: nil}), do: {:error, "unknown method name"}
 
-    %{body:    Poison.encode!(body),
-      method:  Map.get(req, :method, nil),
-      url:     Path.join([conn_url, req_url]),
-      options: Keyword.merge([params: params], options),
-      headers: Keyword.merge([accept: "application/json"], headers)}
-  end
+  def run(%{url: ""}), do: {:error, "missing url argument"}
 
-
-  @doc """
-  Makes an http call.
-  """
   def run(req, conn) do
-    #TODO:MD
-    # - mark errors
-    # - check nil method
-    # - check for body result
-    b = build(req, conn)
-    HTTPoison.request(b.method, b.url, b.body, b.headers, b.options)
+    Helper.build(req, conn) |> Web.http_call
   end
 
 
   @doc """
-  Makes an http call throwing if any errors are found.
+  Builds the request and makes an http call throwing if any errors are found.
   """
   def run!(req, conn) do
-    b = build(req, conn)
-    HTTPoison.request(b.method, b.url, b.body, b.headers, b.options)
+    b = Helper.build(req, conn)
+    body = Poison.encode!(req.body)
+    Elastex.Web.request(b.method, b.url, body, b.headers, b.options)
   end
 
 end

@@ -58,39 +58,4 @@ defmodule ElastexTest do
     assert actual == expected
   end
 
-
-  test "build - method" do
-    actual = Elastex.build(req, %{}).method
-    expected = :get
-    assert actual == expected
-  end
-
-
-  test "build - joins url" do
-    actual = Elastex.build(req, %{url: "http://localhost:9200"}).url
-    expected = "http://localhost:9200/twitter/tweet"
-    assert actual == expected
-  end
-
-
-  test "build - merges options" do
-    actual = Elastex.build(req, %{}).options
-    expected = [params: [q: "user"], timeout: 2000]
-    assert actual == expected
-  end
-
-
-  test "build - encodes body" do
-    actual = Elastex.build(req, %{}).body
-    expected = "{\"greet\":\"hello\"}"
-    assert actual == expected
-  end
-
-
-  test "build - merges headers" do
-    actual = Elastex.build(req, %{}).headers
-    expected = [accept: "application/json", connection: "keep-alive"]
-    assert actual == expected
-  end
-
 end
