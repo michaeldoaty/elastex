@@ -7,16 +7,6 @@ defmodule ElastexTest do
   end
 
 
-  def req do
-    %{body: body,
-      method: :get,
-      params: [q: "user"],
-      url: "twitter/tweet",
-      headers: [connection: "keep-alive"],
-      options: [timeout: 2000]}
-  end
-
-
   test "custom" do
     actual = Elastex.custom(:get, "twitter/tweet")
     expected = %{url: "twitter/tweet", method: :get, body: ""}
