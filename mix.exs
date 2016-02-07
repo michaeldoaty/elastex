@@ -4,7 +4,7 @@ defmodule Elastex.Mixfile do
 
   def project do
     [app: :elastex,
-     version: "0.1.0",
+     version: "0.1.1",
      description: "Data driven elixir client for Elasticsearch.",
      package: package,
      elixir: "~> 1.2",
