@@ -2,16 +2,33 @@ defmodule Elastex.Helper do
 
 
   @doc """
-  Gets the body of a parsed_response.
+  Gets body from a parsed_response.
 
-  This functions takes a parsed_response `{:ok, %{body: {:ok, body}}}`
-  and attempts to return the body.
+  This function takes a parsed_response `{:ok, %{body: {:ok, body}}}`
+  and attempts to return the body map.
   If there are any error tuples this function will return nil.
   """
   def get_body(parsed_response) do
     case parsed_response do
       {:ok, %{body: {:ok, body}}} ->
         body
+      _ ->
+        nil
+    end
+  end
+
+
+  @doc """
+  Gets hits from a parsed_response.
+
+  This functions takes a parsed_response `{:ok, %{body: {:ok, %{"hits" => hits}}}}`
+  and attempts to return the hits map.
+  If there are any error tuples this function will return nil.
+  """
+  def get_hits(parsed_response) do
+    case parsed_response do
+      {:ok, %{body: {:ok, %{"hits" => hits}}}} ->
+        hits
       _ ->
         nil
     end
