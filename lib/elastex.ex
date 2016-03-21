@@ -67,9 +67,10 @@ defmodule Elastex do
   Builds the request and makes an http call throwing if any errors are found.
   """
   def run!(req, conn) do
-    b = Helper.build(req, conn)
-    body = Poison.encode!(req.body)
-    Elastex.Web.request(b.method, b.url, body, b.headers, b.options)
+    #TODO:MD Fix
+    # b = Helper.build(req, conn)
+    # body = Poison.encode!(Map.get(req, :body, ""))
+    # Elastex.Web.request(b.method, b.url, body, b.headers, b.options)
   end
 
 end

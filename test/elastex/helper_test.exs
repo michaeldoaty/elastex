@@ -20,28 +20,28 @@ defmodule Elastex.HelperTest do
 
   test "get_body - ok response" do
     actual = Helper.get_body({:ok, %{body: {:ok, body}}})
-    expected = body
+    expected = {:ok, body}
     assert actual == expected
   end
 
 
   test "get_body - error response top level" do
     actual = Helper.get_body({:error, %{body: {:ok, body}}})
-    expected = nil
+    expected = {:error, "unable to get body"}
     assert actual == expected
   end
 
 
   test "get_body - error response at body" do
     actual = Helper.get_body({:ok, %{body: {:error, body}}})
-    expected = nil
+    expected = {:error, body}
     assert actual == expected
   end
 
 
   test "get_body - missing body" do
     actual = Helper.get_body({:ok, %{headers: []}})
-    expected = nil
+    expected = {:error, "unable to get body"}
     assert actual == expected
   end
 

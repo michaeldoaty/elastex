@@ -4,17 +4,23 @@ defmodule Elastex.Helper do
   @doc """
   Gets body from a parsed_response.
 
-  This function takes a parsed_response `{:ok, %{body: {:ok, body}}}`
+  This function takes a parsed_response `{:ok, %{body: body}}}`
   and attempts to return the body map.
-  If there are any error tuples this function will return nil.
   """
   def get_body(parsed_response) do
     case parsed_response do
-      {:ok, %{body: {:ok, body}}} ->
+      {:ok, %{body: body}} ->
         body
-      _ ->
-        nil
+    _ ->
+      {:error, "unable to get body"}
     end
+  end
+
+
+  @doc """
+  """
+  def get_body!(parsed_response) do
+    {:ok, %{body: body}} = parsed_response
   end
 
 
@@ -30,7 +36,7 @@ defmodule Elastex.Helper do
       {:ok, %{body: {:ok, %{"hits" => hits}}}} ->
         hits
       _ ->
-        nil
+        %{}
     end
   end
 
@@ -50,6 +56,17 @@ defmodule Elastex.Helper do
       url:     Path.join([conn_url, req_url]),
       options: Keyword.merge([params: params], options),
       headers: Keyword.merge([accept: "application/json"], headers)}
+  end
+
+
+  @doc """
+  """
+  def put_maybe(m, k, v) do
+    if v do
+      Map.put(m, k, v)
+    else
+      m
+    end
   end
 
 end
