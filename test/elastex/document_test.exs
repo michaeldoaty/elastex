@@ -1,6 +1,9 @@
 defmodule Elastex.DocumentTest do
   use ExUnit.Case, async: true
   alias Elastex.Document
+  alias Elastex.Builder
+
+  doctest Elastex.Document
 
 
   def body do
@@ -8,184 +11,148 @@ defmodule Elastex.DocumentTest do
   end
 
 
-  test "index without id" do
+  test "index" do
     actual = Document.index(body, "twitter", "tweet")
-    expected = %{url: "twitter/tweet", method: :post, body: body}
+    expected = %Builder{
+      url:    "twitter/tweet",
+      body:   body,
+      method: :post,
+      action: :document_index,
+      index:  "twitter",
+      type:   "tweet"
+    }
     assert actual == expected
   end
 
 
   test "index with id" do
     actual = Document.index(body, "twitter", "tweet", 1)
-    expected = %{url: "twitter/tweet/1", method: :put, body: body}
+    expected = %Builder{
+      url:    "twitter/tweet/1",
+      body:   body,
+      method: :put,
+      action: :document_index,
+      index:  "twitter",
+      type:   "tweet",
+      id:     1
+    }
     assert actual == expected
   end
 
 
   test "get" do
     actual = Document.get("twitter", "tweet", 1)
-    expected = %{url: "twitter/tweet/1", method: :get}
+    expected = %Builder{url: "twitter/tweet/1", method: :get, body: nil}
     assert actual == expected
   end
 
 
   test "delete" do
     actual = Document.delete("twitter", "tweet", 1)
-    expected = %{url: "twitter/tweet/1", method: :delete}
+    expected = %Builder{
+      url:    "twitter/tweet/1",
+      body:   nil,
+      method: :delete,
+      action: :document_delete,
+      index:  "twitter",
+      type:   "tweet",
+      id:     1
+    }
     assert actual == expected
   end
 
 
-  test "update_with_script" do
-    actual = Document.update_with_script(body, "twitter", "tweet", 1)
-    expected = %{url: "twitter/tweet/1/_update", method: :post, body: body}
+  test "update" do
+    actual = Document.update(body, "twitter", "tweet", 1)
+    expected = %Builder{
+      url:    "twitter/tweet/1/_update",
+      body:   body,
+      method: :post,
+      action: :document_update,
+      index:  "twitter",
+      type:   "tweet",
+      id:     1
+    }
     assert actual == expected
   end
 
 
-  test "mget with body" do
+  test "mget" do
     actual = Document.mget(body)
-    expected = %{url: "_mget", method: :get, body: body}
+    expected = %Builder{url: "_mget", method: :get, body: body}
     assert actual == expected
   end
 
 
   test "mget with index" do
     actual = Document.mget(body, "twitter")
-    expected = %{url: "twitter/_mget", method: :get, body: body}
+    expected = %Builder{url: "twitter/_mget", method: :get, body: body}
     assert actual == expected
   end
 
   test "mget with index and type" do
     actual = Document.mget(body, "twitter", "tweet")
-    expected = %{url: "twitter/tweet/_mget", method: :get, body: body}
+    expected = %Builder{url: "twitter/tweet/_mget", method: :get, body: body}
     assert actual == expected
   end
 
 
-  test "term_vectors" do
+  test "term_vectors without body" do
     actual = Document.term_vectors("twitter", "tweet", 1)
-    expected = %{url: "twitter/tweet/1/_termvectors", method: :get}
+    expected = %Builder{url: "twitter/tweet/1/_termvectors", method: :get}
+    assert actual == expected
+  end
+
+
+  test "term_vectors with body" do
+    actual = Document.term_vectors(body, "twitter", "tweet", 1)
+    expected = %Builder{url: "twitter/tweet/1/_termvectors", method: :get, body: body}
     assert actual == expected
   end
 
 
   test "mterm_vectors" do
     actual = Document.mterm_vectors(body)
-    expected = %{url: "_mtermvectors", method: :get, body: body}
+    expected = %Builder{url: "_mtermvectors", method: :get, body: body}
     assert actual == expected
   end
 
 
   test "mterm_vectors with index" do
     actual = Document.mterm_vectors(body, "twitter")
-    expected = %{url: "twitter/_mtermvectors", method: :get, body: body}
+    expected = %Builder{url: "twitter/_mtermvectors", method: :get, body: body}
     assert actual == expected
   end
 
 
   test "mterm_vectors with index and type" do
     actual = Document.mterm_vectors(body, "twitter", "tweet")
-    expected = %{url: "twitter/tweet/_mtermvectors", method: :get, body: body}
+    expected = %Builder{url: "twitter/tweet/_mtermvectors", method: :get, body: body}
     assert actual == expected
   end
 
-
-  test "bulk_create with map" do
-    actual = Document.bulk_create(%{}, body, "twitter", "tweet")
-    expected = %{url: "_bulk", method: :post, body: [%{create: %{_index: "twitter", _type: "tweet"}}, "\n", body, "\n"]}
+  test "bulk" do
+    bulk_commands = [
+      Document.delete("twitter", "tweet", 1),
+      Document.index(body, "twitter", "tweet")
+    ]
+    actual = Document.bulk(bulk_commands)
+    expected = %Builder{
+      url: "_bulk",
+      method: :post,
+      action: :document_bulk,
+      body: "{\"delete\":{\"_type\":\"tweet\",\"_index\":\"twitter\",\"_id\":1}}\n{\"index\":{\"_type\":\"tweet\",\"_index\":\"twitter\"}}\n{\"greet\":\"hello\"}\n"
+    }
     assert actual == expected
   end
 
-
-  test "bulk_create with id" do
-    actual = Document.bulk_create(%{}, body, "twitter", "tweet", 1)
-    expected = %{url: "_bulk", method: :post, body: [%{create: %{_index: "twitter", _type: "tweet", _id: 1}}, "\n", body, "\n"]}
-    assert actual == expected
-  end
-
-  test "bulk_create with existing operations" do
-    actual = Document.bulk_create(%{body: [body, "\n"]}, [body], "twitter", "tweet")
-    expected = %{url: "_bulk", method: :post, body: [body, "\n", %{create: %{_index: "twitter", _type: "tweet"}}, "\n", body, "\n"]}
-    assert actual == expected
-  end
-
-  test "bulk_create with list" do
-    actual = Document.bulk_create(%{}, [body], "twitter", "tweet")
-    expected = %{url: "_bulk", method: :post, body: [%{create: %{_index: "twitter", _type: "tweet"}}, "\n", body, "\n"]}
-    assert actual == expected
-  end
-
-
-  test "bulk_delete without id" do
-    actual = Document.bulk_delete(%{}, "twitter", "tweet")
-    expected = %{url: "_bulk", method: :post, body: [%{delete: %{_index: "twitter", _type: "tweet"}}, "\n"]}
-    assert actual == expected
-  end
-
-
-  test "bulk_delete with id" do
-    actual = Document.bulk_delete(%{}, "twitter", "tweet", 1)
-    expected = %{url: "_bulk", method: :post, body: [%{delete: %{_index: "twitter", _type: "tweet", _id: 1}}, "\n"]}
-    assert actual == expected
-  end
-
-
-  test "bulk_delete with existing operations" do
-    actual = Document.bulk_delete(%{body: [body, "\n"]}, "twitter", "tweet")
-    expected = %{url: "_bulk", method: :post, body: [body, "\n", %{delete: %{_index: "twitter", _type: "tweet"}}, "\n"]}
-    assert actual == expected
-  end
-
-
-  test "bulk_index with map" do
-    actual = Document.bulk_index(%{}, body, "twitter", "tweet")
-    expected = %{url: "_bulk", method: :post, body: [%{index: %{_index: "twitter", _type: "tweet"}}, "\n", body, "\n"]}
-    assert actual == expected
-  end
-
-
-  test "bulk_index with id" do
-    actual = Document.bulk_index(%{}, body, "twitter", "tweet", 1)
-    expected = %{url: "_bulk", method: :post, body: [%{index: %{_index: "twitter", _type: "tweet", _id: 1}}, "\n", body, "\n"]}
-    assert actual == expected
-  end
-
-  test "bulk_index with existing operations" do
-    actual = Document.bulk_index(%{body: [body, "\n"]}, [body], "twitter", "tweet")
-    expected = %{url: "_bulk", method: :post, body: [body, "\n", %{index: %{_index: "twitter", _type: "tweet"}}, "\n", body, "\n"]}
-    assert actual == expected
-  end
-
-  test "bulk_index with list" do
-    actual = Document.bulk_index(%{}, [body], "twitter", "tweet")
-    expected = %{url: "_bulk", method: :post, body: [%{index: %{_index: "twitter", _type: "tweet"}}, "\n", body, "\n"]}
-    assert actual == expected
-  end
-
-
-  test "bulk_update with map" do
-    actual = Document.bulk_update(%{}, body, "twitter", "tweet")
-    expected = %{url: "_bulk", method: :post, body: [%{update: %{_index: "twitter", _type: "tweet"}}, "\n", body, "\n"]}
-    assert actual == expected
-  end
-
-
-  test "bulk_update with id" do
-    actual = Document.bulk_update(%{}, body, "twitter", "tweet", 1)
-    expected = %{url: "_bulk", method: :post, body: [%{update: %{_index: "twitter", _type: "tweet", _id: 1}}, "\n", body, "\n"]}
-    assert actual == expected
-  end
-
-  test "bulk_update with existing operations" do
-    actual = Document.bulk_update(%{body: [body, "\n"]}, [body], "twitter", "tweet")
-    expected = %{url: "_bulk", method: :post, body: [body, "\n", %{update: %{_index: "twitter", _type: "tweet"}}, "\n", body, "\n"]}
-    assert actual == expected
-  end
-
-  test "bulk_update with list" do
-    actual = Document.bulk_update(%{}, [body], "twitter", "tweet")
-    expected = %{url: "_bulk", method: :post, body: [%{update: %{_index: "twitter", _type: "tweet"}}, "\n", body, "\n"]}
+  test "bulk with incorrect bulk argument" do
+    bulk_commands = [
+      Document.exists("twitter", "tweet", 1),
+      Document.index(body, "twitter", "tweet")
+    ]
+    actual = Document.bulk(bulk_commands)
+    expected = %RuntimeError{message: "Request must be from Elastex.Document.delete, Elastex.Document.index, or Elastex.Document.create"}
     assert actual == expected
   end
 

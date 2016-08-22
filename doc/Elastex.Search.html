@@ -1,0 +1,501 @@
+    <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.13.0">
+    <title>Elastex.Search – Elastex v0.1.2</title>
+    <link rel="stylesheet" href="dist/app-9c1e3d5aa2.css" />
+    
+    <script src="dist/sidebar_items.js"></script>
+  </head>
+  <body data-type="modules">
+    <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
+
+    <div class="main">
+<button class="sidebar-toggle">
+  <i class="icon-menu"></i>
+</button>
+<section class="sidebar">
+
+  
+  <a href="api-reference.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+        Elastex
+      </h1>
+      <h2 class="sidebar-projectVersion">
+        v0.1.2
+      </h2>
+    </div>
+    
+  </a>
+
+  <div class="sidebar-search">
+    <i class="icon-search"></i>
+    <input type="text" class="sidebar-searchInput" placeholder="search" autocomplete="off" />
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+    
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+    
+
+    
+
+    
+  </ul>
+
+  <ul id="full-list" class="sidebar-fullList"></ul>
+  <div class="sidebar-noResults"></div>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+      <h1>
+        <small class="visible-xs">Elastex v0.1.2</small>
+        Elastex.Search
+        
+        
+          <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L1" title="View Source" class="view-source" rel="help">
+            <i class="icon-code"></i>
+          </a>
+        
+      </h1>
+
+      
+
+      
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <i class="icon-link"></i>
+            </a>
+            Summary
+          </h1>
+          
+
+          
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+    <div class="summary-row">
+  <div class="summary-signature">
+    <a href="#count/2">count(index, type)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Executes a query to get the number of matches for that query</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#count/3">count(body, index, type)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#explain/4">explain(body, index, type, id)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Computes a score explanation for a query and a specific document</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#query/0">query()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Executes a search query</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#query/1">query(body)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#query/2">query(body, index)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#query/3">query(body, index, type)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#shards/1">shards(index)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Returns indices and shards that a search request would be executed against</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#shards/2">shards(index, type)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#suggest/1">suggest(body)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Suggests similar looking terms based on a provided text</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#template/1">template(body)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Allows use of mustache templating language to pre-render search requests</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#validate/1">validate(body)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Validates a potentially expensive query without executing it</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#validate/2">validate(body, index)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#validate/3">validate(body, index, type)</a>
+  </div>
+  
+</div>
+
+  </div>
+
+
+          
+
+          
+
+        </section>
+      
+
+      
+
+      
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <i class="icon-link"></i>
+            </a>
+            Functions
+          </h1>
+          <div class="detail" id="count/2">
+  <div class="detail-header">
+    <a href="#count/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">count(index, type)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L48" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Executes a query to get the number of matches for that query.</p>
+
+  </section>
+</div>
+<div class="detail" id="count/3">
+  <div class="detail-header">
+    <a href="#count/3" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">count(body, index, type)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L50" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="explain/4">
+  <div class="detail-header">
+    <a href="#explain/4" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">explain(body, index, type, id)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L72" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Computes a score explanation for a query and a specific document.</p>
+
+  </section>
+</div>
+<div class="detail" id="query/0">
+  <div class="detail-header">
+    <a href="#query/0" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">query()</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L6" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Executes a search query.</p>
+
+  </section>
+</div>
+<div class="detail" id="query/1">
+  <div class="detail-header">
+    <a href="#query/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">query(body)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L8" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="query/2">
+  <div class="detail-header">
+    <a href="#query/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">query(body, index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L10" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="query/3">
+  <div class="detail-header">
+    <a href="#query/3" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">query(body, index, type)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L12" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="shards/1">
+  <div class="detail-header">
+    <a href="#shards/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">shards(index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L29" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Returns indices and shards that a search request would be executed against.</p>
+
+  </section>
+</div>
+<div class="detail" id="shards/2">
+  <div class="detail-header">
+    <a href="#shards/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">shards(index, type)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L31" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="suggest/1">
+  <div class="detail-header">
+    <a href="#suggest/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">suggest(body)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L40" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Suggests similar looking terms based on a provided text.</p>
+
+  </section>
+</div>
+<div class="detail" id="template/1">
+  <div class="detail-header">
+    <a href="#template/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">template(body)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L21" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Allows use of mustache templating language to pre-render search requests.</p>
+
+  </section>
+</div>
+<div class="detail" id="validate/1">
+  <div class="detail-header">
+    <a href="#validate/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">validate(body)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L59" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Validates a potentially expensive query without executing it.</p>
+
+  </section>
+</div>
+<div class="detail" id="validate/2">
+  <div class="detail-header">
+    <a href="#validate/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">validate(body, index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L61" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="validate/3">
+  <div class="detail-header">
+    <a href="#validate/3" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">validate(body, index, type)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L63" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+
+        </section>
+      
+
+      
+
+      
+          <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.13.0),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+        <button class="night-mode-toggle" />
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/app-21f1a20b9e.js"></script>
+  </body>
+</html>
+

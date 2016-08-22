@@ -1,0 +1,1499 @@
+    <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.13.0">
+    <title>Elastex.Index – Elastex v0.1.2</title>
+    <link rel="stylesheet" href="dist/app-9c1e3d5aa2.css" />
+    
+    <script src="dist/sidebar_items.js"></script>
+  </head>
+  <body data-type="modules">
+    <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
+
+    <div class="main">
+<button class="sidebar-toggle">
+  <i class="icon-menu"></i>
+</button>
+<section class="sidebar">
+
+  
+  <a href="api-reference.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+        Elastex
+      </h1>
+      <h2 class="sidebar-projectVersion">
+        v0.1.2
+      </h2>
+    </div>
+    
+  </a>
+
+  <div class="sidebar-search">
+    <i class="icon-search"></i>
+    <input type="text" class="sidebar-searchInput" placeholder="search" autocomplete="off" />
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+    
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+    
+
+    
+
+    
+  </ul>
+
+  <ul id="full-list" class="sidebar-fullList"></ul>
+  <div class="sidebar-noResults"></div>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+      <h1>
+        <small class="visible-xs">Elastex v0.1.2</small>
+        Elastex.Index
+        
+        
+          <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L1" title="View Source" class="view-source" rel="help">
+            <i class="icon-code"></i>
+          </a>
+        
+      </h1>
+
+      
+
+      
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <i class="icon-link"></i>
+            </a>
+            Summary
+          </h1>
+          
+
+          
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+    <div class="summary-row">
+  <div class="summary-signature">
+    <a href="#add_alias/2">add_alias(index, name)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Adds a single alias</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#add_template/2">add_template(body, template)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Adds a template</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#aliases/1">aliases(body)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Aliases an index with a name</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#analyze/1">analyze(body)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Performs the analysis process on text and returns
+the token breakdown</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#analyze/2">analyze(body, index)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#clear_cache/0">clear_cache()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Clears all or specific cache associated with an index</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#clear_cache/1">clear_cache(index)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#close/1">close(index)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Closes an index</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#create/1">create(index)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Instantiates an index with or without a body</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#create/2">create(body, index)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#delete/1">delete(index)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Deletes an existing index</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#delete_alias/2">delete_alias(index, name)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Deletes an existing alias</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#delete_template/1">delete_template(template)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Deletes a template</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#delete_warmer/2">delete_warmer(index, warmer)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Deletes warmer</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#exists/1">exists(index)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Checks if index exists</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#flush/0">flush()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Flushes one or more indices</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#flush/1">flush(index)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#force_merge/0">force_merge()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Merges one or more indices</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#force_merge/1">force_merge(index)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get/1">get(index)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Retrieves information about one or more indices</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_alias/2">get_alias(index, name)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Retrieves existing alias</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_mapping/1">get_mapping(index)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Retrieves mapping definitions for an index or index/type</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_mapping/2">get_mapping(index, type)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_settings/1">get_settings(index)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Retrieves settings of index/indices</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_template/1">get_template(template)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Retrieves a template</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_warmer/1">get_warmer(index)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Retrieves warmer</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_warmer/2">get_warmer(index, warmer)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#open/1">open(index)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Opens an index</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#put_mapping/2">put_mapping(body, index)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Adds a new type to an exisiting index
+or new fields to an exisiting type</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#put_mapping/3">put_mapping(body, index, type)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#put_warmer/2">put_warmer(body, warmer)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Adds warmer to a specific index</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#put_warmer/3">put_warmer(body, index, warmer)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#put_warmer/4">put_warmer(body, index, type, warmer)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#recovery/0">recovery()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Provides insight into on-going index shard recoveries</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#recovery/1">recovery(index)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#refresh/0">refresh()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Explicitly refreshes one or more index</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#refresh/1">refresh(index)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#segments/0">segments()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Gets low level segment information that a Lucene index (shard-level) is
+built with</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#segments/1">segments(index)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#shard_stores/0">shard_stores()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Provides store information for shard copies of indices</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#shard_stores/1">shard_stores(index)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#stats/0">stats()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Provides statistics on different operations happening on an index</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#stats/1">stats(index)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#synced_flush/0">synced_flush()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Initiates a synched flush manually</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#synced_flush/1">synced_flush(index)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#template_exists/1">template_exists(template)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Checks the existence of a template</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#type_exists/2">type_exists(index, type)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Checks if type exist in index</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#update_settings/1">update_settings(body)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Updates index level settings</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#update_settings/2">update_settings(body, index)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#upgrade/0">upgrade()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Upgrades one or more indices</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#upgrade/1">upgrade(index)</a>
+  </div>
+  
+</div>
+
+  </div>
+
+
+          
+
+          
+
+        </section>
+      
+
+      
+
+      
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <i class="icon-link"></i>
+            </a>
+            Functions
+          </h1>
+          <div class="detail" id="add_alias/2">
+  <div class="detail-header">
+    <a href="#add_alias/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">add_alias(index, name)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L100" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Adds a single alias</p>
+
+  </section>
+</div>
+<div class="detail" id="add_template/2">
+  <div class="detail-header">
+    <a href="#add_template/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">add_template(body, template)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L159" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Adds a template.</p>
+
+  </section>
+</div>
+<div class="detail" id="aliases/1">
+  <div class="detail-header">
+    <a href="#aliases/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">aliases(body)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L92" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Aliases an index with a name.</p>
+
+  </section>
+</div>
+<div class="detail" id="analyze/1">
+  <div class="detail-header">
+    <a href="#analyze/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">analyze(body)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L148" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Performs the analysis process on text and returns
+the token breakdown.</p>
+
+  </section>
+</div>
+<div class="detail" id="analyze/2">
+  <div class="detail-header">
+    <a href="#analyze/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">analyze(body, index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L150" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="clear_cache/0">
+  <div class="detail-header">
+    <a href="#clear_cache/0" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">clear_cache()</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L274" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Clears all or specific cache associated with an index.</p>
+
+  </section>
+</div>
+<div class="detail" id="clear_cache/1">
+  <div class="detail-header">
+    <a href="#clear_cache/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">clear_cache(index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L276" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="close/1">
+  <div class="detail-header">
+    <a href="#close/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">close(index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L40" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Closes an index.</p>
+
+  </section>
+</div>
+<div class="detail" id="create/1">
+  <div class="detail-header">
+    <a href="#create/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">create(index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L6" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Instantiates an index with or without a body.</p>
+
+  </section>
+</div>
+<div class="detail" id="create/2">
+  <div class="detail-header">
+    <a href="#create/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">create(body, index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L8" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="delete/1">
+  <div class="detail-header">
+    <a href="#delete/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">delete(index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L16" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Deletes an existing index.</p>
+
+  </section>
+</div>
+<div class="detail" id="delete_alias/2">
+  <div class="detail-header">
+    <a href="#delete_alias/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">delete_alias(index, name)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L118" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Deletes an existing alias</p>
+
+  </section>
+</div>
+<div class="detail" id="delete_template/1">
+  <div class="detail-header">
+    <a href="#delete_template/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">delete_template(template)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L168" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Deletes a template.</p>
+
+  </section>
+</div>
+<div class="detail" id="delete_warmer/2">
+  <div class="detail-header">
+    <a href="#delete_warmer/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">delete_warmer(index, warmer)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L208" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Deletes warmer</p>
+
+  </section>
+</div>
+<div class="detail" id="exists/1">
+  <div class="detail-header">
+    <a href="#exists/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">exists(index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L32" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Checks if index exists.</p>
+
+  </section>
+</div>
+<div class="detail" id="flush/0">
+  <div class="detail-header">
+    <a href="#flush/0" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">flush()</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L285" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Flushes one or more indices.</p>
+
+  </section>
+</div>
+<div class="detail" id="flush/1">
+  <div class="detail-header">
+    <a href="#flush/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">flush(index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L287" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="force_merge/0">
+  <div class="detail-header">
+    <a href="#force_merge/0" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">force_merge()</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L318" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Merges one or more indices</p>
+
+  </section>
+</div>
+<div class="detail" id="force_merge/1">
+  <div class="detail-header">
+    <a href="#force_merge/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">force_merge(index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L320" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="get/1">
+  <div class="detail-header">
+    <a href="#get/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">get(index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L24" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Retrieves information about one or more indices.</p>
+
+  </section>
+</div>
+<div class="detail" id="get_alias/2">
+  <div class="detail-header">
+    <a href="#get_alias/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">get_alias(index, name)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L109" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Retrieves existing alias</p>
+
+  </section>
+</div>
+<div class="detail" id="get_mapping/1">
+  <div class="detail-header">
+    <a href="#get_mapping/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">get_mapping(index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L72" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Retrieves mapping definitions for an index or index/type.</p>
+
+  </section>
+</div>
+<div class="detail" id="get_mapping/2">
+  <div class="detail-header">
+    <a href="#get_mapping/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">get_mapping(index, type)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L74" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="get_settings/1">
+  <div class="detail-header">
+    <a href="#get_settings/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">get_settings(index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L138" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Retrieves settings of index/indices.</p>
+
+  </section>
+</div>
+<div class="detail" id="get_template/1">
+  <div class="detail-header">
+    <a href="#get_template/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">get_template(template)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L177" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Retrieves a template</p>
+
+  </section>
+</div>
+<div class="detail" id="get_warmer/1">
+  <div class="detail-header">
+    <a href="#get_warmer/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">get_warmer(index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L217" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Retrieves warmer</p>
+
+  </section>
+</div>
+<div class="detail" id="get_warmer/2">
+  <div class="detail-header">
+    <a href="#get_warmer/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">get_warmer(index, warmer)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L219" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="open/1">
+  <div class="detail-header">
+    <a href="#open/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">open(index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L49" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Opens an index</p>
+
+  </section>
+</div>
+<div class="detail" id="put_mapping/2">
+  <div class="detail-header">
+    <a href="#put_mapping/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">put_mapping(body, index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L59" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Adds a new type to an exisiting index
+or new fields to an exisiting type.</p>
+
+  </section>
+</div>
+<div class="detail" id="put_mapping/3">
+  <div class="detail-header">
+    <a href="#put_mapping/3" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">put_mapping(body, index, type)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L63" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="put_warmer/2">
+  <div class="detail-header">
+    <a href="#put_warmer/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">put_warmer(body, warmer)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L195" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Adds warmer to a specific index.</p>
+
+  </section>
+</div>
+<div class="detail" id="put_warmer/3">
+  <div class="detail-header">
+    <a href="#put_warmer/3" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">put_warmer(body, index, warmer)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L197" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="put_warmer/4">
+  <div class="detail-header">
+    <a href="#put_warmer/4" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">put_warmer(body, index, type, warmer)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L199" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="recovery/0">
+  <div class="detail-header">
+    <a href="#recovery/0" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">recovery()</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L252" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Provides insight into on-going index shard recoveries.</p>
+
+  </section>
+</div>
+<div class="detail" id="recovery/1">
+  <div class="detail-header">
+    <a href="#recovery/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">recovery(index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L254" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="refresh/0">
+  <div class="detail-header">
+    <a href="#refresh/0" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">refresh()</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L307" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Explicitly refreshes one or more index.</p>
+
+  </section>
+</div>
+<div class="detail" id="refresh/1">
+  <div class="detail-header">
+    <a href="#refresh/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">refresh(index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L309" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="segments/0">
+  <div class="detail-header">
+    <a href="#segments/0" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">segments()</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L241" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Gets low level segment information that a Lucene index (shard-level) is
+built with.</p>
+
+  </section>
+</div>
+<div class="detail" id="segments/1">
+  <div class="detail-header">
+    <a href="#segments/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">segments(index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L243" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="shard_stores/0">
+  <div class="detail-header">
+    <a href="#shard_stores/0" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">shard_stores()</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L263" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Provides store information for shard copies of indices.</p>
+
+  </section>
+</div>
+<div class="detail" id="shard_stores/1">
+  <div class="detail-header">
+    <a href="#shard_stores/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">shard_stores(index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L265" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="stats/0">
+  <div class="detail-header">
+    <a href="#stats/0" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">stats()</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L229" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Provides statistics on different operations happening on an index.</p>
+
+  </section>
+</div>
+<div class="detail" id="stats/1">
+  <div class="detail-header">
+    <a href="#stats/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">stats(index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L231" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="synced_flush/0">
+  <div class="detail-header">
+    <a href="#synced_flush/0" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">synced_flush()</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L296" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Initiates a synched flush manually.</p>
+
+  </section>
+</div>
+<div class="detail" id="synced_flush/1">
+  <div class="detail-header">
+    <a href="#synced_flush/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">synced_flush(index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L298" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="template_exists/1">
+  <div class="detail-header">
+    <a href="#template_exists/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">template_exists(template)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L186" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Checks the existence of a template.</p>
+
+  </section>
+</div>
+<div class="detail" id="type_exists/2">
+  <div class="detail-header">
+    <a href="#type_exists/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">type_exists(index, type)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L83" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Checks if type exist in index.</p>
+
+  </section>
+</div>
+<div class="detail" id="update_settings/1">
+  <div class="detail-header">
+    <a href="#update_settings/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">update_settings(body)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L127" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Updates index level settings.</p>
+
+  </section>
+</div>
+<div class="detail" id="update_settings/2">
+  <div class="detail-header">
+    <a href="#update_settings/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">update_settings(body, index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L129" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="upgrade/0">
+  <div class="detail-header">
+    <a href="#upgrade/0" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">upgrade()</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L329" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Upgrades one or more indices</p>
+
+  </section>
+</div>
+<div class="detail" id="upgrade/1">
+  <div class="detail-header">
+    <a href="#upgrade/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">upgrade(index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L331" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+
+        </section>
+      
+
+      
+
+      
+          <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.13.0),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+        <button class="night-mode-toggle" />
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/app-21f1a20b9e.js"></script>
+  </body>
+</html>
+

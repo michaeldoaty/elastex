@@ -1,5 +1,11 @@
 defmodule Elastex.Helper do
 
+  @doc false
+  def path(list) do
+    list
+    |> Enum.map(&to_string/1)
+    |> Path.join
+  end
 
   @doc """
   Gets body from a parsed_response.
