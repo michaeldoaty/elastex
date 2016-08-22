@@ -136,13 +136,16 @@ defmodule Elastex.DocumentTest do
       Document.delete("twitter", "tweet", 1),
       Document.index(body, "twitter", "tweet")
     ]
+
     actual = Document.bulk(bulk_commands)
+
     expected = %Builder{
       url: "_bulk",
       method: :post,
       action: :document_bulk,
       body: "{\"delete\":{\"_type\":\"tweet\",\"_index\":\"twitter\",\"_id\":1}}\n{\"index\":{\"_type\":\"tweet\",\"_index\":\"twitter\"}}\n{\"greet\":\"hello\"}\n"
     }
+
     assert actual == expected
   end
 
@@ -151,6 +154,7 @@ defmodule Elastex.DocumentTest do
       Document.exists("twitter", "tweet", 1),
       Document.index(body, "twitter", "tweet")
     ]
+    
     actual = Document.bulk(bulk_commands)
     expected = %RuntimeError{message: "Request must be from Elastex.Document.delete, Elastex.Document.index, or Elastex.Document.create"}
     assert actual == expected
