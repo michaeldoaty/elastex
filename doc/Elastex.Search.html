@@ -70,6 +70,12 @@
       </h1>
 
       
+        <section id="moduledoc" class="docstring">
+          <p> Follows the Elasticsearch
+ <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html">Search API</a>.</p>
+
+        </section>
+      
 
       
         <section id="summary" class="details-list">
@@ -80,6 +86,19 @@
             Summary
           </h1>
           
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+    <div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:body/0">body()</a>
+  </div>
+  
+</div>
+
+  </div>
+
 
           
   <div class="summary-functions summary">
@@ -112,6 +131,23 @@
 </div>
 <div class="summary-row">
   <div class="summary-signature">
+    <a href="#multi_search/1">multi_search(query_builders)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Executes several search request in a single call</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#params/2">params(builder, params)</a>
+  </div>
+  
+    <div class="summary-synopsis"></div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="#query/0">query()</a>
   </div>
   
@@ -124,11 +160,17 @@
     <a href="#query/1">query(body)</a>
   </div>
   
+    <div class="summary-synopsis"><p>Executes a search query with a body</p>
+</div>
+  
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#query/2">query(body, index)</a>
   </div>
+  
+    <div class="summary-synopsis"><p>Executes a search query with a body and index</p>
+</div>
   
 </div>
 <div class="summary-row">
@@ -136,13 +178,17 @@
     <a href="#query/3">query(body, index, type)</a>
   </div>
   
+    <div class="summary-synopsis"><p>Executes a search query with a body, index, and type</p>
+</div>
+  
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#shards/1">shards(index)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Returns indices and shards that a search request would be executed against</p>
+    <div class="summary-synopsis"><p>Returns indices and shards that a search request would be executed against
+using an index</p>
 </div>
   
 </div>
@@ -150,6 +196,10 @@
   <div class="summary-signature">
     <a href="#shards/2">shards(index, type)</a>
   </div>
+  
+    <div class="summary-synopsis"><p>Returns indices and shards that a search request would be executed against
+using an index and a type</p>
+</div>
   
 </div>
 <div class="summary-row">
@@ -203,6 +253,22 @@
       
 
       
+        <section id="types" class="types details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <i class="icon-link"></i>
+            </a>
+            Types
+          </h1>
+          <div class="types-list">
+            <div id="t:body/0" class="type-detail">
+  <pre><code class="elixir"><a href="#t:body/0">body</a> :: map | struct | nil</code></pre>
+  
+</div>
+
+          </div>
+        </section>
+      
 
       
         <section id="functions" class="details-list">
@@ -219,7 +285,7 @@
     </a>
     <span class="signature">count(index, type)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L48" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L249" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -238,7 +304,7 @@
     </a>
     <span class="signature">count(body, index, type)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L50" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L251" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -256,7 +322,7 @@
     </a>
     <span class="signature">explain(body, index, type, id)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L72" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L273" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -268,6 +334,73 @@
 
   </section>
 </div>
+<div class="detail" id="multi_search/1">
+  <div class="detail-header">
+    <a href="#multi_search/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">multi_search(query_builders)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L222" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">multi_search([<a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a>]) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+        
+      </div>
+    </div>
+  
+  <section class="docstring">
+    <p>Executes several search request in a single call.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; query_builders = [
+...&gt; Elastex.Search.query(%{hello: &quot;world&quot;}),
+...&gt; Elastex.Search.query(%{hello: &quot;world&quot;}, &quot;twitter&quot;, &quot;tweet&quot;)
+...&gt; ]
+iex&gt; Elastex.Search.multi_search(query_builders)
+%Elastex.Builder {
+  url: &quot;_msearch&quot;,
+  body: &quot;{}\n{\&quot;hello\&quot;:\&quot;world\&quot;}\n{\&quot;index\&quot;:\&quot;twitter\&quot;}\n{\&quot;hello\&quot;:\&quot;world\&quot;}\n&quot;,
+  method: :post,
+  action: :multi_search
+}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="params/2">
+  <div class="detail-header">
+    <a href="#params/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">params(builder, params)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L282" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">params(<a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/Keyword.html#t:t/0">Keyword.t</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+        
+      </div>
+    </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
 <div class="detail" id="query/0">
   <div class="detail-header">
     <a href="#query/0" class="detail-link" title="Link to this function">
@@ -275,15 +408,40 @@
     </a>
     <span class="signature">query()</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L6" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L36" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">query :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
     <p>Executes a search query.</p>
+<p>Useful for URI searches.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Search.query
+%Elastex.Builder {
+  url: &quot;_search&quot;,
+  method: :post,
+  action: :search_query,
+}</code></pre>
+<h5>with params</h5>
+<pre><code class="iex elixir">iex&gt; Elastex.Search.query |&gt; Elastex.Search.params([q: &quot;user:kimchy&quot;])
+%Elastex.Builder {
+  url: &quot;_search&quot;,
+  method: :post,
+  action: :search_query,
+  params: [q: &quot;user:kimchy&quot;]
+}</code></pre>
 
   </section>
 </div>
@@ -294,15 +452,34 @@
     </a>
     <span class="signature">query(body)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L8" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L58" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">query(<a href="#t:body/0">body</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    
+    <p>Executes a search query with a body.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; body = %{query: %{term: %{user: &quot;kimchy&quot;}}}
+iex&gt; Elastex.Search.query(body)
+%Elastex.Builder {
+  url: &quot;_search&quot;,
+  body: %{query: %{term: %{user: &quot;kimchy&quot;}}},
+  method: :post,
+  action: :search_query,
+}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="query/2">
@@ -312,15 +489,35 @@
     </a>
     <span class="signature">query(body, index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L10" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L82" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">query(<a href="#t:body/0">body</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    
+    <p>Executes a search query with a body and index.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; body = %{query: %{term: %{user: &quot;kimchy&quot;}}}
+iex&gt; Elastex.Search.query(body, &quot;twitter&quot;)
+%Elastex.Builder {
+  url: &quot;twitter/_search&quot;,
+  body: %{query: %{term: %{user: &quot;kimchy&quot;}}},
+  method: :post,
+  index: &quot;twitter&quot;,
+  action: :search_query
+}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="query/3">
@@ -330,15 +527,36 @@
     </a>
     <span class="signature">query(body, index, type)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L12" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L108" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">query(<a href="#t:body/0">body</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    
+    <p>Executes a search query with a body, index, and type.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; body = %{query: %{term: %{user: &quot;kimchy&quot;}}}
+iex&gt; Elastex.Search.query(body, &quot;twitter&quot;, &quot;tweet&quot;)
+%Elastex.Builder {
+  url: &quot;twitter/tweet/_search&quot;,
+  body: %{query: %{term: %{user: &quot;kimchy&quot;}}},
+  index: &quot;twitter&quot;,
+  type: &quot;tweet&quot;,
+  action: :search_query,
+  method: :post
+}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="shards/1">
@@ -348,15 +566,33 @@
     </a>
     <span class="signature">shards(index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L29" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L156" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">shards(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Returns indices and shards that a search request would be executed against.</p>
+    <p>Returns indices and shards that a search request would be executed against
+using an index.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Search.shards(&quot;twitter&quot;)
+%Elastex.Builder {
+  url: &quot;twitter/_search_shards&quot;,
+  method: :get,
+  index: &quot;twitter&quot;,
+  type: &quot;&quot;
+}</code></pre>
 
   </section>
 </div>
@@ -367,15 +603,34 @@
     </a>
     <span class="signature">shards(index, type)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L31" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L172" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">shards(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    
+    <p>Returns indices and shards that a search request would be executed against
+using an index and a type.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Search.shards(&quot;twitter&quot;, &quot;tweet&quot;)
+%Elastex.Builder {
+  url: &quot;twitter/tweet/_search_shards&quot;,
+  method: :get,
+  index: &quot;twitter&quot;,
+  type: &quot;tweet&quot;
+}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="suggest/1">
@@ -385,15 +640,32 @@
     </a>
     <span class="signature">suggest(body)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L40" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L196" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">suggest(<a href="#t:body/0">body</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
     <p>Suggests similar looking terms based on a provided text.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; body = %{&quot;my-suggestion&quot; =&gt; %{text: &quot;hi&quot;, term: %{field: &quot;body&quot;}}}
+iex&gt; Elastex.Search.suggest(body)
+%Elastex.Builder {
+  url: &quot;_suggest&quot;,
+  body: %{&quot;my-suggestion&quot; =&gt; %{text: &quot;hi&quot;, term: %{field: &quot;body&quot;}}},
+  method: :post
+}</code></pre>
 
   </section>
 </div>
@@ -404,15 +676,32 @@
     </a>
     <span class="signature">template(body)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L21" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L133" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">template(<a href="#t:body/0">body</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
     <p>Allows use of mustache templating language to pre-render search requests.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; body = %{inline: %{query: %{match: %{title: &quot;{{query_string}}&quot;}}}}
+iex&gt; Elastex.Search.template(body)
+%Elastex.Builder {
+  url: &quot;template&quot;,
+  body: %{inline: %{query: %{match: %{title: &quot;{{query_string}}&quot;}}}},
+  method: :post
+}</code></pre>
 
   </section>
 </div>
@@ -423,7 +712,7 @@
     </a>
     <span class="signature">validate(body)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L59" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L260" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -442,7 +731,7 @@
     </a>
     <span class="signature">validate(body, index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L61" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L262" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -460,7 +749,7 @@
     </a>
     <span class="signature">validate(body, index, type)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L63" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/search.ex#L264" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     

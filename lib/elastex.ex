@@ -1,5 +1,5 @@
 defmodule Elastex.Builder do
-  defstruct [:url, :body, :method, :action, :index, :type, :id, :options]
+  defstruct [:url, :body, :method, :action, :params, :index, :type, :id, :options]
 
   @type int_or_string :: non_neg_integer | String.t
   @type body          :: map | struct | nil
@@ -9,6 +9,7 @@ defmodule Elastex.Builder do
     body:    body,
     method:  atom,
     action:  atom,
+    params:  Keyword.t,
     index:   String.t | nil,
     type:    String.t | nil,
     id:      int_or_string | nil,

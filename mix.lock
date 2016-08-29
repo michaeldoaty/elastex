@@ -6,7 +6,7 @@
   "httpoison": {:hex, :httpoison, "0.8.1", "5b706be2b0af81d1a3870479a2e1b925517c2a64316f70c6cc8aceac9e55f695", [:mix], [{:hackney, "~> 1.4.4", [hex: :hackney, optional: false]}]},
   "idna": {:hex, :idna, "1.0.3", "d456a8761cad91c97e9788c27002eb3b773adaf5c893275fc35ba4e3434bbd9b", [:rebar3], []},
   "mimerl": {:hex, :mimerl, "1.0.2", "993f9b0e084083405ed8252b99460c4f0563e41729ab42d9074fd5e52439be88", [:rebar3], []},
-  "mix_test_watch": {:hex, :mix_test_watch, "0.2.5", "63a34de89f549637f401c7a27598140e0a5a58f5997741993e1016babf134c7b", [:mix], [{:fs, "~> 0.9.1", [hex: :fs, optional: false]}]},
+  "mix_test_watch": {:hex, :mix_test_watch, "0.2.6", "9fcc2b1b89d1594c4a8300959c19d50da2f0ff13642c8f681692a6e507f92cab", [:mix], [{:fs, "~> 0.9.1", [hex: :fs, optional: false]}]},
   "poison": {:hex, :poison, "2.0.1", "81248a36d1b602b17ea6556bfa8952492091f01af05173de11f8b297e2bbf088", [:mix], []},
   "shouldi": {:hex, :shouldi, "0.3.0", "ae3fb3cec3328057377a0aa750aa1bb9f8b321ba054e1e2c7211512c383fb6ff", [:mix], []},
   "ssl_verify_hostname": {:hex, :ssl_verify_hostname, "1.0.5", "2e73e068cd6393526f9fa6d399353d7c9477d6886ba005f323b592d389fb47be", [:make], []}}

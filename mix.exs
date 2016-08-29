@@ -27,7 +27,7 @@ defmodule Elastex.Mixfile do
       {:poison, "~> 2.0"},
       {:httpoison, "~> 0.8.0"},
       {:shouldi, only: :test},
-      {:mix_test_watch, "~> 0.2", only: :dev},
+      {:mix_test_watch, "~> 0.2.6", only: :dev},
       {:ex_doc, "~> 0.12", only: :dev}
     ]
   end
