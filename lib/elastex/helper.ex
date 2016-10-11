@@ -52,16 +52,18 @@ defmodule Elastex.Helper do
   """
   def build(req, conn) do
     conn_url = Map.get(conn, :url, "")
-    req_url  = Map.get(req, :url, "")
-    headers  = Map.get(req, :headers, [])
-    options  = Map.get(req, :options, [])
-    params   = Map.get(req, :params, [])
+    req_url  = req.url     || ""
+    headers  = req.headers || []
+    options  = req.options || []
+    params   = req.params  || []
 
-    %{body:    Map.get(req, :body, ""),
-      method:  Map.get(req, :method, nil),
-      url:     Path.join([conn_url, req_url]),
+    %{body:    req.body,
+      method:  req.method,
+      url:     path([conn_url, req_url]),
       options: Keyword.merge([params: params], options),
-      headers: Keyword.merge([accept: "application/json"], headers)}
+      headers: Keyword.merge([accept: "application/json"], headers),
+      action: req.action
+    }
   end
 
 

@@ -106,6 +106,30 @@ defmodule Elastex.Document do
 
 
   @doc """
+  Deletes all documents from the index and type.
+
+  ## Examples
+      iex> Elastex.Document.delete("twitter", "tweet")
+      %Elastex.Builder {
+        url:    "twitter/tweet",
+        method: :delete,
+        action: :document_delete,
+        index:  "twitter",
+        type:   "tweet"
+      }
+  """
+  @spec delete(String.t, String.t) :: Builder.t
+  def delete(index, type) do
+    %Builder{
+      url:    Helper.path([index, type]),
+      method: :delete,
+      action: :document_delete,
+      index:  index,
+      type:   type,
+    }
+  end
+
+  @doc """
   Deletes a document from the index based on its id.
 
   ## Examples

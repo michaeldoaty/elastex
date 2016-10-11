@@ -66,7 +66,7 @@ defmodule Elastex.SearchTest do
   test "template" do
     actual = Search.template(body)
     expected = %Builder{
-      url: "template",
+      url: "_search/template",
       method: :post,
       body: body
     }
@@ -128,44 +128,112 @@ defmodule Elastex.SearchTest do
   end
 
 
-  test "count without body" do
-    actual = Search.count("twitter", "tweet")
-    expected = %{url: "twitter/tweet/_count", method: :get, body: ""}
+  test "count" do
+    actual = Search.count()
+    expected = %Builder{
+      url: "_count",
+      body: nil,
+      method: :post
+    }
     assert actual == expected
   end
 
 
   test "count with body" do
+    actual = Search.count(body)
+    expected = %Builder{
+      url: "_count",
+      body: body,
+      method: :post
+    }
+    assert actual == expected
+  end
+
+
+  test "count with body and index" do
+    actual = Search.count(body, "twitter")
+    expected = %Builder{
+      url: "twitter/_count",
+      body: body,
+      method: :post
+    }
+    assert actual == expected
+  end
+
+
+  test "count with body, index, and type" do
     actual = Search.count(body, "twitter", "tweet")
-    expected = %{url: "twitter/tweet/_count", method: :get, body: body}
+    expected = %Builder{
+      url: "twitter/tweet/_count",
+      body: body,
+      method: :post
+    }
     assert actual == expected
   end
 
 
   test "validate" do
+    actual = Search.validate()
+    expected = %Builder{
+      url: "_validate/query",
+      method: :post,
+      body: nil
+    }
+    assert actual == expected
+  end
+
+
+  test "validate with body" do
     actual = Search.validate(body)
-    expected = %{url: "_validate/query", method: :get, body: body}
+    expected = %Builder{
+      url: "_validate/query",
+      method: :post,
+      body: body
+    }
     assert actual == expected
   end
 
 
-  test "validate with index" do
+  test "validate with body and index" do
     actual = Search.validate(body, "twitter")
-    expected = %{url: "twitter/_validate/query", method: :get, body: body}
+    expected = %Builder{
+      url: "twitter/_validate/query",
+      method: :post,
+      body: body
+    }
     assert actual == expected
   end
 
 
-  test "validate with index and type" do
+  test "validate with body, index, type" do
     actual = Search.validate(body, "twitter", "tweet")
-    expected = %{url: "twitter/tweet/_validate/query", method: :get, body: body}
+    expected = %Builder{
+      url: "twitter/tweet/_validate/query",
+      method: :post,
+      body: body
+    }
     assert actual == expected
   end
 
 
-  test "explain" do
+  test "explain without body" do
+    actual = Search.explain("twitter", "tweet", 1)
+    expected = %Builder{
+      url: "twitter/tweet/1/_explain",
+      method: :post,
+      body: nil
+    }
+    assert actual == expected
+  end
+
+
+  test "explain with body" do
     actual = Search.explain(body, "twitter", "tweet", 1)
-    expected = %{url: "twitter/tweet/1/_explain", method: :get, body: body}
+    expected = %Builder{
+      url: "twitter/tweet/1/_explain",
+      method: :post,
+      body: body
+    }
     assert actual == expected
   end
 
@@ -201,4 +269,9 @@ defmodule Elastex.SearchTest do
   end
 
 
+  test "query_hits" do
+    actual = Search.query_hits({:ok, %HTTPoison.Response{body: %{"hits" => []}}})
+    expected = {:ok, []}
+    assert actual == expected
+  end
 end

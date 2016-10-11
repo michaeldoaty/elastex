@@ -8,7 +8,7 @@ defmodule Elastex.Search do
   alias Elastex.Builder
 
   @type body :: map | struct | nil
-
+  @type http_response :: {:ok, HTTPoison.Response} | {:error, HTTPoison.Error}
 
   @doc """
   Executes a search query.
@@ -124,7 +124,7 @@ defmodule Elastex.Search do
       iex> body = %{inline: %{query: %{match: %{title: "{{query_string}}"}}}}
       iex> Elastex.Search.template(body)
       %Elastex.Builder {
-        url: "template",
+        url: "_search/template",
         body: %{inline: %{query: %{match: %{title: "{{query_string}}"}}}},
         method: :post
       }
@@ -132,7 +132,7 @@ defmodule Elastex.Search do
   @spec template(body) :: Builder.t
   def template(body) do
     %Builder {
-      url: "template",
+      url: "_search/template",
       body: body,
       method: :post
     }
@@ -245,34 +245,143 @@ defmodule Elastex.Search do
 
   @doc """
   Executes a query to get the number of matches for that query.
-  """
-  def count(index, type), do: count("", index, type)
 
+  Useful with params search.
+
+  ## Examples
+      iex> Elastex.Search.count()
+      %Elastex.Builder {
+        url: "_count",
+        body: nil,
+        method: :post
+      }
+  """
+  def count(), do: count(nil, "", "")
+
+  @doc """
+  Executes a query to get the number of matches for that query with a body.
+
+  ## Examples
+      iex> body = %{"query" => %{term: %{user: "kimchy"}}}
+      iex> Elastex.Search.count(body)
+      %Elastex.Builder {
+        url: "_count",
+        body: %{"query" => %{term: %{user: "kimchy"}}},
+        method: :post
+      }
+  """
+  def count(body), do: count(body, "", "")
+
+  @doc """
+  Executes a query to get the number of matches for that query with
+  a body and index.
+
+  ## Examples
+      iex> body = %{"query" => %{term: %{user: "kimchy"}}}
+      iex> Elastex.Search.count(body, "twitter")
+      %Elastex.Builder {
+        url: "twitter/_count",
+        body: %{"query" => %{term: %{user: "kimchy"}}},
+        method: :post
+      }
+  """
+  def count(body, index), do: count(body, index, "")
+
+  @doc """
+  Executes a query to get the number of matches for that query
+  with body, index, and type.
+
+  ## Examples
+      iex> body = %{"query" => %{term: %{user: "kimchy"}}}
+      iex> Elastex.Search.count(body, "twitter", "tweet")
+      %Elastex.Builder {
+        url: "twitter/tweet/_count",
+        body: %{"query" => %{term: %{user: "kimchy"}}},
+        method: :post
+      }
+  """
   def count(body, index, type) do
-    url = Path.join([index, type, "_count"])
-    %{url: url, body: body, method: :get}
+    %Builder{
+      url: Helper.path([index, type, "_count"]),
+      body: body,
+      method: :post
+    }
   end
 
 
   @doc """
   Validates a potentially expensive query without executing it.
+
+  ## Examples
+      iex> Elastex.Search.validate()
+      %Elastex.Builder {
+        url: "_validate/query",
+        body: nil,
+        method: :post
+      }
+  """
+  def validate(), do: validate(nil, "", "")
+
+  @doc """
+  Validates a potentially expensive query without executing it.
+
+  ## Examples
+      iex> body = %{"query" => %{term: %{user: "kimchy"}}}
+      iex> Elastex.Search.validate(body)
+      %Elastex.Builder {
+        url: "_validate/query",
+        body: %{"query" => %{term: %{user: "kimchy"}}},
+        method: :post
+      }
   """
   def validate(body), do: validate(body, "", "")
 
+  @doc """
+  Validates a potentially expensive query without executing it with index.
+
+  ## Examples
+      iex> body = %{"query" => %{term: %{user: "kimchy"}}}
+      iex> Elastex.Search.validate(body, "twitter")
+      %Elastex.Builder {
+        url: "twitter/_validate/query",
+        body: %{"query" => %{term: %{user: "kimchy"}}},
+        method: :post
+      }
+  """
   def validate(body, index), do: validate(body, index, "")
 
+  @doc """
+  Validates a potentially expensive query without executing it with index.
+
+  ## Examples
+      iex> body = %{"query" => %{term: %{user: "kimchy"}}}
+      iex> Elastex.Search.validate(body, "twitter", "tweet")
+      %Elastex.Builder {
+        url: "twitter/tweet/_validate/query",
+        body: %{"query" => %{term: %{user: "kimchy"}}},
+        method: :post
+      }
+  """
   def validate(body, index, type) do
-    url = Path.join([index, type, "_validate/query"])
-    %{url: url, body: body, method: :get}
+    %Builder{
+      url: Helper.path([index, type, "_validate/query"]),
+      body: body,
+      method: :post
+    }
   end
 
 
   @doc """
   Computes a score explanation for a query and a specific document.
   """
+  def explain(index, type, id), do: explain(nil, index, type, id)
+
   def explain(body, index, type, id) do
-    url = Path.join([index, type, "#{id}", "_explain"])
-    %{url: url, body: body, method: :get}
+    %Builder {
+      url: Helper.path([index, type, id, "_explain"]),
+      body: body,
+      method: :post
+    }
   end
 
 
@@ -285,5 +394,17 @@ defmodule Elastex.Search do
     end
   end
 
+
+  @doc """
+  """
+  @spec query_hits(http_response) :: {:ok, Map.t} | {:error, String.t}
+  def query_hits(http_response) do
+    case http_response do
+      {:ok, %HTTPoison.Response{body: %{"hits" => hits}}} ->
+        {:ok, hits}
+      _ ->
+        {:error, http_response}
+    end
+  end
 
 end
