@@ -104,7 +104,7 @@ defmodule Elastex.Integration.SearchTest do
     resp = Search.suggest(%{
       "my-suggestion" => %{
         text: "search",
-        term: %{field: "elasticsearch"}
+        term: %{field: "message"}
       }
     })
     |> Elastex.run(conn)

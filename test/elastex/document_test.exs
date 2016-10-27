@@ -154,7 +154,7 @@ defmodule Elastex.DocumentTest do
       Document.exists("twitter", "tweet", 1),
       Document.index(body, "twitter", "tweet")
     ]
-    
+
     actual = Document.bulk(bulk_commands)
     expected = %RuntimeError{message: "Request must be from Elastex.Document.delete, Elastex.Document.index, or Elastex.Document.create"}
     assert actual == expected

@@ -10,6 +10,10 @@ defmodule Elastex.Web do
     request(m.method, m.url, m.body, m.headers, m.options)
   end
 
+  def http_call(%{action: :document_bulk} = m) do
+    request(m.method, m.url, m.body, m.headers, m.options)
+  end
+
   def http_call(m) do
     case Poison.encode(m.body) do
       # this case has a body of nil
