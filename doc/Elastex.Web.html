@@ -187,16 +187,6 @@ failure</p>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#parse_response/1">parse_response(res)</a>
-  </div>
-  
-    <div class="summary-synopsis"><p>Parses HTTPoison.Response into a <code class="inline">:ok</code> or <code class="inline">:error</code> tuple containing
-a map or an error reason</p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
     <a href="#patch/4">patch(url, body, headers \\ [], options \\ [])</a>
   </div>
   
@@ -235,7 +225,7 @@ failure</p>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#process_response_body/1">process_response_body(body)</a>
+    <a href="#process_response_body/1">process_response_body(unparsed_body)</a>
   </div>
   
 </div>
@@ -607,26 +597,6 @@ failure.</p>
 
   </section>
 </div>
-<div class="detail" id="parse_response/1">
-  <div class="detail-header">
-    <a href="#parse_response/1" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">parse_response(res)</span>
-    
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L24" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-  </div>
-  
-  <section class="docstring">
-    <p>Parses HTTPoison.Response into a <code class="inline">:ok</code> or <code class="inline">:error</code> tuple containing
-a map or an error reason.</p>
-
-  </section>
-</div>
 <div class="detail" id="patch/4">
   <div class="detail-header">
     <a href="#patch/4" class="detail-link" title="Link to this function">
@@ -764,9 +734,9 @@ failure.</p>
     <a href="#process_response_body/1" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">process_response_body(body)</span>
+    <span class="signature">process_response_body(unparsed_body)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L39" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L35" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     

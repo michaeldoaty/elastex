@@ -134,7 +134,7 @@
     <a href="#exists/3">exists(index, type, id)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Checks whether a document exists</p>
+    <div class="summary-synopsis"><p>Checks whether a specific document exists</p>
 </div>
   
 </div>
@@ -152,7 +152,7 @@
     <a href="#index/3">index(body, index, type)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Adds a document in a specific index</p>
+    <div class="summary-synopsis"><p>Adds a document in a specific index, automatically generating an id</p>
 </div>
   
 </div>
@@ -161,7 +161,7 @@
     <a href="#index/4">index(body, index, type, id)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Adds a document in a specific index with id</p>
+    <div class="summary-synopsis"><p>Adds a document in a specific index using the supplied id</p>
 </div>
   
 </div>
@@ -216,6 +216,15 @@
   </div>
   
     <div class="summary-synopsis"><p>Gets multiple term vectors at once using body options, an index and type</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#params/2">params(builder, params)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Adds params to document builders</p>
 </div>
   
 </div>
@@ -296,7 +305,7 @@ of a particular document using body options</p>
     </a>
     <span class="signature">bulk(builders)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L235" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L255" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -336,7 +345,7 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
     </a>
     <span class="signature">delete(index, type, id)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L123" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L135" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -354,6 +363,7 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
   
   <section class="docstring">
     <p>Deletes a document from the index based on its id.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete.html">Elasticsearch Documentation</a></p>
 <h2>Examples</h2>
 <pre><code class="iex elixir">iex&gt; Elastex.Document.delete(&quot;twitter&quot;, &quot;tweet&quot;, 5)
 %Elastex.Builder {
@@ -374,7 +384,7 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
     </a>
     <span class="signature">exists(index, type, id)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L100" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L110" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -391,7 +401,8 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
     </div>
   
   <section class="docstring">
-    <p>Checks whether a document exists.</p>
+    <p>Checks whether a specific document exists.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-get.html">Elasticsearch Documentation</a></p>
 <h2>Examples</h2>
 <pre><code class="iex elixir">iex&gt; Elastex.Document.exists(&quot;twitter&quot;, &quot;tweet&quot;, 5)
 %Elastex.Builder {
@@ -408,7 +419,7 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
     </a>
     <span class="signature">get(index, type, id)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L81" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L89" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -426,6 +437,7 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
   
   <section class="docstring">
     <p>Gets a document from the index based on its id.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-get.html">Elasticsearch Documentation</a></p>
 <h2>Examples</h2>
 <pre><code class="iex elixir">iex&gt; Elastex.Document.get(&quot;twitter&quot;, &quot;tweet&quot;, 5)
 %Elastex.Builder {
@@ -442,7 +454,7 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
     </a>
     <span class="signature">index(body, index, type)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L29" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L33" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -459,7 +471,8 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
     </div>
   
   <section class="docstring">
-    <p>Adds a document in a specific index.</p>
+    <p>Adds a document in a specific index, automatically generating an id.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html">Elasticsearch Documentation</a></p>
 <h2>Examples</h2>
 <pre><code class="iex elixir">iex&gt; Elastex.Document.index(%{hello: &quot;world&quot;}, &quot;twitter&quot;, &quot;tweet&quot;)
 %Elastex.Builder {
@@ -480,7 +493,7 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
     </a>
     <span class="signature">index(body, index, type, id)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L57" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L63" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -497,7 +510,8 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
     </div>
   
   <section class="docstring">
-    <p>Adds a document in a specific index with id.</p>
+    <p>Adds a document in a specific index using the supplied id.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html">Elasticsearch Documentation</a></p>
 <h2>Examples</h2>
 <pre><code class="iex elixir">iex&gt; Elastex.Document.index(%{hello: &quot;world&quot;}, &quot;twitter&quot;, &quot;tweet&quot;, 5)
 %Elastex.Builder {
@@ -519,7 +533,7 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
     </a>
     <span class="signature">mget(body)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L177" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L193" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -537,6 +551,7 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
   
   <section class="docstring">
     <p>Gets multiple documents based on docs array information.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-multi-get.html">Elasticsearch Documentation</a></p>
 <h2>Examples</h2>
 <pre><code class="iex elixir">iex&gt; docs = %{docs: [%{_index: &quot;website&quot;, _type: &quot;blog&quot;, _id: 2}]}
 iex&gt; Elastex.Document.mget(docs)
@@ -555,7 +570,7 @@ iex&gt; Elastex.Document.mget(docs)
     </a>
     <span class="signature">mget(body, index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L193" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L211" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -573,6 +588,7 @@ iex&gt; Elastex.Document.mget(docs)
   
   <section class="docstring">
     <p>Gets multiple documents based on index and docs array information.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-multi-get.html">Elasticsearch Documentation</a></p>
 <h2>Examples</h2>
 <pre><code class="iex elixir">iex&gt; docs = %{docs: [%{_type: &quot;blog&quot;, _id: 2}]}
 iex&gt; Elastex.Document.mget(docs, &quot;website&quot;)
@@ -591,7 +607,7 @@ iex&gt; Elastex.Document.mget(docs, &quot;website&quot;)
     </a>
     <span class="signature">mget(body, index, type)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L209" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L229" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -609,12 +625,13 @@ iex&gt; Elastex.Document.mget(docs, &quot;website&quot;)
   
   <section class="docstring">
     <p>Gets multiple documents based on index, type and docs array information.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-multi-get.html">Elasticsearch Documentation</a></p>
 <h2>Examples</h2>
-<pre><code class="iex elixir">iex&gt; docs = %{docs: [%{ids: [&quot;1&quot;, &quot;2&quot;]}]}
+<pre><code class="iex elixir">iex&gt; docs = %{ids: [&quot;1&quot;, &quot;2&quot;]}
 iex&gt; Elastex.Document.mget(docs, &quot;website&quot;, &quot;blog&quot;)
 %Elastex.Builder {
   url:    &quot;website/blog/_mget&quot;,
-  body:   %{docs: [%{ids: [&quot;1&quot;, &quot;2&quot;]}]},
+  body:   %{ids: [&quot;1&quot;, &quot;2&quot;]},
   method: :get
 }</code></pre>
 
@@ -627,7 +644,7 @@ iex&gt; Elastex.Document.mget(docs, &quot;website&quot;, &quot;blog&quot;)
     </a>
     <span class="signature">mterm_vectors(body)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L343" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L370" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -645,6 +662,7 @@ iex&gt; Elastex.Document.mget(docs, &quot;website&quot;, &quot;blog&quot;)
   
   <section class="docstring">
     <p>Gets multiple term vectors at once using body options only.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-multi-termvectors.html">Elasticsearch Documentation</a></p>
 <h2>Examples</h2>
 <pre><code class="iex elixir">iex&gt; body = %{doc: [%{_index: &quot;twitter&quot;, _type: &quot;tweet&quot;, _id: 2}]}
 iex&gt; Elastex.Document.mterm_vectors(body)
@@ -663,7 +681,7 @@ iex&gt; Elastex.Document.mterm_vectors(body)
     </a>
     <span class="signature">mterm_vectors(body, index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L359" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L388" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -681,6 +699,7 @@ iex&gt; Elastex.Document.mterm_vectors(body)
   
   <section class="docstring">
     <p>Gets multiple term vectors at once using body options and an index.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-multi-termvectors.html">Elasticsearch Documentation</a></p>
 <h2>Examples</h2>
 <pre><code class="iex elixir">iex&gt; body = %{doc: [%{_index: &quot;twitter&quot;, _type: &quot;tweet&quot;, _id: 2}]}
 iex&gt; Elastex.Document.mterm_vectors(body, &quot;twitter&quot;)
@@ -699,7 +718,7 @@ iex&gt; Elastex.Document.mterm_vectors(body, &quot;twitter&quot;)
     </a>
     <span class="signature">mterm_vectors(body, index, type)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L375" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L406" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -717,6 +736,7 @@ iex&gt; Elastex.Document.mterm_vectors(body, &quot;twitter&quot;)
   
   <section class="docstring">
     <p>Gets multiple term vectors at once using body options, an index and type.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-multi-termvectors.html">Elasticsearch Documentation</a></p>
 <h2>Examples</h2>
 <pre><code class="iex elixir">iex&gt; body = %{doc: [%{_index: &quot;twitter&quot;, _type: &quot;tweet&quot;, _id: 2}]}
 iex&gt; Elastex.Document.mterm_vectors(body, &quot;twitter&quot;, &quot;tweet&quot;)
@@ -728,6 +748,34 @@ iex&gt; Elastex.Document.mterm_vectors(body, &quot;twitter&quot;, &quot;tweet&qu
 
   </section>
 </div>
+<div class="detail" id="params/2">
+  <div class="detail-header">
+    <a href="#params/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">params(builder, params)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L419" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">params(<a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/Keyword.html#t:t/0">Keyword.t</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+        
+      </div>
+    </div>
+  
+  <section class="docstring">
+    <p>Adds params to document builders</p>
+
+  </section>
+</div>
 <div class="detail" id="term_vectors/3">
   <div class="detail-header">
     <a href="#term_vectors/3" class="detail-link" title="Link to this function">
@@ -735,7 +783,7 @@ iex&gt; Elastex.Document.mterm_vectors(body, &quot;twitter&quot;, &quot;tweet&qu
     </a>
     <span class="signature">term_vectors(index, type, id)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L299" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L321" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -754,6 +802,7 @@ iex&gt; Elastex.Document.mterm_vectors(body, &quot;twitter&quot;, &quot;tweet&qu
   <section class="docstring">
     <p>Returns information and statistics on terms in the fields
 of a particular document.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-termvectors.html">Elasticsearch Documentation</a></p>
 <h2>Examples</h2>
 <pre><code class="iex elixir">iex&gt; Elastex.Document.term_vectors(&quot;twitter&quot;, &quot;tweet&quot;, &quot;1&quot;)
 %Elastex.Builder {
@@ -770,7 +819,7 @@ of a particular document.</p>
     </a>
     <span class="signature">term_vectors(body, index, type, id)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L321" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L345" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -789,6 +838,7 @@ of a particular document.</p>
   <section class="docstring">
     <p>Returns information and statistics on terms in the fields
 of a particular document using body options.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-termvectors.html">Elasticsearch Documentation</a></p>
 <h2>Examples</h2>
 <pre><code class="iex elixir">iex&gt; body = %{fields: [&quot;text&quot;], &quot;positions&quot;: true}
 iex&gt; Elastex.Document.term_vectors(body, &quot;twitter&quot;, &quot;tweet&quot;, &quot;1&quot;)
@@ -807,7 +857,7 @@ iex&gt; Elastex.Document.term_vectors(body, &quot;twitter&quot;, &quot;tweet&quo
     </a>
     <span class="signature">update(body, index, type, id)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L151" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L165" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -825,6 +875,7 @@ iex&gt; Elastex.Document.term_vectors(body, &quot;twitter&quot;, &quot;tweet&quo
   
   <section class="docstring">
     <p>Updates a document based on its id.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update.html">Elasticsearch Documentation</a></p>
 <h2>Examples</h2>
 <pre><code class="iex elixir">iex&gt; Elastex.Document.update(%{doc: %{name: &quot;new_name&quot;}}, &quot;twitter&quot;, &quot;tweet&quot;, 5)
 %Elastex.Builder {

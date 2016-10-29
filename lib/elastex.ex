@@ -18,6 +18,7 @@ defmodule Elastex.Builder do
   }
 end
 
+
 defmodule Elastex do
   alias Elastex.Helper
   alias Elastex.Web
@@ -26,4 +27,11 @@ defmodule Elastex do
     Helper.build(req, conn) |> Web.http_call
   end
 
+end
+
+
+defmodule Elastex.Builder.Extender do
+  alias Elastex.Builder
+
+  @callback params(Builder.t, Keyword.t) :: Builder.t
 end

@@ -70,6 +70,11 @@
       </h1>
 
       
+        <section id="moduledoc" class="docstring">
+          <p> Contains helper functions for other modules</p>
+
+        </section>
+      
 
       
         <section id="summary" class="details-list">
@@ -97,36 +102,20 @@
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#get_body/1">get_body(parsed_response)</a>
+    <a href="#params/2">params(builder, params)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Gets body from a parsed_response</p>
+    <div class="summary-synopsis"><p>Adds params to builder</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#get_body!/1">get_body!(parsed_response)</a>
+    <a href="#path/1">path(list)</a>
   </div>
   
-    <div class="summary-synopsis"></div>
-  
+    <div class="summary-synopsis"><p>Creates a string from list of values</p>
 </div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#get_hits/1">get_hits(parsed_response)</a>
-  </div>
-  
-    <div class="summary-synopsis"><p>Gets hits from a parsed_response</p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#put_maybe/3">put_maybe(m, k, v)</a>
-  </div>
-  
-    <div class="summary-synopsis"></div>
   
 </div>
 
@@ -157,7 +146,7 @@
     </a>
     <span class="signature">build(req, conn)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/helper.ex#L53" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/helper.ex#L30" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -169,35 +158,42 @@
 
   </section>
 </div>
-<div class="detail" id="get_body/1">
+<div class="detail" id="params/2">
   <div class="detail-header">
-    <a href="#get_body/1" class="detail-link" title="Link to this function">
+    <a href="#params/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">get_body(parsed_response)</span>
+    <span class="signature">params(builder, params)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/helper.ex#L16" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/helper.ex#L20" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">params(Builder.t, <a href="http://elixir-lang.org/docs/stable/elixir/Keyword.html#t:t/0">Keyword.t</a>) :: Builder.t</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Gets body from a parsed_response.</p>
-<p>This function takes a parsed_response <code class="inline">{:ok, %{body: body}}}</code>
-and attempts to return the body map.</p>
+    <p>Adds params to builder</p>
 
   </section>
 </div>
-<div class="detail" id="get_body!/1">
+<div class="detail" id="path/1">
   <div class="detail-header">
-    <a href="#get_body!/1" class="detail-link" title="Link to this function">
+    <a href="#path/1" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">get_body!(parsed_response)</span>
+    <span class="signature">path(list)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/helper.ex#L28" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/helper.ex#L9" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -205,47 +201,8 @@ and attempts to return the body map.</p>
   </div>
   
   <section class="docstring">
-    
-  </section>
-</div>
-<div class="detail" id="get_hits/1">
-  <div class="detail-header">
-    <a href="#get_hits/1" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">get_hits(parsed_response)</span>
-    
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/helper.ex#L40" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-  </div>
-  
-  <section class="docstring">
-    <p>Gets hits from a parsed_response.</p>
-<p>This functions takes a parsed_response <code class="inline">{:ok, %{body: {:ok, %{&quot;hits&quot; =&gt; hits}}}}</code>
-and attempts to return the hits map.
-If there are any error tuples this function will return nil.</p>
+    <p>Creates a string from list of values</p>
 
-  </section>
-</div>
-<div class="detail" id="put_maybe/3">
-  <div class="detail-header">
-    <a href="#put_maybe/3" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">put_maybe(m, k, v)</span>
-    
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/helper.ex#L70" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-  </div>
-  
-  <section class="docstring">
-    
   </section>
 </div>
 

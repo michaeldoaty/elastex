@@ -4,6 +4,8 @@ defmodule Elastex.Search do
    [Search API](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html).
   """
 
+  @behaviour Elastex.Builder.Extender
+  
   alias Elastex.Helper
   alias Elastex.Builder
 

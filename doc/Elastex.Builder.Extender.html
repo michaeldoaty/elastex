@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.13.0">
-    <title>Elastex – Elastex v0.1.2</title>
+    <title>Elastex.Builder.Extender – Elastex v0.1.2</title>
     <link rel="stylesheet" href="dist/app-9c1e3d5aa2.css" />
     
     <script src="dist/sidebar_items.js"></script>
@@ -60,10 +60,12 @@
 
       <h1>
         <small class="visible-xs">Elastex v0.1.2</small>
-        Elastex
+        Elastex.Builder.Extender
+        
+          <small>behaviour</small>
         
         
-          <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex.ex#L22" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex.ex#L33" title="View Source" class="view-source" rel="help">
             <i class="icon-code"></i>
           </a>
         
@@ -82,13 +84,17 @@
           
 
           
-  <div class="summary-functions summary">
+
+          
+
+          
+  <div class="summary-callbacks summary">
     <h2>
-      <a href="#functions">Functions</a>
+      <a href="#callbacks">Callbacks</a>
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#run/2">run(req, conn)</a>
+    <a href="#c:params/2">params(arg0, arg1)</a>
   </div>
   
 </div>
@@ -96,36 +102,45 @@
   </div>
 
 
-          
-
-          
-
         </section>
       
 
       
 
       
-        <section id="functions" class="details-list">
+
+      
+
+      
+        <section id="callbacks" class="details-list">
           <h1 class="section-heading">
-            <a class="hover-link" href="#functions">
+            <a class="hover-link" href="#callbacks">
               <i class="icon-link"></i>
             </a>
-            Functions
+            Callbacks
           </h1>
-          <div class="detail" id="run/2">
+          <div class="detail" id="c:params/2">
   <div class="detail-header">
-    <a href="#run/2" class="detail-link" title="Link to this function">
+    <a href="#c:params/2" class="detail-link" title="Link to this callback">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">run(req, conn)</span>
+    <span class="signature">params(arg0, arg1)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex.ex#L26" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex.ex#L36" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">params(<a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/Keyword.html#t:t/0">Keyword.t</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+        
+      </div>
+    </div>
   
   <section class="docstring">
     
@@ -133,10 +148,6 @@
 </div>
 
         </section>
-      
-
-      
-
       
           <footer class="footer">
         <p>

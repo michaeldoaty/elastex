@@ -4,6 +4,8 @@ defmodule Elastex.Document do
    [Document API](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs.html).
   """
 
+  @behaviour Elastex.Builder.Extender
+
   alias Elastex.Helper
   alias Elastex.Builder
 
@@ -12,7 +14,9 @@ defmodule Elastex.Document do
 
 
   @doc """
-  Adds a document in a specific index.
+  Adds a document in a specific index, automatically generating an id.
+
+  [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html)
 
   ## Examples
       iex> Elastex.Document.index(%{hello: "world"}, "twitter", "tweet")
@@ -39,7 +43,9 @@ defmodule Elastex.Document do
 
 
   @doc """
-  Adds a document in a specific index with id.
+  Adds a document in a specific index using the supplied id.
+
+  [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html)
 
   ## Examples
       iex> Elastex.Document.index(%{hello: "world"}, "twitter", "tweet", 5)
@@ -70,6 +76,8 @@ defmodule Elastex.Document do
   @doc """
   Gets a document from the index based on its id.
 
+  [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-get.html)
+
   ## Examples
       iex> Elastex.Document.get("twitter", "tweet", 5)
       %Elastex.Builder {
@@ -87,7 +95,9 @@ defmodule Elastex.Document do
 
 
   @doc """
-  Checks whether a document exists.
+  Checks whether a specific document exists.
+
+  [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-get.html)
 
   ## Examples
       iex> Elastex.Document.exists("twitter", "tweet", 5)
@@ -107,6 +117,8 @@ defmodule Elastex.Document do
 
   @doc """
   Deletes a document from the index based on its id.
+
+  [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete.html)
 
   ## Examples
       iex> Elastex.Document.delete("twitter", "tweet", 5)
@@ -134,6 +146,8 @@ defmodule Elastex.Document do
 
   @doc """
   Updates a document based on its id.
+
+  [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update.html)
 
   ## Examples
       iex> Elastex.Document.update(%{doc: %{name: "new_name"}}, "twitter", "tweet", 5)
@@ -164,6 +178,8 @@ defmodule Elastex.Document do
   @doc """
   Gets multiple documents based on docs array information.
 
+  [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-multi-get.html)
+
   ## Examples
       iex> docs = %{docs: [%{_index: "website", _type: "blog", _id: 2}]}
       iex> Elastex.Document.mget(docs)
@@ -180,6 +196,8 @@ defmodule Elastex.Document do
   @doc """
   Gets multiple documents based on index and docs array information.
 
+  [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-multi-get.html)
+
   ## Examples
       iex> docs = %{docs: [%{_type: "blog", _id: 2}]}
       iex> Elastex.Document.mget(docs, "website")
@@ -195,6 +213,8 @@ defmodule Elastex.Document do
 
   @doc """
   Gets multiple documents based on index, type and docs array information.
+
+  [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-multi-get.html)
 
   ## Examples
       iex> docs = %{ids: ["1", "2"]}
@@ -288,6 +308,8 @@ defmodule Elastex.Document do
   Returns information and statistics on terms in the fields
   of a particular document.
 
+  [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-termvectors.html)
+
   ## Examples
       iex> Elastex.Document.term_vectors("twitter", "tweet", "1")
       %Elastex.Builder {
@@ -307,6 +329,8 @@ defmodule Elastex.Document do
   @doc """
   Returns information and statistics on terms in the fields
   of a particular document using body options.
+
+  [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-termvectors.html)
 
   ## Examples
       iex> body = %{fields: ["text"], "positions": true}
@@ -330,6 +354,9 @@ defmodule Elastex.Document do
   @doc """
   Gets multiple term vectors at once using body options only.
 
+  [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-multi-termvectors.html)
+
+
   ## Examples
       iex> body = %{doc: [%{_index: "twitter", _type: "tweet", _id: 2}]}
       iex> Elastex.Document.mterm_vectors(body)
@@ -346,6 +373,8 @@ defmodule Elastex.Document do
   @doc """
   Gets multiple term vectors at once using body options and an index.
 
+  [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-multi-termvectors.html)
+
   ## Examples
       iex> body = %{doc: [%{_index: "twitter", _type: "tweet", _id: 2}]}
       iex> Elastex.Document.mterm_vectors(body, "twitter")
@@ -361,6 +390,8 @@ defmodule Elastex.Document do
 
   @doc """
   Gets multiple term vectors at once using body options, an index and type.
+
+  [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-multi-termvectors.html)
 
   ## Examples
       iex> body = %{doc: [%{_index: "twitter", _type: "tweet", _id: 2}]}
@@ -382,12 +413,11 @@ defmodule Elastex.Document do
 
 
   @doc """
+  Adds params to document builders
   """
   @spec params(Builder.t, Keyword.t) :: Builder.t
   def params(builder, params) do
-    Map.update builder, :params, [], fn(value) ->
-      Keyword.merge(value || [], params)
-    end
+    Helper.params(builder, params)
   end
 
 end
