@@ -5,12 +5,13 @@ defmodule Elastex.Search do
   """
 
   @behaviour Elastex.Builder.Extender
-  
+
   alias Elastex.Helper
   alias Elastex.Builder
 
   @type body :: map | struct | nil
   @type http_response :: {:ok, HTTPoison.Response} | {:error, HTTPoison.Error}
+
 
   @doc """
   Executes a search query.
@@ -43,6 +44,7 @@ defmodule Elastex.Search do
     }
   end
 
+
   @doc """
   Executes a search query with a body.
 
@@ -65,6 +67,7 @@ defmodule Elastex.Search do
       method: :post
     }
   end
+
 
   @doc """
   Executes a search query with a body and index.
@@ -90,6 +93,7 @@ defmodule Elastex.Search do
       method: :post
     }
   end
+
 
   @doc """
   Executes a search query with a body, index, and type.
@@ -156,6 +160,7 @@ defmodule Elastex.Search do
   """
   @spec shards(String.t) :: Builder.t
   def shards(index), do: shards(index, "")
+
 
   @doc """
   Returns indices and shards that a search request would be executed against
@@ -260,6 +265,7 @@ defmodule Elastex.Search do
   """
   def count(), do: count(nil, "", "")
 
+
   @doc """
   Executes a query to get the number of matches for that query with a body.
 
@@ -273,6 +279,7 @@ defmodule Elastex.Search do
       }
   """
   def count(body), do: count(body, "", "")
+
 
   @doc """
   Executes a query to get the number of matches for that query with
@@ -288,6 +295,7 @@ defmodule Elastex.Search do
       }
   """
   def count(body, index), do: count(body, index, "")
+
 
   @doc """
   Executes a query to get the number of matches for that query
@@ -324,6 +332,7 @@ defmodule Elastex.Search do
   """
   def validate(), do: validate(nil, "", "")
 
+
   @doc """
   Validates a potentially expensive query without executing it.
 
@@ -338,6 +347,7 @@ defmodule Elastex.Search do
   """
   def validate(body), do: validate(body, "", "")
 
+
   @doc """
   Validates a potentially expensive query without executing it with index.
 
@@ -351,6 +361,7 @@ defmodule Elastex.Search do
       }
   """
   def validate(body, index), do: validate(body, index, "")
+
 
   @doc """
   Validates a potentially expensive query without executing it with index.
@@ -375,9 +386,30 @@ defmodule Elastex.Search do
 
   @doc """
   Computes a score explanation for a query and a specific document.
+
+  ## Examples
+      iex> Elastex.Search.explain("twitter", "tweet", 1)
+      %Elastex.Builder {
+        url: "twitter/tweet/1/_explain",
+        body: nil,
+        method: :post
+      }
   """
   def explain(index, type, id), do: explain(nil, index, type, id)
 
+
+  @doc """
+  Computes a score explanation for a query and a specific document.
+
+  ## Examples
+      iex> body = %{"query" => %{term: %{user: "kimchy"}}}
+      iex> Elastex.Search.explain(body, "twitter", "tweet", 1)
+      %Elastex.Builder {
+        url: "twitter/tweet/1/_explain",
+        body: %{"query" => %{term: %{user: "kimchy"}}},
+        method: :post
+      }
+  """
   def explain(body, index, type, id) do
     %Builder {
       url: Helper.path([index, type, id, "_explain"]),
@@ -388,16 +420,17 @@ defmodule Elastex.Search do
 
 
   @doc """
+  Adds params to search builders
   """
   @spec params(Builder.t, Keyword.t) :: Builder.t
   def params(builder, params) do
-    Map.update builder, :params, [], fn(value) ->
-      Keyword.merge(value || [], params)
-    end
+    Helper.params(builder, params)
   end
 
 
   @doc """
+  Gets search hits from http response if present.
+  Returns error tuple with http response if not present.
   """
   @spec query_hits(http_response) :: {:ok, Map.t} | {:error, String.t}
   def query_hits(http_response) do
