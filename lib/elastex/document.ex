@@ -414,6 +414,13 @@ defmodule Elastex.Document do
 
   @doc """
   Adds params to document builders
+
+  ## Examples
+      iex> builder = %Elastex.Builder{}
+      iex> Elastex.Document.params(builder, [q: "user:mike"])
+      %Elastex.Builder {
+        params: [q: "user:mike"]
+      }
   """
   @spec params(Builder.t, Keyword.t) :: Builder.t
   def params(builder, params) do

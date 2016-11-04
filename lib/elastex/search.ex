@@ -420,7 +420,14 @@ defmodule Elastex.Search do
 
 
   @doc """
-  Adds params to search builders
+  Adds params to document builders
+
+  ## Examples
+      iex> builder = %Elastex.Builder{}
+      iex> Elastex.Search.params(builder, [q: "user:mike"])
+      %Elastex.Builder {
+        params: [q: "user:mike"]
+      }
   """
   @spec params(Builder.t, Keyword.t) :: Builder.t
   def params(builder, params) do
