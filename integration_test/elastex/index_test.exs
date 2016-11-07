@@ -440,6 +440,133 @@ defmodule Elastex.Integration.IndexTest do
       assert status_code == 200
     end
 
+
+    test "recovery" do
+      resp = Index.recovery |> Elastex.run(conn)
+
+      {:ok, %HTTPoison.Response{body: %{"twitter" => _twitter}, status_code: status_code}} = resp
+      assert status_code == 200
+    end
+
+
+    test "recovery with index" do
+      resp = Index.recovery("twitter") |> Elastex.run(conn)
+
+      {:ok, %HTTPoison.Response{body: %{"twitter" => _twitter}, status_code: status_code}} = resp
+      assert status_code == 200
+    end
+
+
+    test "shard_stores" do
+      resp = Index.shard_stores() |> Elastex.run(conn)
+
+      {:ok, %HTTPoison.Response{body:
+        %{"indices" => %{"twitter" => _twitter}}, status_code: status_code}} = resp
+
+      assert status_code == 200
+    end
+
+
+    test "shard_stores with index" do
+      resp = Index.shard_stores("twitter") |> Elastex.run(conn)
+
+      {:ok, %HTTPoison.Response{body:
+        %{"indices" => %{"twitter" => _twitter}}, status_code: status_code}} = resp
+
+      assert status_code == 200
+    end
+
+
+    test "clear_cache" do
+      resp = Index.clear_cache() |> Elastex.run(conn)
+
+      {:ok, %HTTPoison.Response{body: %{"_shards" => _shards}, status_code: status_code}} = resp
+
+      assert status_code == 200
+    end
+
+
+    test "clear_cache with index" do
+      resp = Index.clear_cache("twitter") |> Elastex.run(conn)
+
+      {:ok, %HTTPoison.Response{body: %{"_shards" => _shards}, status_code: status_code}} = resp
+
+      assert status_code == 200
+    end
+
+
+    test "flush" do
+      resp = Index.flush() |> Elastex.run(conn)
+
+      {:ok, %HTTPoison.Response{body: %{"_shards" => _shards}, status_code: status_code}} = resp
+
+      assert status_code == 200
+    end
+
+
+    test "flush with index" do
+      resp = Index.flush("twitter") |> Elastex.run(conn)
+
+      {:ok, %HTTPoison.Response{body: %{"_shards" => _shards}, status_code: status_code}} = resp
+
+      assert status_code == 200
+    end
+
+
+    test "synced_flush" do
+      resp = Index.synced_flush() |> Elastex.run(conn)
+
+      {:ok, %HTTPoison.Response{body: %{"_shards" => _shards}, status_code: status_code}} = resp
+
+      assert status_code == 200
+    end
+
+
+    test "synced_flush with index" do
+      resp = Index.synced_flush("twitter") |> Elastex.run(conn)
+
+      {:ok, %HTTPoison.Response{body: %{"_shards" => _shards}, status_code: status_code}} = resp
+
+      assert status_code == 200
+    end
+
+
+    test "refresh" do
+      resp = Index.refresh() |> Elastex.run(conn)
+
+      {:ok, %HTTPoison.Response{body: %{"_shards" => _shards}, status_code: status_code}} = resp
+
+      assert status_code == 200
+    end
+
+
+    test "refresh with index" do
+      resp = Index.refresh("twitter") |> Elastex.run(conn)
+
+      {:ok, %HTTPoison.Response{body: %{"_shards" => _shards}, status_code: status_code}} = resp
+
+      assert status_code == 200
+    end
+
+
+    test "force_merge" do
+      resp = Index.force_merge() |> Elastex.run(conn)
+
+      {:ok, %HTTPoison.Response{body: %{"_shards" => _shards}, status_code: status_code}} = resp
+
+      assert status_code == 200
+    end
+
+
+    test "force_merge with index" do
+      resp = Index.force_merge("twitter") |> Elastex.run(conn)
+
+      {:ok, %HTTPoison.Response{body: %{"_shards" => _shards}, status_code: status_code}} = resp
+
+      assert status_code == 200
+    end
+
+
   end
 
 end
