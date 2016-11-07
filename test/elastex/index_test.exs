@@ -3,11 +3,14 @@ defmodule Elastex.IndexTest do
   alias Elastex.Index
   alias Elastex.Builder
 
+
   doctest Elastex.Index
+
 
   def body do
     %{settings: %{number_of_shards: 3, number_of_replicas: 2}}
   end
+
 
   test "create" do
     actual = Index.create("twitter")
