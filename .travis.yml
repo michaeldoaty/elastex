@@ -22,4 +22,5 @@ before_script:
   - sleep 60
 
 script:
+  - docker ps
   - mix test
