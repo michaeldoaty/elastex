@@ -15,9 +15,12 @@ addons:
     sources:
       - elasticsearch-5.0
     packages:
-      - elasticsearch  
+      - elasticsearch
 
 script  :
   - sleep 30
+  - whereis elasticsearch
+  - "elasticsearch -v"
+  - "curl http://localhost:9200"
   - mix test
   # - mix test
