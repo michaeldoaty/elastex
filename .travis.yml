@@ -13,13 +13,11 @@ sudo:
 services:
   - docker
 
-before_install:
+before_script:
   - docker pull elasticsearch
   - docker run -d -p 9200:9200 elasticsearch
-  - docker ps
-
-before_script:
   - sleep 60
+  - docker ps
 
 script:
   - docker ps
