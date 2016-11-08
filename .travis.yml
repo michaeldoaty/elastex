@@ -7,7 +7,12 @@ opt_release:
   - 18.2
 
 services:
-  - elasticsearch
+  - docker
+
+before_install:
+  - docker pull elasticsearch
+  - docker run -d -p 9200:9200 -p 9300:9300 elasticsearch
+  - docker ps -a
 
 before_script:
   - sleep 10
