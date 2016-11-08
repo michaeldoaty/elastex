@@ -11,7 +11,7 @@ defmodule Elastex.Integration.ClusterTest do
 
   def conn do
     %{url: "http://localhost:9200"}
-    end
+  end
 
 
   setup context do
