@@ -7,11 +7,15 @@ elixir:
 opt_release:
   - 18.2
 
-sudo:
-  - required
-
 services:
   - elasticsearch
+
+addons:
+  apt:
+    sources:
+      - elasticsearch-5.0
+    packages:
+      - elasticsearch  
 
 script  :
   - sleep 30
