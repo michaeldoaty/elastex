@@ -18,9 +18,9 @@ before_install:
 
 before_script:
   # - docker run -d -p 127.0.0.1:9500:9200 elasticsearch
-  - docker run -d elasticsearch
 
 script  :
-  - sleep 30
+  - docker run -d elasticsearch
+  - sleep 90
   - docker ps
   # - mix test
