@@ -26,9 +26,7 @@ defmodule Elastex.Integration.DocumentTest do
     |> Elastex.run(conn)
 
     on_exit fn ->
-      # refactor to delete index
-      Elastex.Document.delete("twitter", "tweet", 1) |> Elastex.run(conn)
-      Elastex.Document.delete("twitter", "tweet", 2) |> Elastex.run(conn)
+      Elastex.Index.delete("twitter") |> Elastex.run(conn)
     end
 
     :ok

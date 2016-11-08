@@ -97,8 +97,18 @@ defmodule Elastex.ClusterTest do
     actual = Cluster.update_settings(body)
     expected = %Builder{
       url: "_cluster/settings",
-      method: :post,
+      method: :put,
       body: body
+    }
+    assert actual == expected
+  end
+
+
+  test "get_settings" do
+    actual = Cluster.get_settings()
+    expected = %Builder{
+      url: "_cluster/settings",
+      method: :get
     }
     assert actual == expected
   end

@@ -169,6 +169,27 @@ defmodule Elastex.Cluster do
 
 
   @doc """
+  Retrieves specific wide cluster settings
+
+  [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-update-settings.html)
+
+  ## Examples
+      iex> Elastex.Cluster.get_settings()
+      %Elastex.Builder {
+        url:    "_cluster/pending_tasks",
+        method: :get
+      }
+  """
+  @spec get_settings() :: Builder.t
+  def get_settings() do
+    %Builder{
+      url: "_cluster/settings",
+      method: :get
+    }
+  end
+
+
+  @doc """
   Updates specific wide cluster settings
 
   [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-update-settings.html)
@@ -187,9 +208,10 @@ defmodule Elastex.Cluster do
     %Builder{
       url: "_cluster/settings",
       body: body,
-      method: :post
+      method: :put
     }
   end
+
 
 
   @doc """
@@ -279,7 +301,7 @@ defmodule Elastex.Cluster do
 
 
   @doc """
-  Retrieves information of specific nodes in the cluster
+  Retrieves information of specific nodes and info in the cluster
 
   [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-nodes-info.html)
 
@@ -305,7 +327,7 @@ defmodule Elastex.Cluster do
   [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-nodes-info.html)
 
   ## Examples
-      iex> Elastex.Cluster.node_info()
+      iex> Elastex.Cluster.node_hot_threads()
       %Elastex.Builder {
         url:    "_nodes/hot_threads",
         method: :get
@@ -321,9 +343,9 @@ defmodule Elastex.Cluster do
   [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-nodes-info.html)
 
   ## Examples
-      iex> Elastex.Cluster.node_info("nodeId1,nodeId2")
+      iex> Elastex.Cluster.node_hot_threads("nodeId1,nodeId2")
       %Elastex.Builder {
-        url:    "_nodes/nodeId1,nodeId2/process",
+        url:    "_nodes/hot_threads/process",
         method: :get
       }
   """
