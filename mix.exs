@@ -13,6 +13,7 @@ defmodule Elastex.Mixfile do
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     test_paths: test_paths,
      deps: deps]
   end
 
@@ -39,6 +40,10 @@ defmodule Elastex.Mixfile do
       licenses: ["MIT"],
       links: %{"Github" => "https://github.com/michaeldoaty/elastex"}
     ]
+  end
+
+  defp test_paths do
+    ["test", "integration_test"]
   end
 
 end
