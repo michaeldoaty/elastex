@@ -1,0 +1,10 @@
+language: elixir
+
+services:
+  - elasticsearch
+
+before_script:
+  - sleep 10
+
+script:
+  - mix test
