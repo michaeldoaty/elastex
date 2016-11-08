@@ -11,16 +11,9 @@ sudo:
   - required
 
 services:
-  - docker
-
-before_install:
-  - docker pull elasticsearch
-
-before_script:
-  # - docker run -d -p 127.0.0.1:9500:9200 elasticsearch
+  - elasticsearch
 
 script  :
-  - docker run -d elasticsearch
-  - sleep 90
-  - docker ps
+  - sleep 30
+  - mix test
   # - mix test
