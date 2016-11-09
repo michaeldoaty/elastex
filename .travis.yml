@@ -6,8 +6,6 @@ opt_release: 18.2
 
 sudo: true
 
-jdk:
-  - oraclejdk8
 addons:
   apt:
     packages:
@@ -21,6 +19,9 @@ before_install:
   - sleep 15
 
 script:
+  - sudo apt-get update && sudo apt-get install oracle-java8-installer
+  - whereis java
+  - java -version
   - whereis elasticsearch
   - "elasticsearch -v"
   - mix test
