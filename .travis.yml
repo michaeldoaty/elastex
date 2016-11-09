@@ -12,34 +12,18 @@ addons:
       - oracle-java8-installer
 
 before_install:
-  # install java 8
+  # update to java 8
   - sudo update-java-alternatives -s java-8-oracle
   - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
   - export MAX_HEAP_SIZE=128M
   - export HEAP_NEWSIZE=24M
   - java -version
+
   # install elasticsearch
   - wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.deb
   - sudo dpkg -i --force-confnew elasticsearch-5.0.0.deb
   - sudo service elasticsearch start
+  - sleep 10
 
-
-
-# before_install:
-#   - wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.deb
-#   - sudo dpkg -i --force-confnew elasticsearch-5.0.0.deb
-#   - 'echo -e "index.number_of_shards: 1\nindex.number_of_replicas: 0" | sudo tee -a /etc/elasticsearch/elasticsearch.yml'
-#   - sudo service elasticsearch restart
-#   - sleep 15
-
-# script:
-#   - jdk_switcher use oraclejdk8
-#   - whereis java
-#   - java -version
-#   - whereis elasticsearch
-#   - "elasticsearch -v"
-#   - mix test
 script:
-  - whereis java
-  - java -version
   - mix test
