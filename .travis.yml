@@ -29,10 +29,6 @@ before_install:
   - wget -O - https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.tar.gz | tar xz --directory=/tmp/elasticsearch --strip-components=1
   - /tmp/elasticsearch/bin/elasticsearch --daemonize --path.data /tmp
 
-before_script:
-  - sleep 10
-  - curl http://127.0.0.1:9200
-
 script  :
   - sleep 30
   - whereis elasticsearch
