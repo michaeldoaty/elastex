@@ -10,28 +10,21 @@ opt_release:
 sudo:
   - required
 
-# addons:
-#   apt:
-#     sources:
-#       - elasticsearch-2.0
-#     packages:
-#       - elasticsearch
+addons:
+  apt:
+    sources:
+      - elasticsearch-1.7
+    packages:
+      - elasticsearch
 
 services:
-  - docker
-#   - elasticsearch
+  - elasticsearch
 
 
 script  :
-  - mkdir -p /tmp/elasticsearch/config
-  - cp -r config/* /tmp/elasticsearch/config/
-  - sudo sysctl -w vm.max_map_count=262144
-  - docker run --rm --privileged=true -p 9200:9200 -p 9300:9300 -v "/tmp/elasticsearch/config:/usr/share/elasticsearch/config" -e ES_JAVA_OPTS='-Xms1g -Xmx1g' elasticsearch:5.0.0 elasticsearch >& /dev/null &
-  - sleep 15
+  - sleep 30
+  - whereis elasticsearch
+  - "elasticsearch -v"
+  - "curl http://localhost:9200"
   - mix test
-  # - sleep 30
-  # - whereis elasticsearch
-  # - "elasticsearch -v"
-  # - "curl http://localhost:9200"
-  # - mix test
   # - mix test
