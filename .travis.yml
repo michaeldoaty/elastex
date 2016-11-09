@@ -13,7 +13,7 @@ sudo:
 addons:
   apt:
     sources:
-      - elasticsearch-2.x
+      - elasticsearch-2.0
     packages:
       - elasticsearch
 
