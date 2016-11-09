@@ -17,8 +17,8 @@ addons:
     packages:
       - elasticsearch
 
-services:
-  - elasticsearch
+# services:
+#   - elasticsearch
 
 
 script  :
