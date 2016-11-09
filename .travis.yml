@@ -6,25 +6,28 @@ opt_release: 18.2
 
 sudo: true
 
-jdk:
-  - oraclejdk8
+# jdk:
+#   - oraclejdk8
+#
+# addons:
+#   apt:
+#     packages:
+#       - oracle-java8-installer
 
-addons:
-  apt:
-    packages:
-      - oracle-java8-installer
+# before_install:
+#   - wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.deb
+#   - sudo dpkg -i --force-confnew elasticsearch-5.0.0.deb
+#   - 'echo -e "index.number_of_shards: 1\nindex.number_of_replicas: 0" | sudo tee -a /etc/elasticsearch/elasticsearch.yml'
+#   - sudo service elasticsearch restart
+#   - sleep 15
 
-before_install:
-  - wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.deb
-  - sudo dpkg -i --force-confnew elasticsearch-5.0.0.deb
-  - 'echo -e "index.number_of_shards: 1\nindex.number_of_replicas: 0" | sudo tee -a /etc/elasticsearch/elasticsearch.yml'
-  - sudo service elasticsearch restart
-  - sleep 15
-
+# script:
+#   - jdk_switcher use oraclejdk8
+#   - whereis java
+#   - java -version
+#   - whereis elasticsearch
+#   - "elasticsearch -v"
+#   - mix test
 script:
-  - jdk_switcher use oraclejdk8
   - whereis java
   - java -version
-  - whereis elasticsearch
-  - "elasticsearch -v"
-  - mix test
