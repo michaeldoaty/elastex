@@ -10,7 +10,7 @@ defmodule Elastex.Mixfile do
      version: "0.1.2",
      description: "Data driven elixir client for Elasticsearch.",
      package: package,
-     elixir: "~> 1.2",
+     elixir: "~> 1.3.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      test_paths: test_paths,
@@ -27,9 +27,10 @@ defmodule Elastex.Mixfile do
     [
       {:poison, "~> 2.0"},
       {:httpoison, "~> 0.8.0"},
-      {:shouldi, only: :test},
+      {:shouldi, ">= 0.0.0", only: :test},
       {:mix_test_watch, "~> 0.2.6", only: :dev},
-      {:ex_doc, "~> 0.12", only: :dev}
+      {:ex_doc, "~> 0.12", only: :dev},
+      {:dialyxir, "~> 0.4", only: :dev}
     ]
   end
 
