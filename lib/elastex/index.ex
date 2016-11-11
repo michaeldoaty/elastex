@@ -4,10 +4,11 @@ defmodule Elastex.Index do
    [Indices API](https://www.elastic.co/guide/en/elasticsearch/reference/current/indices.html).
   """
 
-  @behaviour Elastex.Builder.Extender
+  @behaviour Elastex.Extender
 
   alias Elastex.Helper
   alias Elastex.Builder
+  alias Elastex.Extender
 
   @type int_or_string :: non_neg_integer | String.t
   @type body          :: map | struct | nil
@@ -1055,7 +1056,23 @@ defmodule Elastex.Index do
   """
   @spec params(Builder.t, Keyword.t) :: Builder.t
   def params(builder, params) do
-    Helper.params(builder, params)
+    Extender.params(builder, params)
+  end
+
+
+  @doc """
+  Extends the url of cluster builder
+
+  ## Examples
+      iex> builder = %Elastex.Builder{url: "twitter"}
+      iex> Elastex.Index.extend_url(builder, ["tweet"])
+      %Elastex.Builder {
+        url: "twitter/tweet"
+      }
+  """
+  @spec extend_url(Builder.t, list) :: Builder.t
+  def extend_url(builder, list) do
+    Extender.extend_url(builder, list)
   end
 
 

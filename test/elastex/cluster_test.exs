@@ -193,4 +193,37 @@ defmodule Elastex.ClusterTest do
     assert actual == expected
   end
 
+
+  test "params" do
+    expected = Cluster.params(%Builder{}, [q: "search"])
+    assert expected == %Builder{
+      params: [q: "search"]
+    }
+  end
+
+
+  test "params with existing data" do
+    expected = Cluster.params(%Builder{params: [routing: "user"]}, [q: "search"])
+    assert expected == %Builder{
+      params: [routing: "user", q: "search"]
+    }
+  end
+
+
+  test "extend_url" do
+    expected = Cluster.extend_url(%Builder{}, ["twitter"])
+    assert expected == %Builder{
+      url: "twitter"
+    }
+  end
+
+
+  test "extend_url with existing data" do
+    expected = Cluster.extend_url(%Builder{url: "twitter"}, ["tweet"])
+    assert expected == %Builder{
+      url: "twitter/tweet"
+    }
+  end
+
+
 end

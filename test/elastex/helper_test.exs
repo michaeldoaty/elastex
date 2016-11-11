@@ -3,81 +3,10 @@ defmodule Elastex.HelperTest do
   alias Elastex.Helper
 
 
-  def body do
-    %{greet: "hello"}
+  test "path" do
+    expected = Helper.path(["twitter", "tweet"])
+    assert expected == "twitter/tweet"
   end
 
-
-  def req do
-    %{body: body,
-      method: :get,
-      params: [q: "user"],
-      url: "twitter/tweet",
-      headers: [connection: "keep-alive"],
-      options: [timeout: 2000]}
-  end
-
-
-  # test "get_body - ok response" do
-  #   actual = Helper.get_body({:ok, %{body: {:ok, body}}})
-  #   expected = {:ok, body}
-  #   assert actual == expected
-  # end
-  #
-  #
-  # test "get_body - error response top level" do
-  #   actual = Helper.get_body({:error, %{body: {:ok, body}}})
-  #   expected = {:error, "unable to get body"}
-  #   assert actual == expected
-  # end
-  #
-  #
-  # test "get_body - error response at body" do
-  #   actual = Helper.get_body({:ok, %{body: {:error, body}}})
-  #   expected = {:error, body}
-  #   assert actual == expected
-  # end
-  #
-  #
-  # test "get_body - missing body" do
-  #   actual = Helper.get_body({:ok, %{headers: []}})
-  #   expected = {:error, "unable to get body"}
-  #   assert actual == expected
-  # end
-  #
-  #
-  # test "build - method" do
-  #   actual = Helper.build(req, %{}).method
-  #   expected = :get
-  #   assert actual == expected
-  # end
-  #
-  #
-  # test "build - joins url" do
-  #   actual = Helper.build(req, %{url: "http://localhost:9200"}).url
-  #   expected = "http://localhost:9200/twitter/tweet"
-  #   assert actual == expected
-  # end
-  #
-  #
-  # test "build - merges options" do
-  #   actual = Helper.build(req, %{}).options
-  #   expected = [params: [q: "user"], timeout: 2000]
-  #   assert actual == expected
-  # end
-  #
-  #
-  # test "build - body" do
-  #   actual = Helper.build(req, %{}).body
-  #   expected = body
-  #   assert actual == expected
-  # end
-  #
-  #
-  # test "build - merges headers" do
-  #   actual = Helper.build(req, %{}).headers
-  #   expected = [accept: "application/json", connection: "keep-alive"]
-  #   assert actual == expected
-  # end
 
 end

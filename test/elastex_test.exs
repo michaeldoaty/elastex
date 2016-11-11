@@ -1,51 +1,35 @@
 defmodule ElastexTest do
   use ExUnit.Case
+  alias Elastex.Builder
 
 
-  # def body do
-  #   %{greet: "hello"}
-  # end
+  def req do
+    %Builder{
+      body: %{greet: "hello world"},
+      url: "_search",
+      method: :post,
+      action: :search_query,
+      params: [q: "search"],
+      index: "twitter",
+      type: "type",
+      id: 5,
+      headers: [connection: "keep-alive"]
+    }
+  end
 
 
-  # test "custom" do
-  #   actual = Elastex.custom(:get, "twitter/tweet")
-  #   expected = %{url: "twitter/tweet", method: :get, body: ""}
-  #   assert actual == expected
-  # end
-  #
-  #
-  # test "custom with body" do
-  #   actual = Elastex.custom(body, :get, "twitter/tweet")
-  #   expected = %{url: "twitter/tweet", method: :get, body: body}
-  #   assert actual == expected
-  # end
-  #
-  #
-  # test "params" do
-  #   actual = Elastex.params(%{before: true}, [routing: true])
-  #   expected = %{before: true, params: [routing: true]}
-  #   assert actual == expected
-  # end
-  #
-  #
-  # test "headers" do
-  #   actual = Elastex.headers(%{before: true}, [accept: "application/json"])
-  #   expected = %{before: true, headers: [accept: "application/json"]}
-  #   assert actual == expected
-  # end
-  #
-  #
-  # test "http_options" do
-  #   actual = Elastex.http_options(%{before: true}, [timeout: 2000])
-  #   expected = %{before: true, options: [timeout: 2000]}
-  #   assert actual == expected
-  # end
-  #
-  #
-  # test "extend_url" do
-  #   actual = Elastex.extend_url(%{url: "twitter/tweet"}, "_source")
-  #   expected = %{url: "twitter/tweet/_source"}
-  #   assert actual == expected
-  # end
-  #
+  test "build" do
+    expected = Elastex.build(req, %{url: "http://localhost:9200"})
+
+    assert expected == %Builder{
+      body: %{greet: "hello world"},
+      method: :post,
+      url: "http://localhost:9200/_search",
+      options: [params: [q: "search"]],
+      headers: [accept: "application/json", connection: "keep-alive"],
+      action: :search_query
+    }
+  end
+
+
 end

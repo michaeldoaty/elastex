@@ -4,10 +4,11 @@ defmodule Elastex.Search do
    [Search API](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html).
   """
 
-  @behaviour Elastex.Builder.Extender
+  @behaviour Elastex.Extender
 
   alias Elastex.Helper
   alias Elastex.Builder
+  alias Elastex.Extender
 
   @type body :: map | struct | nil
   @type http_response :: {:ok, HTTPoison.Response} | {:error, HTTPoison.Error}
@@ -420,22 +421,6 @@ defmodule Elastex.Search do
 
 
   @doc """
-  Adds params to document builders
-
-  ## Examples
-      iex> builder = %Elastex.Builder{}
-      iex> Elastex.Search.params(builder, [q: "user:mike"])
-      %Elastex.Builder {
-        params: [q: "user:mike"]
-      }
-  """
-  @spec params(Builder.t, Keyword.t) :: Builder.t
-  def params(builder, params) do
-    Helper.params(builder, params)
-  end
-
-
-  @doc """
   Gets search hits from http response if present.
   Returns error tuple with http response if not present.
   """
@@ -448,5 +433,38 @@ defmodule Elastex.Search do
         {:error, http_response}
     end
   end
+
+
+  @doc """
+  Adds params to search builders
+
+  ## Examples
+      iex> builder = %Elastex.Builder{}
+      iex> Elastex.Search.params(builder, [q: "user:mike"])
+      %Elastex.Builder {
+        params: [q: "user:mike"]
+      }
+  """
+  @spec params(Builder.t, Keyword.t) :: Builder.t
+  def params(builder, params) do
+    Extender.params(builder, params)
+  end
+
+
+  @doc """
+  Extends the url of search builder
+
+  ## Examples
+      iex> builder = %Elastex.Builder{url: "twitter"}
+      iex> Elastex.Search.extend_url(builder, ["tweet"])
+      %Elastex.Builder {
+        url: "twitter/tweet"
+      }
+  """
+  @spec extend_url(Builder.t, list) :: Builder.t
+  def extend_url(builder, list) do
+    Extender.extend_url(builder, list)
+  end
+
 
 end

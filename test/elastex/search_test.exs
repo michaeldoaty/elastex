@@ -274,4 +274,22 @@ defmodule Elastex.SearchTest do
     expected = {:ok, []}
     assert actual == expected
   end
+
+
+  test "extend_url" do
+    expected = Search.extend_url(%Builder{}, ["twitter"])
+    assert expected == %Builder{
+      url: "twitter"
+    }
+  end
+
+
+  test "extend_url with existing data" do
+    expected = Search.extend_url(%Builder{url: "twitter"}, ["tweet"])
+    assert expected == %Builder{
+      url: "twitter/tweet"
+    }
+  end
+
+
 end
