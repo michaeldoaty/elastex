@@ -3,7 +3,7 @@ defmodule Elastex.Builder do
 
 
   @type int_or_string :: non_neg_integer | String.t
-  @type body          :: map | struct | nil
+  @type body          :: map() | nil
 
 
   @type t :: %__MODULE__{
@@ -15,7 +15,7 @@ defmodule Elastex.Builder do
     index:   String.t | nil,
     type:    String.t | nil,
     id:      int_or_string | nil,
-    options: map,
+    options: map(),
     headers: Keyword.t
   }
 end

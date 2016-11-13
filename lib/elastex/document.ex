@@ -101,7 +101,10 @@ defmodule Elastex.Document do
         method: :get
       }
   """
-  @spec get(String.t, String.t, int_or_string) :: %Builder{url: String.t, method: :get}
+  @spec get(String.t, String.t, int_or_string) :: %Builder{
+    url: String.t,
+    method: :get
+  }
   def get(index, type, id) do
     %Builder{
       url:    Helper.path([index, type, id]),
@@ -122,7 +125,10 @@ defmodule Elastex.Document do
         method: :head
       }
   """
-  @spec exists(String.t, String.t, int_or_string) :: %Builder{url: String.t, method: :head}
+  @spec exists(String.t, String.t, int_or_string) :: %Builder{
+    url: String.t,
+    method: :head
+  }
   def exists(index, type, id) do
     %Builder{
       url:    Helper.path([index, type, id]),
@@ -365,7 +371,10 @@ defmodule Elastex.Document do
         method: :get
       }
   """
-  @spec term_vectors(String.t, String.t, int_or_string) :: %Builder{url: String.t, method: :get}
+  @spec term_vectors(String.t, String.t, int_or_string) :: %Builder{
+    url: String.t,
+    method: :get
+  }
   def term_vectors(index, type, id) do
     %Builder{
       url:    Helper.path([index, type, id, "_termvectors"]),
