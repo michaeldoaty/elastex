@@ -3,8 +3,8 @@ defmodule Elastex.Extender do
   alias Elastex.Helper
 
 
-  @callback params(Builder.t, Keyword.t) :: Builder.t
-  @callback extend_url(Builder.t, list) :: Builder.t
+  @callback params(%Builder{}, keyword(String.t)) :: %Builder{params: keyword(String.t)}
+  @callback extend_url(%Builder{}, list(String.t)) :: %Builder{url: String.t}
 
 
   @doc """
@@ -16,7 +16,7 @@ defmodule Elastex.Extender do
         params: [q: "user:mike"]
       }
   """
-  @spec params(Builder.t, Keyword.t) :: Builder.t
+  @spec params(%Builder{}, keyword(String.t)) :: %Builder{params: keyword(String.t)}
   def params(builder, params) do
     Map.update builder, :params, [], fn(value) ->
       Keyword.merge(value || [], params)
@@ -34,7 +34,7 @@ defmodule Elastex.Extender do
         url: "twitter/tweet"
       }
   """
-  @spec extend_url(Builder.t, list) :: Builder.t
+  @spec extend_url(%Builder{}, list(String.t)) :: %Builder{}
   def extend_url(builder, list) do
     Map.update builder, :url, "", fn (url) ->
       Helper.path(List.flatten([url, list]))

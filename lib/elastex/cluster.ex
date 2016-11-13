@@ -10,9 +10,6 @@ defmodule Elastex.Cluster do
   alias Elastex.Builder
   alias Elastex.Extender
 
-  @type int_or_string :: non_neg_integer | String.t
-  @type body          :: map | struct | nil
-
 
   @doc """
   Gets a very simple status on the health of the cluster.
@@ -26,7 +23,7 @@ defmodule Elastex.Cluster do
         method: :get,
       }
   """
-  @spec health() :: Builder.t
+  @spec health() :: %Builder{url: String.t, method: :get}
   def health(), do: health("")
 
 
@@ -42,7 +39,7 @@ defmodule Elastex.Cluster do
         method: :get,
       }
   """
-  @spec health(String.t) :: Builder.t
+  @spec health(String.t) :: %Builder{url: String.t, method: :get}
   def health(index) do
     %Builder{
       url: Helper.path(["_cluster/health", index]),
@@ -63,7 +60,7 @@ defmodule Elastex.Cluster do
         method: :get,
       }
   """
-  @spec state() :: Builder.t
+  @spec state() :: %Builder{url: String.t, method: :get}
   def state, do: state("", "")
 
 
@@ -79,7 +76,7 @@ defmodule Elastex.Cluster do
         method: :get,
       }
   """
-  @spec state(String.t) :: Builder.t
+  @spec state(String.t) :: %Builder{url: String.t, method: :get}
   def state(metrics), do: state(metrics, "")
 
 
@@ -95,7 +92,7 @@ defmodule Elastex.Cluster do
         method: :get,
       }
   """
-  @spec state(String.t, String.t) :: Builder.t
+  @spec state(String.t, String.t) :: %Builder{url: String.t, method: :get}
   def state(metrics, index) do
     %Builder{
       url: Helper.path(["_cluster/state", metrics, index]),
@@ -116,7 +113,7 @@ defmodule Elastex.Cluster do
         method: :get,
       }
   """
-  @spec stats() :: Builder.t
+  @spec stats() :: %Builder{url: String.t, method: :get}
   def stats do
     %Builder{
       url: "_cluster/stats",
@@ -137,7 +134,7 @@ defmodule Elastex.Cluster do
         method: :get,
       }
   """
-  @spec pending_tasks() :: Builder.t
+  @spec pending_tasks() :: %Builder{url: String.t, method: :get}
   def pending_tasks do
     %Builder{
       url: "_cluster/pending_tasks",
@@ -159,7 +156,7 @@ defmodule Elastex.Cluster do
         method: :get,
       }
   """
-  @spec reroute(body) :: Builder.t
+  @spec reroute(map()) :: %Builder{url: String.t, body: map(), method: :post}
   def reroute(body) do
     %Builder{
       url: "_cluster/reroute",
@@ -181,7 +178,7 @@ defmodule Elastex.Cluster do
         method: :get
       }
   """
-  @spec get_settings() :: Builder.t
+  @spec get_settings() :: %Builder{url: String.t, method: :get}
   def get_settings() do
     %Builder{
       url: "_cluster/settings",
@@ -204,7 +201,7 @@ defmodule Elastex.Cluster do
         method: :get
       }
   """
-  @spec update_settings(body) :: Builder.t
+  @spec update_settings(map()) :: %Builder{url: String.t, body: map(), method: :put}
   def update_settings(body) do
     %Builder{
       url: "_cluster/settings",
@@ -227,7 +224,7 @@ defmodule Elastex.Cluster do
         method: :get
       }
   """
-  @spec node_stats() :: Builder.t
+  @spec node_stats() :: %Builder{url: String.t, method: :get}
   def node_stats(), do: node_stats("", "")
 
 
@@ -243,7 +240,7 @@ defmodule Elastex.Cluster do
         method: :get
       }
   """
-  @spec node_stats(String.t) :: Builder.t
+  @spec node_stats(String.t) :: %Builder{url: String.t, method: :get}
   def node_stats(nodes), do: node_stats(nodes, "")
 
 
@@ -259,7 +256,7 @@ defmodule Elastex.Cluster do
         method: :get
       }
   """
-  @spec node_stats(String.t, String.t) :: Builder.t
+  @spec node_stats(String.t, String.t) :: %Builder{url: String.t, method: :get}
   def node_stats(nodes, stats) do
     url = Path.join(["_nodes", nodes, "stats", stats])
     %Builder{
@@ -281,7 +278,7 @@ defmodule Elastex.Cluster do
         method: :get
       }
   """
-  @spec node_info() :: Builder.t
+  @spec node_info() :: %Builder{url: String.t, method: :get}
   def node_info(), do: node_info("", "")
 
 
@@ -297,7 +294,7 @@ defmodule Elastex.Cluster do
         method: :get
       }
   """
-  @spec node_info(String.t) :: Builder.t
+  @spec node_info(String.t) :: %Builder{url: String.t, method: :get}
   def node_info(nodes), do: node_info(nodes, "")
 
 
@@ -313,7 +310,7 @@ defmodule Elastex.Cluster do
         method: :get
       }
   """
-  @spec node_info(String.t, String.t) :: Builder.t
+  @spec node_info(String.t, String.t) :: %Builder{url: String.t, method: :get}
   def node_info(nodes, info) do
     %Builder{
       url: Helper.path(["_nodes", nodes, info]),
@@ -334,7 +331,7 @@ defmodule Elastex.Cluster do
         method: :get
       }
   """
-  @spec node_hot_threads() :: Builder.t
+  @spec node_hot_threads() :: %Builder{url: String.t, method: :get}
   def node_hot_threads(), do: node_hot_threads("")
 
 
@@ -350,7 +347,7 @@ defmodule Elastex.Cluster do
         method: :get
       }
   """
-  @spec node_hot_threads(String.t) :: Builder.t
+  @spec node_hot_threads(String.t) :: %Builder{url: String.t, method: :get}
   def node_hot_threads(nodes) do
     %Builder{
       url: Helper.path(["_nodes", nodes, "hot_threads"]),
@@ -369,7 +366,7 @@ defmodule Elastex.Cluster do
         params: [q: "user:mike"]
       }
   """
-  @spec params(Builder.t, Keyword.t) :: Builder.t
+  @spec params(%Builder{}, keyword(String.t)) :: %Builder{params: keyword(String.t)}
   def params(builder, params) do
     Extender.params(builder, params)
   end
@@ -385,7 +382,7 @@ defmodule Elastex.Cluster do
         url: "twitter/tweet"
       }
   """
-  @spec extend_url(Builder.t, list) :: Builder.t
+  @spec extend_url(%Builder{}, list(String.t)) :: %Builder{url: String.t}
   def extend_url(builder, list) do
     Extender.extend_url(builder, list)
   end

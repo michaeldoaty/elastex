@@ -11,7 +11,7 @@ defmodule Elastex.Document do
   alias Elastex.Extender
 
   @type int_or_string :: non_neg_integer | String.t
-  @type body          :: map | struct | nil
+  @type bulk_action :: :document_update | :document_index | :document_create | :document_delete
 
 
   @doc """
@@ -30,7 +30,14 @@ defmodule Elastex.Document do
         type:   "tweet"
       }
   """
-  @spec index(body, String.t, String.t) :: Builder.t
+  @spec index(map(), String.t, String.t) :: %Builder{
+    url:    String.t,
+    body:   map(),
+    method: :post,
+    action: :document_index,
+    index:  String.t,
+    type:   String.t
+  }
   def index(body, index, type) do
     %Builder{
       url:    Helper.path([index, type]),
@@ -60,7 +67,15 @@ defmodule Elastex.Document do
         id:     5
       }
   """
-  @spec index(body, String.t, String.t, int_or_string) :: Builder.t
+  @spec index(map(), String.t, String.t, int_or_string) :: %Builder{
+    url:    String.t,
+    body:   map(),
+    method: :put,
+    action: :document_index,
+    index:  String.t,
+    type:   String.t,
+    id:     int_or_string
+  }
   def index(body, index, type, id) do
     %Builder{
       url:    Helper.path([index, type, id]),
@@ -86,7 +101,7 @@ defmodule Elastex.Document do
         method: :get
       }
   """
-  @spec get(String.t, String.t, int_or_string) :: Builder.t
+  @spec get(String.t, String.t, int_or_string) :: %Builder{url: String.t, method: :get}
   def get(index, type, id) do
     %Builder{
       url:    Helper.path([index, type, id]),
@@ -107,7 +122,7 @@ defmodule Elastex.Document do
         method: :head
       }
   """
-  @spec exists(String.t, String.t, int_or_string) :: Builder.t
+  @spec exists(String.t, String.t, int_or_string) :: %Builder{url: String.t, method: :head}
   def exists(index, type, id) do
     %Builder{
       url:    Helper.path([index, type, id]),
@@ -132,7 +147,14 @@ defmodule Elastex.Document do
         id:     5
       }
   """
-  @spec delete(String.t, String.t, int_or_string) :: Builder.t
+  @spec delete(String.t, String.t, int_or_string) :: %Builder{
+    url:    String.t,
+    method: :delete,
+    action: :document_delete,
+    index:  String.t,
+    type:   String.t,
+    id:     int_or_string
+  }
   def delete(index, type, id) do
     %Builder{
       url:    Helper.path([index, type, id]),
@@ -162,7 +184,15 @@ defmodule Elastex.Document do
         id:     5
       }
   """
-  @spec update(body, String.t, String.t, int_or_string) :: Builder.t
+  @spec update(map(), String.t, String.t, int_or_string) :: %Builder{
+    url:    String.t,
+    body:   map(),
+    method: :post,
+    action: :document_update,
+    index:  String.t,
+    type:   String.t,
+    id:     int_or_string
+  }
   def update(body, index, type, id) do
     %Builder{
       url:    Helper.path([index, type, id, "_update"]),
@@ -190,7 +220,11 @@ defmodule Elastex.Document do
         method: :get
       }
   """
-  @spec mget(body) :: Builder.t
+  @spec mget(map()) :: %Builder{
+    url:    String.t,
+    body:   map(),
+    method: :get
+  }
   def mget(body), do: mget(body, "", "")
 
 
@@ -208,7 +242,11 @@ defmodule Elastex.Document do
         method: :get,
       }
   """
-  @spec mget(body, String.t) :: Builder.t
+  @spec mget(map(), String.t) :: %Builder{
+    url:    String.t,
+    body:   map(),
+    method: :get
+  }
   def mget(body, index), do: mget(body, index, "")
 
 
@@ -226,7 +264,11 @@ defmodule Elastex.Document do
         method: :get
       }
   """
-  @spec mget(body, String.t, String.t) :: Builder.t
+  @spec mget(map(), String.t, String.t) :: %Builder{
+    url:    String.t,
+    body:   map(),
+    method: :get
+  }
   def mget(body, index, type) do
     %Builder{
       url:    Helper.path([index, type, "_mget"]),
@@ -252,7 +294,12 @@ defmodule Elastex.Document do
         action: :document_bulk
       }
   """
-  @spec bulk([Builder.t]) :: Builder.t
+  @spec bulk([%Builder{action: bulk_action}]) :: %Builder{
+    url:    String.t,
+    body:   String.t,
+    method: :post,
+    action: :document_bulk
+  }
   def bulk(builders) do
     m = %{
       document_update: "update",
@@ -283,7 +330,7 @@ defmodule Elastex.Document do
   end
 
 
-  @spec build_bulk_request(Builder.t, String.t) :: any
+  @spec build_bulk_request(%Builder{action: bulk_action}, String.t) :: any
   defp build_bulk_request(builder, action) do
     action_map = %{
       _index: builder.index,
@@ -318,7 +365,7 @@ defmodule Elastex.Document do
         method: :get
       }
   """
-  @spec term_vectors(String.t, String.t, int_or_string) :: Builder.t
+  @spec term_vectors(String.t, String.t, int_or_string) :: %Builder{url: String.t, method: :get}
   def term_vectors(index, type, id) do
     %Builder{
       url:    Helper.path([index, type, id, "_termvectors"]),
@@ -342,7 +389,11 @@ defmodule Elastex.Document do
         method: :get
       }
   """
-  @spec term_vectors(body, String.t, String.t, int_or_string) :: Builder.t
+  @spec term_vectors(map(), String.t, String.t, int_or_string) :: %Builder{
+    url: String.t,
+    body: map(),
+    method: :get
+  }
   def term_vectors(body, index, type, id) do
     %Builder{
       url:    Helper.path([index, type, id, "_termvectors"]),
@@ -367,7 +418,11 @@ defmodule Elastex.Document do
         method: :get
       }
   """
-  @spec mterm_vectors(body) :: Builder.t
+  @spec mterm_vectors(map()) :: %Builder{
+    url: String.t,
+    body: map(),
+    method: :get
+  }
   def mterm_vectors(body), do: mterm_vectors(body, "", "")
 
 
@@ -385,7 +440,11 @@ defmodule Elastex.Document do
         method: :get
       }
   """
-  @spec mterm_vectors(body, String.t) :: Builder.t
+  @spec mterm_vectors(map(), String.t) :: %Builder{
+    url: String.t,
+    body: map(),
+    method: :get
+  }
   def mterm_vectors(body, index), do: mterm_vectors(body, index, "")
 
 
@@ -403,7 +462,11 @@ defmodule Elastex.Document do
         method: :get
       }
   """
-  @spec mterm_vectors(body, String.t, String.t) :: Builder.t
+  @spec mterm_vectors(map(), String.t, String.t) :: %Builder{
+    url: String.t,
+    body: map(),
+    method: :get
+  }
   def mterm_vectors(body, index, type) do
     %Builder{
       url:    Helper.path([index, type, "_mtermvectors"]),
@@ -423,7 +486,7 @@ defmodule Elastex.Document do
         params: [q: "user:mike"]
       }
   """
-  @spec params(Builder.t, Keyword.t) :: Builder.t
+  @spec params(%Builder{}, keyword(String.t)) :: %Builder{params: keyword(String.t)}
   def params(builder, params) do
     Extender.params(builder, params)
   end
@@ -439,7 +502,7 @@ defmodule Elastex.Document do
         url: "twitter/tweet"
       }
   """
-  @spec extend_url(Builder.t, list) :: Builder.t
+  @spec extend_url(%Builder{}, list(String.t)) :: %Builder{url: String.t}
   def extend_url(builder, list) do
     Extender.extend_url(builder, list)
   end

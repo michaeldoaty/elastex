@@ -6,7 +6,7 @@ defmodule Elastex do
 
   @doc """
   """
-  @spec run(Builder.t, Map.t) :: any
+  @spec run(%Builder{}, map()) :: any
   def run(req, conn) do
     build(req, conn) |> Web.http_call
   end
@@ -15,7 +15,7 @@ defmodule Elastex do
   @doc """
   Builds request for http call.
   """
-  @spec build(Builder.t, Map.t) :: Builder.t
+  @spec build(%Builder{}, map()) :: %Builder{}
   def build(req, conn) do
     conn_url = Map.get(conn, :url, "")
     req_url  = req.url     || ""

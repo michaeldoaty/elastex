@@ -11,7 +11,7 @@ defmodule Elastex.Index do
   alias Elastex.Extender
 
   @type int_or_string :: non_neg_integer | String.t
-  @type body          :: map | struct | nil
+  @type body :: map() | nil
 
 
   @doc """
@@ -27,7 +27,11 @@ defmodule Elastex.Index do
         method: :put,
       }
   """
-  @spec create(String.t) :: Builder.t
+  @spec create(String.t) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :put
+  }
   def create(index), do: create(nil, index)
 
 
@@ -45,7 +49,11 @@ defmodule Elastex.Index do
         method: :put,
       }
   """
-  @spec create(body, String.t) :: Builder.t
+  @spec create(body, String.t) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :put
+  }
   def create(body, index) do
     %Builder{
       body: body,
@@ -67,7 +75,10 @@ defmodule Elastex.Index do
         method: :delete,
       }
   """
-  @spec delete(String.t) :: Builder.t
+  @spec delete(String.t) :: %Builder{
+    url: String.t,
+    method: :delete
+  }
   def delete(index) do
     %Builder{
       url: index,
@@ -88,7 +99,10 @@ defmodule Elastex.Index do
         method: :get,
       }
   """
-  @spec get(String.t) :: Builder.t
+  @spec get(String.t) :: %Builder{
+    url: String.t,
+    method: :get
+  }
   def get(index) do
     %Builder{
       url: index,
@@ -109,7 +123,10 @@ defmodule Elastex.Index do
         method: :head,
       }
   """
-  @spec exists(String.t) :: Builder.t
+  @spec exists(String.t) :: %Builder{
+    url: String.t,
+    method: :head
+  }
   def exists(index) do
     %Builder{
       url: index,
@@ -130,7 +147,10 @@ defmodule Elastex.Index do
         method: :post,
       }
   """
-  @spec close(String.t) :: Builder.t
+  @spec close(String.t) :: %Builder{
+    url: String.t,
+    method: :post
+  }
   def close(index) do
     %Builder{
       url: Helper.path([index, "_close"]),
@@ -151,7 +171,10 @@ defmodule Elastex.Index do
         method: :post,
       }
   """
-  @spec open(String.t) :: Builder.t
+  @spec open(String.t) :: %Builder{
+    url: String.t,
+    method: :post
+  }
   def open(index) do
     %Builder{
       url: Helper.path([index, "_open"]),
@@ -172,7 +195,10 @@ defmodule Elastex.Index do
         method: :post,
       }
   """
-  @spec shrink(String.t, String.t) :: Builder.t
+  @spec shrink(String.t, String.t) :: %Builder{
+    url: String.t,
+    method: :post
+  }
   def shrink(source_index, target_index) do
     shrink(nil, source_index, target_index)
   end
@@ -192,7 +218,11 @@ defmodule Elastex.Index do
         method: :post
       }
   """
-  @spec shrink(body, String.t, String.t) :: Builder.t
+  @spec shrink(body, String.t, String.t) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
   def shrink(body, source_index, target_index) do
     %Builder{
       url: Helper.path([source_index, "_shrink", target_index]),
@@ -216,7 +246,11 @@ defmodule Elastex.Index do
         method: :post
       }
   """
-  @spec rollover(body, String.t) :: Builder.t
+  @spec rollover(body, String.t) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
   def rollover(body, index) do
     rollover(body, index, "")
   end
@@ -236,7 +270,11 @@ defmodule Elastex.Index do
         method: :post
       }
   """
-  @spec rollover(body, String.t, String.t) :: Builder.t
+  @spec rollover(body, String.t, String.t) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
   def rollover(body, index, named_index) do
     %Builder{
       url: Helper.path([index, "_rollover", named_index]),
@@ -260,7 +298,11 @@ defmodule Elastex.Index do
         method: :put
       }
   """
-  @spec put_mapping(body, String.t) :: Builder.t
+  @spec put_mapping(body, String.t) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :put
+  }
   def put_mapping(body, index) do
     %Builder{
       url: Helper.path([index]),
@@ -284,7 +326,11 @@ defmodule Elastex.Index do
         method: :put
       }
   """
-  @spec put_mapping(body, String.t, String.t) :: Builder.t
+  @spec put_mapping(body, String.t, String.t) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :put
+  }
   def put_mapping(body, index, type) do
     %Builder{
       url: Helper.path([index, "_mapping", type]),
@@ -306,7 +352,10 @@ defmodule Elastex.Index do
         method: :get
       }
   """
-  @spec get_mapping(String.t) :: Builder.t
+  @spec get_mapping(String.t) :: %Builder{
+    url: String.t,
+    method: :get
+  }
   def get_mapping(index) do
     get_mapping(index, "")
   end
@@ -324,7 +373,10 @@ defmodule Elastex.Index do
         method: :get
       }
   """
-  @spec get_mapping(String.t, String.t) :: Builder.t
+  @spec get_mapping(String.t, String.t) :: %Builder{
+    url: String.t,
+    method: :get
+  }
   def get_mapping(index, type) do
     %Builder{
       url: Helper.path([index, "_mapping", type]),
@@ -345,7 +397,10 @@ defmodule Elastex.Index do
         method: :get
       }
   """
-  @spec get_field_mapping(String.t, String.t, String.t) :: Builder.t
+  @spec get_field_mapping(String.t, String.t, String.t) :: %Builder{
+    url: String.t,
+    method: :get
+  }
   def get_field_mapping(index, type, field) do
     %Builder{
       url: Helper.path([index, "_mapping", type, "field", field]),
@@ -366,7 +421,10 @@ defmodule Elastex.Index do
         method: :head
       }
   """
-  @spec type_exists(String.t, String.t) :: Builder.t
+  @spec type_exists(String.t, String.t) :: %Builder{
+    url: String.t,
+    method: :head
+  }
   def type_exists(index, type) do
     %Builder{
       url: Helper.path([index, "_mapping", type]),
@@ -389,7 +447,11 @@ defmodule Elastex.Index do
         method: :post
       }
   """
-  @spec aliases(body) :: Builder.t
+  @spec aliases(body) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
   def aliases(body) do
     %Builder{
       url: "_aliases",
@@ -411,7 +473,10 @@ defmodule Elastex.Index do
         method: :put
       }
   """
-  @spec add_alias(String.t, String.t) :: Builder.t
+  @spec add_alias(String.t, String.t) :: %Builder{
+    url: String.t,
+    method: :put
+  }
   def add_alias(index, name) do
     %Builder{
       url: Helper.path([index, "_alias", name]),
@@ -434,7 +499,11 @@ defmodule Elastex.Index do
         method: :put
       }
   """
-  @spec add_alias(body, String.t, String.t) :: Builder.t
+  @spec add_alias(body, String.t, String.t) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :put
+  }
   def add_alias(body, index, name) do
     %Builder{
       url: Helper.path([index, "_alias", name]),
@@ -456,7 +525,10 @@ defmodule Elastex.Index do
         method: :get
       }
   """
-  @spec get_alias(String.t, String.t) :: Builder.t
+  @spec get_alias(String.t, String.t) :: %Builder{
+    url: String.t,
+    method: :get
+  }
   def get_alias(index, name) do
     %Builder{
       url: Helper.path([index, "_alias", name]),
@@ -477,7 +549,10 @@ defmodule Elastex.Index do
         method: :delete
       }
   """
-  @spec delete_alias(String.t, String.t) :: Builder.t
+  @spec delete_alias(String.t, String.t) :: %Builder{
+    url: String.t,
+    method: :delete
+  }
   def delete_alias(index, name) do
     %Builder{
       url: Helper.path([index, "_alias", name]),
@@ -498,7 +573,10 @@ defmodule Elastex.Index do
         method: :head
       }
   """
-  @spec alias_exists(String.t, String.t) :: Builder.t
+  @spec alias_exists(String.t, String.t) :: %Builder{
+    url: String.t,
+    method: :head
+  }
   def alias_exists(index, name) do
     %Builder{
       url: Helper.path([index, "_alias", name]),
@@ -521,7 +599,11 @@ defmodule Elastex.Index do
         method: :put
       }
   """
-  @spec update_settings(body) :: Builder.t
+  @spec update_settings(body) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :put
+  }
   def update_settings(body) do
     %Builder{
       url: "_settings",
@@ -545,7 +627,11 @@ defmodule Elastex.Index do
         method: :put
       }
   """
-  @spec update_settings(body, String.t) :: Builder.t
+  @spec update_settings(body, String.t) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :put
+  }
   def update_settings(body, index) do
     %Builder{
       url: Helper.path([index, "_settings"]),
@@ -567,7 +653,10 @@ defmodule Elastex.Index do
         method: :get
       }
   """
-  @spec get_settings(String.t) :: Builder.t
+  @spec get_settings(String.t) :: %Builder{
+    url: String.t,
+    method: :get
+  }
   def get_settings(index) do
     %Builder{
       url: Helper.path([index, "_settings"]),
@@ -591,7 +680,11 @@ defmodule Elastex.Index do
         method: :get
       }
   """
-  @spec analyze(body) :: Builder.t
+  @spec analyze(body) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :get
+  }
   def analyze(body), do: analyze(body, "")
 
 
@@ -610,7 +703,11 @@ defmodule Elastex.Index do
         method: :get
       }
   """
-  @spec analyze(body, String.t) :: Builder.t
+  @spec analyze(body, String.t) :: %Builder{
+    url: String.t,
+    method: :get,
+    body: body
+  }
   def analyze(body, index) do
     %Builder{
       url: Helper.path([index, "_analyze"]),
@@ -634,7 +731,11 @@ defmodule Elastex.Index do
         method: :put
       }
   """
-  @spec add_template(body, String.t) :: Builder.t
+  @spec add_template(body, String.t) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :put
+  }
   def add_template(body, template) do
     %Builder{
       url: Helper.path(["_template", template]),
@@ -656,7 +757,10 @@ defmodule Elastex.Index do
         method: :delete
       }
   """
-  @spec delete_template(String.t) :: Builder.t
+  @spec delete_template(String.t) :: %Builder{
+    url: String.t,
+    method: :delete
+  }
   def delete_template(template) do
     %Builder{
       url: Helper.path(["_template", template]),
@@ -677,7 +781,10 @@ defmodule Elastex.Index do
         method: :get
       }
   """
-  @spec get_template(String.t) :: Builder.t
+  @spec get_template(String.t) :: %Builder{
+    url: String.t,
+    method: :get
+  }
   def get_template(template) do
     %Builder{
       url: Helper.path(["_template", template]),
@@ -698,7 +805,10 @@ defmodule Elastex.Index do
         method: :head
       }
   """
-  @spec template_exists(String.t) :: Builder.t
+  @spec template_exists(String.t) :: %Builder{
+    url: String.t,
+    method: :head
+  }
   def template_exists(template) do
     %Builder{
       url: Helper.path(["_template", template]),
@@ -719,7 +829,10 @@ defmodule Elastex.Index do
         method: :get
       }
   """
-  @spec stats() :: Builder.t
+  @spec stats() :: %Builder{
+    url: String.t,
+    method: :get
+  }
   def stats(), do: stats("")
 
 
@@ -735,7 +848,10 @@ defmodule Elastex.Index do
         method: :get
       }
   """
-  @spec stats(String.t) :: Builder.t
+  @spec stats(String.t) :: %Builder{
+    url: String.t,
+    method: :get
+  }
   def stats(index) do
     %Builder{
       url: Helper.path([index, "_stats"]),
@@ -757,7 +873,10 @@ defmodule Elastex.Index do
         method: :get
       }
   """
-  @spec segments() :: Builder.t
+  @spec segments() :: %Builder{
+    url: String.t,
+    method: :get
+  }
   def segments(), do: segments("")
 
 
@@ -774,7 +893,10 @@ defmodule Elastex.Index do
         method: :get
       }
   """
-  @spec segments(String.t) :: Builder.t
+  @spec segments(String.t) :: %Builder{
+    url: String.t,
+    method: :get
+  }
   def segments(index) do
     %Builder{
       url: Helper.path([index, "_segments"]),
@@ -795,7 +917,10 @@ defmodule Elastex.Index do
         method: :get
       }
   """
-  @spec recovery() :: Builder.t
+  @spec recovery() :: %Builder{
+    url: String.t,
+    method: :get
+  }
   def recovery(), do: recovery("")
 
 
@@ -811,7 +936,10 @@ defmodule Elastex.Index do
         method: :get
       }
   """
-  @spec recovery(String.t) :: Builder.t
+  @spec recovery(String.t) :: %Builder{
+    url: String.t,
+    method: :get
+  }
   def recovery(index) do
     url = Path.join([index, "_recovery"])
     %Builder{
@@ -833,7 +961,10 @@ defmodule Elastex.Index do
         method: :get
       }
   """
-  @spec shard_stores() :: Builder.t
+  @spec shard_stores() :: %Builder{
+    url: String.t,
+    method: :get
+  }
   def shard_stores(), do: shard_stores("")
 
 
@@ -849,7 +980,10 @@ defmodule Elastex.Index do
         method: :get
       }
   """
-  @spec shard_stores(String.t) :: Builder.t
+  @spec shard_stores(String.t) :: %Builder{
+    url: String.t,
+    method: :get
+  }
   def shard_stores(index) do
     %Builder{
       url: Helper.path([index, "_shard_stores"]),
@@ -870,7 +1004,10 @@ defmodule Elastex.Index do
         method: :post
       }
   """
-  @spec clear_cache() :: Builder.t
+  @spec clear_cache() :: %Builder{
+    url: String.t,
+    method: :post
+  }
   def clear_cache(), do: clear_cache("")
 
 
@@ -886,7 +1023,10 @@ defmodule Elastex.Index do
         method: :post
       }
   """
-  @spec clear_cache(String.t) :: Builder.t
+  @spec clear_cache(String.t) :: %Builder{
+    url: String.t,
+    method: :post
+  }
   def clear_cache(index) do
     %Builder{
       url: Helper.path([index, "_cache/clear"]),
@@ -907,7 +1047,10 @@ defmodule Elastex.Index do
         method: :post
       }
   """
-  @spec flush() :: Builder.t
+  @spec flush() :: %Builder{
+    url: String.t,
+    method: :post
+  }
   def flush(), do: flush("")
 
 
@@ -923,7 +1066,10 @@ defmodule Elastex.Index do
         method: :post
       }
   """
-  @spec flush(String.t) :: Builder.t
+  @spec flush(String.t) :: %Builder{
+    url: String.t,
+    method: :post
+  }
   def flush(index) do
     %Builder{
       url: Helper.path([index, "_flush"]),
@@ -944,7 +1090,10 @@ defmodule Elastex.Index do
         method: :post
       }
   """
-  @spec synced_flush() :: Builder.t
+  @spec synced_flush() :: %Builder{
+    url: String.t,
+    method: :post
+  }
   def synced_flush(), do: synced_flush("")
 
 
@@ -960,7 +1109,10 @@ defmodule Elastex.Index do
         method: :post
       }
   """
-  @spec synced_flush(String.t) :: Builder.t
+  @spec synced_flush(String.t) :: %Builder{
+    url: String.t,
+    method: :post
+  }
   def synced_flush(index) do
     url = Path.join([index, "_flush/synced"])
     %Builder{
@@ -982,7 +1134,10 @@ defmodule Elastex.Index do
         method: :post
       }
   """
-  @spec refresh() :: Builder.t
+  @spec refresh() :: %Builder{
+    url: String.t,
+    method: :post
+  }
   def refresh(), do: refresh("")
 
 
@@ -998,7 +1153,10 @@ defmodule Elastex.Index do
         method: :post
       }
   """
-  @spec refresh(String.t) :: Builder.t
+  @spec refresh(String.t) :: %Builder{
+    url: String.t,
+    method: :post
+  }
   def refresh(index) do
     %Builder{
       url: Helper.path([index, "_refresh"]),
@@ -1019,7 +1177,10 @@ defmodule Elastex.Index do
         method: :post
       }
   """
-  @spec force_merge() :: Builder.t
+  @spec force_merge() :: %Builder{
+    url: String.t,
+    method: :post
+  }
   def force_merge(), do: force_merge("")
 
 
@@ -1035,7 +1196,10 @@ defmodule Elastex.Index do
         method: :post
       }
   """
-  @spec force_merge(String.t) :: Builder.t
+  @spec force_merge(String.t) :: %Builder{
+    url: String.t,
+    method: :post
+  }
   def force_merge(index) do
     %Builder{
       url: Helper.path([index, "_forcemerge"]),
@@ -1054,7 +1218,7 @@ defmodule Elastex.Index do
         params: [q: "user:mike"]
       }
   """
-  @spec params(Builder.t, Keyword.t) :: Builder.t
+  @callback params(%Builder{}, keyword(String.t)) :: %Builder{params: keyword(String.t)}
   def params(builder, params) do
     Extender.params(builder, params)
   end
@@ -1070,7 +1234,7 @@ defmodule Elastex.Index do
         url: "twitter/tweet"
       }
   """
-  @spec extend_url(Builder.t, list) :: Builder.t
+  @callback extend_url(%Builder{}, list(String.t)) :: %Builder{url: String.t}
   def extend_url(builder, list) do
     Extender.extend_url(builder, list)
   end

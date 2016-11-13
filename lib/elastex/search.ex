@@ -10,7 +10,8 @@ defmodule Elastex.Search do
   alias Elastex.Builder
   alias Elastex.Extender
 
-  @type body :: map | struct | nil
+  @type int_or_string :: non_neg_integer | String.t
+  @type body :: map() | nil
   @type http_response :: {:ok, HTTPoison.Response} | {:error, HTTPoison.Error}
 
 
@@ -36,7 +37,11 @@ defmodule Elastex.Search do
         params: [q: "user:kimchy"]
       }
   """
-  @spec query() :: Builder.t
+  @spec query() :: %Builder{
+    url: String.t,
+    method: :post,
+    action: :search_query
+  }
   def query do
     %Builder {
       url: "_search",
@@ -59,7 +64,12 @@ defmodule Elastex.Search do
         action: :search_query,
       }
   """
-  @spec query(body) :: Builder.t
+  @spec query(body) :: %Builder{
+    url: String.t,
+    body: body,
+    action: :search_query,
+    method: :post
+  }
   def query(body) do
     %Builder {
       url: "_search",
@@ -84,7 +94,13 @@ defmodule Elastex.Search do
         action: :search_query
       }
   """
-  @spec query(body, String.t) :: Builder.t
+  @spec query(body, String.t) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post,
+    index: String.t,
+    action: :search_query
+  }
   def query(body, index) do
     %Builder {
       url: Helper.path([index, "_search"]),
@@ -111,7 +127,14 @@ defmodule Elastex.Search do
         method: :post
       }
   """
-  @spec query(body, String.t, String.t) :: Builder.t
+  @spec query(body, String.t, String.t) :: %Builder{
+    url: String.t,
+    body: body,
+    index: String.t,
+    type: String.t,
+    action: :search_query,
+    method: :post
+  }
   def query(body, index, type) do
     %Builder {
       url: Helper.path([index, type, "_search"]),
@@ -136,7 +159,11 @@ defmodule Elastex.Search do
         method: :post
       }
   """
-  @spec template(body) :: Builder.t
+  @spec template(body) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
   def template(body) do
     %Builder {
       url: "_search/template",
@@ -159,7 +186,12 @@ defmodule Elastex.Search do
         type: ""
       }
   """
-  @spec shards(String.t) :: Builder.t
+  @spec shards(String.t) :: %Builder{
+    url: String.t,
+    method: :get,
+    index: String.t,
+    type: String.t
+  }
   def shards(index), do: shards(index, "")
 
 
@@ -176,7 +208,12 @@ defmodule Elastex.Search do
         type: "tweet"
       }
   """
-  @spec shards(String.t, String.t) :: Builder.t
+  @spec shards(String.t, String.t) :: %Builder{
+    url: String.t,
+    method: :get,
+    index: String.t,
+    type: String.t
+  }
   def shards(index, type) do
     url = Helper.path([index, type, "_search_shards"])
     %Builder {
@@ -200,7 +237,11 @@ defmodule Elastex.Search do
         method: :post
       }
   """
-  @spec suggest(body) :: Builder.t
+  @spec suggest(body) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
   def suggest(body) do
     %Builder{
       url: "_suggest",
@@ -226,7 +267,12 @@ defmodule Elastex.Search do
         action: :multi_search
       }
   """
-  @spec multi_search([Builder.t]) :: Builder.t
+  @spec multi_search(list(%Builder{action: :search_query})) :: %Builder{
+    url: String.t,
+    body: String.t,
+    method: :post,
+    action: :multi_search
+  }
   def multi_search(query_builders) do
 
     bulk_request = Enum.map_join query_builders, "\n", fn(build) ->
@@ -260,10 +306,13 @@ defmodule Elastex.Search do
       iex> Elastex.Search.count()
       %Elastex.Builder {
         url: "_count",
-        body: nil,
         method: :post
       }
   """
+  @spec count() :: %Builder{
+    url: String.t,
+    method: :post
+  }
   def count(), do: count(nil, "", "")
 
 
@@ -279,6 +328,11 @@ defmodule Elastex.Search do
         method: :post
       }
   """
+  @spec count(body) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
   def count(body), do: count(body, "", "")
 
 
@@ -295,6 +349,11 @@ defmodule Elastex.Search do
         method: :post
       }
   """
+  @spec count(body, String.t) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
   def count(body, index), do: count(body, index, "")
 
 
@@ -311,6 +370,11 @@ defmodule Elastex.Search do
         method: :post
       }
   """
+  @spec count(body, String.t, String.t) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
   def count(body, index, type) do
     %Builder{
       url: Helper.path([index, type, "_count"]),
@@ -331,6 +395,11 @@ defmodule Elastex.Search do
         method: :post
       }
   """
+  @spec validate() :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
   def validate(), do: validate(nil, "", "")
 
 
@@ -346,6 +415,11 @@ defmodule Elastex.Search do
         method: :post
       }
   """
+  @spec validate(body) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
   def validate(body), do: validate(body, "", "")
 
 
@@ -361,6 +435,11 @@ defmodule Elastex.Search do
         method: :post
       }
   """
+  @spec validate(body, String.t) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
   def validate(body, index), do: validate(body, index, "")
 
 
@@ -376,6 +455,11 @@ defmodule Elastex.Search do
         method: :post
       }
   """
+  @spec validate(body, String.t, String.t) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
   def validate(body, index, type) do
     %Builder{
       url: Helper.path([index, type, "_validate/query"]),
@@ -396,6 +480,11 @@ defmodule Elastex.Search do
         method: :post
       }
   """
+  @spec explain(String.t, String.t, int_or_string) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
   def explain(index, type, id), do: explain(nil, index, type, id)
 
 
@@ -411,6 +500,11 @@ defmodule Elastex.Search do
         method: :post
       }
   """
+  @spec explain(body, String.t, String.t, int_or_string) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
   def explain(body, index, type, id) do
     %Builder {
       url: Helper.path([index, type, id, "_explain"]),
@@ -424,7 +518,7 @@ defmodule Elastex.Search do
   Gets search hits from http response if present.
   Returns error tuple with http response if not present.
   """
-  @spec query_hits(http_response) :: {:ok, Map.t} | {:error, String.t}
+  @spec query_hits(http_response) :: {:ok, map()} | {:error, String.t}
   def query_hits(http_response) do
     case http_response do
       {:ok, %HTTPoison.Response{body: %{"hits" => hits}}} ->
@@ -445,7 +539,7 @@ defmodule Elastex.Search do
         params: [q: "user:mike"]
       }
   """
-  @spec params(Builder.t, Keyword.t) :: Builder.t
+  @spec params(%Builder{}, keyword(String.t)) :: %Builder{params: keyword(String.t)}
   def params(builder, params) do
     Extender.params(builder, params)
   end
@@ -461,7 +555,7 @@ defmodule Elastex.Search do
         url: "twitter/tweet"
       }
   """
-  @spec extend_url(Builder.t, list) :: Builder.t
+  @spec extend_url(%Builder{}, list(String.t)) :: %Builder{url: String.t}
   def extend_url(builder, list) do
     Extender.extend_url(builder, list)
   end
