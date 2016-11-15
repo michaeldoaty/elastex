@@ -364,7 +364,7 @@ defmodule Elastex.Integration.IndexTest do
 
       having "existing template" do
         setup context do
-          resp = %{template: "te*", settings: %{number_of_shards: 1}}
+          %{template: "te*", settings: %{number_of_shards: 1}}
           |> Index.add_template("template_1")
           |> Elastex.run(conn)
 

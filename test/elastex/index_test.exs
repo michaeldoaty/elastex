@@ -273,7 +273,7 @@ defmodule Elastex.IndexTest do
   end
 
 
-  test "get_settings", context do
+  test "get_settings" do
     actual = Index.get_settings("twitter")
     expected = %Builder{
       url: "twitter/_settings",
@@ -305,7 +305,7 @@ defmodule Elastex.IndexTest do
   end
 
 
-  test "add_template", context do
+  test "add_template" do
     actual = Index.add_template(body, "template1")
     expected = %Builder{
       url: "_template/template1",

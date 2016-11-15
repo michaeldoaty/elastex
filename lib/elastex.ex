@@ -5,6 +5,17 @@ defmodule Elastex do
 
 
   @doc """
+  Runs the request using the elastex url from config file
+  """
+  @spec run(%Builder{}) :: any
+  def run(req) do
+    url = Application.get_env(:elastex, :url)
+    build(req, %{url: url}) |> Web.http_call
+  end
+
+
+  @doc """
+  Runs the request using the url from the conn map parameter
   """
   @spec run(%Builder{}, map()) :: any
   def run(req, conn) do
