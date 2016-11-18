@@ -1,4 +1,8 @@
 defmodule Elastex do
+  @moduledoc """
+   This module contains the run functions used to make a HTTP request
+  """
+
   alias Elastex.Helper
   alias Elastex.Builder
   alias Elastex.Web

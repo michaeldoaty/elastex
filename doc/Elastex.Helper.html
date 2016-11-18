@@ -93,28 +93,10 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#build/2">build(req, conn)</a>
-  </div>
-  
-    <div class="summary-synopsis"><p>Builds request for http call</p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#params/2">params(builder, params)</a>
-  </div>
-  
-    <div class="summary-synopsis"><p>Adds params to builder</p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
     <a href="#path/1">path(list)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Creates a string from list of values</p>
+    <div class="summary-synopsis"><p>Creates a path string from list of values</p>
 </div>
   
 </div>
@@ -139,33 +121,14 @@
             </a>
             Functions
           </h1>
-          <div class="detail" id="build/2">
+          <div class="detail" id="path/1">
   <div class="detail-header">
-    <a href="#build/2" class="detail-link" title="Link to this function">
+    <a href="#path/1" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">build(req, conn)</span>
+    <span class="signature">path(list)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/helper.ex#L30" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-  </div>
-  
-  <section class="docstring">
-    <p>Builds request for http call.</p>
-
-  </section>
-</div>
-<div class="detail" id="params/2">
-  <div class="detail-header">
-    <a href="#params/2" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">params(builder, params)</span>
-    
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/helper.ex#L20" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/helper.ex#L18" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -176,32 +139,18 @@
       <h4 class="specs-title">Specs</h4>
       <div class="specs-list">
         
-          <pre><code class="elixir">params(Builder.t, <a href="http://elixir-lang.org/docs/stable/elixir/Keyword.html#t:t/0">Keyword.t</a>) :: Builder.t</code></pre>
+          <pre><code class="elixir">path([<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>]) :: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a></code></pre>
         
       </div>
     </div>
   
   <section class="docstring">
-    <p>Adds params to builder</p>
-
-  </section>
-</div>
-<div class="detail" id="path/1">
-  <div class="detail-header">
-    <a href="#path/1" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">path(list)</span>
-    
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/helper.ex#L9" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-  </div>
-  
-  <section class="docstring">
-    <p>Creates a string from list of values</p>
+    <p>Creates a path string from list of values.</p>
+<p><code class="inline">to_string</code> is call on the list of values so they must implement
+the String.Chars protocol.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Helper.path([&quot;hello&quot;, &quot;world&quot;, 1])
+&quot;hello/world/1&quot;</code></pre>
 
   </section>
 </div>

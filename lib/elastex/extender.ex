@@ -1,4 +1,8 @@
 defmodule Elastex.Extender do
+  @moduledoc """
+   This module contains functions extended by other modules
+  """
+
   alias Elastex.Builder
   alias Elastex.Helper
 

@@ -70,6 +70,12 @@
       </h1>
 
       
+        <section id="moduledoc" class="docstring">
+          <p>  This module is used to override HTTPoison.Base.
+  It is not meant for general use.</p>
+
+        </section>
+      
 
       
         <section id="summary" class="details-list">
@@ -158,16 +164,6 @@ failure</p>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#http_call/1">http_call(m)</a>
-  </div>
-  
-    <div class="summary-synopsis"><p>Takes a map, encodes the body, and makes an http call.
-Returns a parse_response of <code class="inline">{:ok, value}</code> or <code class="inline">{:error, value}</code></p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
     <a href="#options/3">options(url, headers \\ [], options \\ [])</a>
   </div>
   
@@ -221,12 +217,6 @@ failure</p>
     <div class="summary-synopsis"><p>Issues a POST request to the given url, raising an exception in case of
 failure</p>
 </div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#process_response_body/1">process_response_body(unparsed_body)</a>
-  </div>
   
 </div>
 <div class="summary-row">
@@ -320,7 +310,7 @@ exception in case of failure</p>
     </a>
     <span class="signature">delete(url, headers \\ [], options \\ [])</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L2" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L7" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -353,7 +343,7 @@ otherwise.</p>
     </a>
     <span class="signature">delete!(url, headers \\ [], options \\ [])</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L2" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L7" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -386,7 +376,7 @@ failure.</p>
     </a>
     <span class="signature">get(url, headers \\ [], options \\ [])</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L2" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L7" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -419,7 +409,7 @@ otherwise.</p>
     </a>
     <span class="signature">get!(url, headers \\ [], options \\ [])</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L2" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L7" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -452,7 +442,7 @@ failure.</p>
     </a>
     <span class="signature">head(url, headers \\ [], options \\ [])</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L2" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L7" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -485,7 +475,7 @@ otherwise.</p>
     </a>
     <span class="signature">head!(url, headers \\ [], options \\ [])</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L2" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L7" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -511,26 +501,6 @@ failure.</p>
 
   </section>
 </div>
-<div class="detail" id="http_call/1">
-  <div class="detail-header">
-    <a href="#http_call/1" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">http_call(m)</span>
-    
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L9" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-  </div>
-  
-  <section class="docstring">
-    <p>Takes a map, encodes the body, and makes an http call.
-Returns a parse_response of <code class="inline">{:ok, value}</code> or <code class="inline">{:error, value}</code></p>
-
-  </section>
-</div>
 <div class="detail" id="options/3">
   <div class="detail-header">
     <a href="#options/3" class="detail-link" title="Link to this function">
@@ -538,7 +508,7 @@ Returns a parse_response of <code class="inline">{:ok, value}</code> or <code cl
     </a>
     <span class="signature">options(url, headers \\ [], options \\ [])</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L2" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L7" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -571,7 +541,7 @@ otherwise.</p>
     </a>
     <span class="signature">options!(url, headers \\ [], options \\ [])</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L2" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L7" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -604,7 +574,7 @@ failure.</p>
     </a>
     <span class="signature">patch(url, body, headers \\ [], options \\ [])</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L2" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L7" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -637,7 +607,7 @@ otherwise.</p>
     </a>
     <span class="signature">patch!(url, body, headers \\ [], options \\ [])</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L2" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L7" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -670,7 +640,7 @@ failure.</p>
     </a>
     <span class="signature">post(url, body, headers \\ [], options \\ [])</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L2" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L7" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -703,7 +673,7 @@ otherwise.</p>
     </a>
     <span class="signature">post!(url, body, headers \\ [], options \\ [])</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L2" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L7" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -729,24 +699,6 @@ failure.</p>
 
   </section>
 </div>
-<div class="detail" id="process_response_body/1">
-  <div class="detail-header">
-    <a href="#process_response_body/1" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">process_response_body(unparsed_body)</span>
-    
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L35" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-  </div>
-  
-  <section class="docstring">
-    
-  </section>
-</div>
 <div class="detail" id="put/4">
   <div class="detail-header">
     <a href="#put/4" class="detail-link" title="Link to this function">
@@ -754,7 +706,7 @@ failure.</p>
     </a>
     <span class="signature">put(url, body, headers \\ [], options \\ [])</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L2" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L7" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -787,7 +739,7 @@ otherwise.</p>
     </a>
     <span class="signature">put!(url, body, headers \\ [], options \\ [])</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L2" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L7" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -820,7 +772,7 @@ failure.</p>
     </a>
     <span class="signature">request(method, url, body \\ &quot;&quot;, headers \\ [], options \\ [])</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L2" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L7" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -901,7 +853,7 @@ request is successful, <code class="inline">{:error, reason}</code> otherwise.</
     </a>
     <span class="signature">request!(method, url, body \\ &quot;&quot;, headers \\ [], options \\ [])</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L2" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L7" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -933,7 +885,7 @@ request fails.</p>
     </a>
     <span class="signature">start()</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L2" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/web.ex#L7" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     

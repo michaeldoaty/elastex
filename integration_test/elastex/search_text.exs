@@ -22,7 +22,7 @@ defmodule Elastex.Integration.SearchTest do
     |> Elastex.run(conn)
 
     on_exit fn ->
-      Elastex.Document.delete("twitter", "tweet") |> Elastex.run(conn)
+      Elastex.Document.delete("twitter", "tweet", 1) |> Elastex.run(conn)
     end
 
     :ok
