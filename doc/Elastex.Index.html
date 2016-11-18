@@ -62,6 +62,8 @@
         <small class="visible-xs">Elastex v0.1.2</small>
         Elastex.Index
         
+          <small>behaviour</small>
+        
         
           <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L1" title="View Source" class="view-source" rel="help">
             <i class="icon-code"></i>
@@ -69,6 +71,12 @@
         
       </h1>
 
+      
+        <section id="moduledoc" class="docstring">
+          <p> Follows the Elasticsearch
+ <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices.html">Indices API</a>.</p>
+
+        </section>
       
 
       
@@ -80,6 +88,25 @@
             Summary
           </h1>
           
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+    <div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:body/0">body()</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:int_or_string/0">int_or_string()</a>
+  </div>
+  
+</div>
+
+  </div>
+
 
           
   <div class="summary-functions summary">
@@ -91,7 +118,16 @@
     <a href="#add_alias/2">add_alias(index, name)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Adds a single alias</p>
+    <div class="summary-synopsis"><p>Adds a single alias for an index</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#add_alias/3">add_alias(body, index, name)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Adds a single alias for an index</p>
 </div>
   
 </div>
@@ -100,7 +136,16 @@
     <a href="#add_template/2">add_template(body, template)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Adds a template</p>
+    <div class="summary-synopsis"><p>Defines a template that will automatically be applied when new indices are created</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#alias_exists/2">alias_exists(index, name)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Checks for an alias for an index</p>
 </div>
   
 </div>
@@ -128,13 +173,17 @@ the token breakdown</p>
     <a href="#analyze/2">analyze(body, index)</a>
   </div>
   
+    <div class="summary-synopsis"><p>Performs the analysis process on text and returns
+the token breakdown</p>
+</div>
+  
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#clear_cache/0">clear_cache()</a>
   </div>
   
-    <div class="summary-synopsis"><p>Clears all or specific cache associated with an index</p>
+    <div class="summary-synopsis"><p>Clears all or specific cache associated with all indicies</p>
 </div>
   
 </div>
@@ -142,6 +191,9 @@ the token breakdown</p>
   <div class="summary-signature">
     <a href="#clear_cache/1">clear_cache(index)</a>
   </div>
+  
+    <div class="summary-synopsis"><p>Clears all or specific cache associated with on or more indicies</p>
+</div>
   
 </div>
 <div class="summary-row">
@@ -158,7 +210,7 @@ the token breakdown</p>
     <a href="#create/1">create(index)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Instantiates an index with or without a body</p>
+    <div class="summary-synopsis"><p>Instantiates an index with default settings</p>
 </div>
   
 </div>
@@ -167,13 +219,16 @@ the token breakdown</p>
     <a href="#create/2">create(body, index)</a>
   </div>
   
+    <div class="summary-synopsis"><p>Instantiates an index with settings</p>
+</div>
+  
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#delete/1">delete(index)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Deletes an existing index</p>
+    <div class="summary-synopsis"><p>Deletes an index</p>
 </div>
   
 </div>
@@ -182,7 +237,7 @@ the token breakdown</p>
     <a href="#delete_alias/2">delete_alias(index, name)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Deletes an existing alias</p>
+    <div class="summary-synopsis"><p>Deletes an alias for an index</p>
 </div>
   
 </div>
@@ -197,15 +252,6 @@ the token breakdown</p>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#delete_warmer/2">delete_warmer(index, warmer)</a>
-  </div>
-  
-    <div class="summary-synopsis"><p>Deletes warmer</p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
     <a href="#exists/1">exists(index)</a>
   </div>
   
@@ -215,10 +261,19 @@ the token breakdown</p>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
+    <a href="#extend_url/2">extend_url(builder, list)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Callback implementation for <a href="Elastex.Extender.html#c:extend_url/2"><code class="inline">Elastex.Extender.extend_url/2</code></a></p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="#flush/0">flush()</a>
   </div>
   
-    <div class="summary-synopsis"><p>Flushes one or more indices</p>
+    <div class="summary-synopsis"><p>Flushes all indicies</p>
 </div>
   
 </div>
@@ -227,13 +282,16 @@ the token breakdown</p>
     <a href="#flush/1">flush(index)</a>
   </div>
   
+    <div class="summary-synopsis"><p>Flushes one or more indicies</p>
+</div>
+  
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#force_merge/0">force_merge()</a>
   </div>
   
-    <div class="summary-synopsis"><p>Merges one or more indices</p>
+    <div class="summary-synopsis"><p>Merges all indicies</p>
 </div>
   
 </div>
@@ -241,6 +299,9 @@ the token breakdown</p>
   <div class="summary-signature">
     <a href="#force_merge/1">force_merge(index)</a>
   </div>
+  
+    <div class="summary-synopsis"><p>Merges one or more indicies</p>
+</div>
   
 </div>
 <div class="summary-row">
@@ -257,7 +318,16 @@ the token breakdown</p>
     <a href="#get_alias/2">get_alias(index, name)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Retrieves existing alias</p>
+    <div class="summary-synopsis"><p>Gets an alias for an index</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_field_mapping/3">get_field_mapping(index, type, field)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Gets type mappings for a field(s)</p>
 </div>
   
 </div>
@@ -266,7 +336,7 @@ the token breakdown</p>
     <a href="#get_mapping/1">get_mapping(index)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Retrieves mapping definitions for an index or index/type</p>
+    <div class="summary-synopsis"><p>Gets type mappings for an index</p>
 </div>
   
 </div>
@@ -275,13 +345,16 @@ the token breakdown</p>
     <a href="#get_mapping/2">get_mapping(index, type)</a>
   </div>
   
+    <div class="summary-synopsis"><p>Gets type mappings for an index and type</p>
+</div>
+  
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#get_settings/1">get_settings(index)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Retrieves settings of index/indices</p>
+    <div class="summary-synopsis"><p>Retrieves settings of index or indicies</p>
 </div>
   
 </div>
@@ -296,21 +369,6 @@ the token breakdown</p>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#get_warmer/1">get_warmer(index)</a>
-  </div>
-  
-    <div class="summary-synopsis"><p>Retrieves warmer</p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#get_warmer/2">get_warmer(index, warmer)</a>
-  </div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
     <a href="#open/1">open(index)</a>
   </div>
   
@@ -320,11 +378,19 @@ the token breakdown</p>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
+    <a href="#params/2">params(builder, params)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Callback implementation for <a href="Elastex.Extender.html#c:params/2"><code class="inline">Elastex.Extender.params/2</code></a></p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="#put_mapping/2">put_mapping(body, index)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Adds a new type to an exisiting index
-or new fields to an exisiting type</p>
+    <div class="summary-synopsis"><p>Provides type mappings to an index</p>
 </div>
   
 </div>
@@ -333,26 +399,8 @@ or new fields to an exisiting type</p>
     <a href="#put_mapping/3">put_mapping(body, index, type)</a>
   </div>
   
+    <div class="summary-synopsis"><p>Provides type mappings to an index with type</p>
 </div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#put_warmer/2">put_warmer(body, warmer)</a>
-  </div>
-  
-    <div class="summary-synopsis"><p>Adds warmer to a specific index</p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#put_warmer/3">put_warmer(body, index, warmer)</a>
-  </div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#put_warmer/4">put_warmer(body, index, type, warmer)</a>
-  </div>
   
 </div>
 <div class="summary-row">
@@ -360,7 +408,7 @@ or new fields to an exisiting type</p>
     <a href="#recovery/0">recovery()</a>
   </div>
   
-    <div class="summary-synopsis"><p>Provides insight into on-going index shard recoveries</p>
+    <div class="summary-synopsis"><p>Provides insight into on-going index shard recoveries cluster wide</p>
 </div>
   
 </div>
@@ -369,13 +417,16 @@ or new fields to an exisiting type</p>
     <a href="#recovery/1">recovery(index)</a>
   </div>
   
+    <div class="summary-synopsis"><p>Provides insight into on-going index shard recoveries for a specific index</p>
+</div>
+  
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#refresh/0">refresh()</a>
   </div>
   
-    <div class="summary-synopsis"><p>Explicitly refreshes one or more index</p>
+    <div class="summary-synopsis"><p>Explicitly refreshes all indicies</p>
 </div>
   
 </div>
@@ -384,6 +435,27 @@ or new fields to an exisiting type</p>
     <a href="#refresh/1">refresh(index)</a>
   </div>
   
+    <div class="summary-synopsis"><p>Explicitly refreshes one or more indicies</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#rollover/2">rollover(body, index)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Rollsover an index</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#rollover/3">rollover(body, index, named_index)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Rollsover an index</p>
+</div>
+  
 </div>
 <div class="summary-row">
   <div class="summary-signature">
@@ -391,7 +463,7 @@ or new fields to an exisiting type</p>
   </div>
   
     <div class="summary-synopsis"><p>Gets low level segment information that a Lucene index (shard-level) is
-built with</p>
+built with for all indicies</p>
 </div>
   
 </div>
@@ -400,13 +472,17 @@ built with</p>
     <a href="#segments/1">segments(index)</a>
   </div>
   
+    <div class="summary-synopsis"><p>Gets low level segment information that a Lucene index (shard-level) is
+built with for an index</p>
+</div>
+  
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#shard_stores/0">shard_stores()</a>
   </div>
   
-    <div class="summary-synopsis"><p>Provides store information for shard copies of indices</p>
+    <div class="summary-synopsis"><p>Provides store information for shard copies of all indices</p>
 </div>
   
 </div>
@@ -415,13 +491,34 @@ built with</p>
     <a href="#shard_stores/1">shard_stores(index)</a>
   </div>
   
+    <div class="summary-synopsis"><p>Provides store information for shard copies of a specific index</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#shrink/2">shrink(source_index, target_index)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Shrinks an index</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#shrink/3">shrink(body, source_index, target_index)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Shrinks an index with body</p>
+</div>
+  
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#stats/0">stats()</a>
   </div>
   
-    <div class="summary-synopsis"><p>Provides statistics on different operations happening on an index</p>
+    <div class="summary-synopsis"><p>Provides statistics on different operations happening on all indicies</p>
 </div>
   
 </div>
@@ -430,13 +527,16 @@ built with</p>
     <a href="#stats/1">stats(index)</a>
   </div>
   
+    <div class="summary-synopsis"><p>Provides statistics on different operations happening on an index</p>
+</div>
+  
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#synced_flush/0">synced_flush()</a>
   </div>
   
-    <div class="summary-synopsis"><p>Initiates a synched flush manually</p>
+    <div class="summary-synopsis"><p>Initiates a synched flush manually on all indicies</p>
 </div>
   
 </div>
@@ -444,6 +544,9 @@ built with</p>
   <div class="summary-signature">
     <a href="#synced_flush/1">synced_flush(index)</a>
   </div>
+  
+    <div class="summary-synopsis"><p>Initiates a synched flush manually on one or more indicies</p>
+</div>
   
 </div>
 <div class="summary-row">
@@ -460,7 +563,7 @@ built with</p>
     <a href="#type_exists/2">type_exists(index, type)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Checks if type exist in index</p>
+    <div class="summary-synopsis"><p>Checks if type exists</p>
 </div>
   
 </div>
@@ -469,7 +572,7 @@ built with</p>
     <a href="#update_settings/1">update_settings(body)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Updates index level settings</p>
+    <div class="summary-synopsis"><p>Changes all index level settings in real time</p>
 </div>
   
 </div>
@@ -478,20 +581,8 @@ built with</p>
     <a href="#update_settings/2">update_settings(body, index)</a>
   </div>
   
+    <div class="summary-synopsis"><p>Changes specific index level settings in real time</p>
 </div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#upgrade/0">upgrade()</a>
-  </div>
-  
-    <div class="summary-synopsis"><p>Upgrades one or more indices</p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#upgrade/1">upgrade(index)</a>
-  </div>
   
 </div>
 
@@ -501,10 +592,55 @@ built with</p>
           
 
           
+  <div class="summary-callbacks summary">
+    <h2>
+      <a href="#callbacks">Callbacks</a>
+    </h2>
+    <div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:extend_url/2">extend_url(%, list)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Extends the url of cluster builder</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:params/2">params(%, keyword)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Adds params to document builders</p>
+</div>
+  
+</div>
+
+  </div>
+
 
         </section>
       
 
+      
+        <section id="types" class="types details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <i class="icon-link"></i>
+            </a>
+            Types
+          </h1>
+          <div class="types-list">
+            <div id="t:body/0" class="type-detail">
+  <pre><code class="elixir"><a href="#t:body/0">body</a> :: map | nil</code></pre>
+  
+</div>
+<div id="t:int_or_string/0" class="type-detail">
+  <pre><code class="elixir"><a href="#t:int_or_string/0">int_or_string</a> :: non_neg_integer | <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a></code></pre>
+  
+</div>
+
+          </div>
+        </section>
       
 
       
@@ -522,15 +658,68 @@ built with</p>
     </a>
     <span class="signature">add_alias(index, name)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L100" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L480" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">add_alias(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :put, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Adds a single alias</p>
+    <p>Adds a single alias for an index.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-aliases.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.add_alias(&quot;twitter&quot;, &quot;tw&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_alias/tw&quot;,
+  method: :put
+}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="add_alias/3">
+  <div class="detail-header">
+    <a href="#add_alias/3" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">add_alias(body, index, name)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L507" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">add_alias(<a href="#t:body/0">body</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: <a href="#t:body/0">body</a>, headers: term, id: term, index: term, method: :put, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
+  <section class="docstring">
+    <p>Adds a single alias for an index.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-aliases.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; body = %{actions: [%{add: %{index: &quot;test_2&quot;, alias: &quot;test&quot;}}]}
+iex&gt; Elastex.Index.add_alias(body, &quot;twitter&quot;, &quot;tw&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_alias/tw&quot;,
+  body:   %{actions: [%{add: %{index: &quot;test_2&quot;, alias: &quot;test&quot;}}]},
+  method: :put
+}</code></pre>
 
   </section>
 </div>
@@ -541,15 +730,68 @@ built with</p>
     </a>
     <span class="signature">add_template(body, template)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L159" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L739" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">add_template(<a href="#t:body/0">body</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: <a href="#t:body/0">body</a>, headers: term, id: term, index: term, method: :put, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Adds a template.</p>
+    <p>Defines a template that will automatically be applied when new indices are created</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-templates.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; body = %{template: &quot;te*&quot;, settings: %{number_of_shards: 1}}
+iex&gt; Elastex.Index.add_template(body, &quot;template1&quot;)
+%Elastex.Builder {
+  url:    &quot;_template/template1&quot;,
+  body: %{template: &quot;te*&quot;, settings: %{number_of_shards: 1}},
+  method: :put
+}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="alias_exists/2">
+  <div class="detail-header">
+    <a href="#alias_exists/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">alias_exists(index, name)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L580" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">alias_exists(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :head, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
+  <section class="docstring">
+    <p>Checks for an alias for an index.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-aliases.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.alias_exists(&quot;twitter&quot;, &quot;tw&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_alias/tw&quot;,
+  method: :head
+}</code></pre>
 
   </section>
 </div>
@@ -560,15 +802,33 @@ built with</p>
     </a>
     <span class="signature">aliases(body)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L92" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L455" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">aliases(<a href="#t:body/0">body</a>) :: %Elastex.Builder{action: term, body: <a href="#t:body/0">body</a>, headers: term, id: term, index: term, method: :post, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
     <p>Aliases an index with a name.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-aliases.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; body = %{actions: [%{add: %{index: &quot;test_2&quot;, alias: &quot;test&quot;}}]}
+iex&gt; Elastex.Index.aliases(body)
+%Elastex.Builder {
+  url:    &quot;_aliases&quot;,
+  body:   %{actions: [%{add: %{index: &quot;test_2&quot;, alias: &quot;test&quot;}}]},
+  method: :post
+}</code></pre>
 
   </section>
 </div>
@@ -579,16 +839,34 @@ built with</p>
     </a>
     <span class="signature">analyze(body)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L148" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L688" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">analyze(<a href="#t:body/0">body</a>) :: %Elastex.Builder{action: term, body: <a href="#t:body/0">body</a>, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
     <p>Performs the analysis process on text and returns
 the token breakdown.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-analyze.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; body = %{analyzer: &#39;standard&#39;, text: &#39;this is a test&#39;}
+iex&gt; Elastex.Index.analyze(body)
+%Elastex.Builder {
+  url:    &quot;_analyze&quot;,
+  body: %{analyzer: &#39;standard&#39;, text: &#39;this is a test&#39;},
+  method: :get
+}</code></pre>
 
   </section>
 </div>
@@ -599,15 +877,35 @@ the token breakdown.</p>
     </a>
     <span class="signature">analyze(body, index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L150" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L711" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">analyze(<a href="#t:body/0">body</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: <a href="#t:body/0">body</a>, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    
+    <p>Performs the analysis process on text and returns
+the token breakdown.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-analyze.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; body = %{analyzer: &#39;standard&#39;, text: &#39;this is a test&#39;}
+iex&gt; Elastex.Index.analyze(body, &quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_analyze&quot;,
+  body: %{analyzer: &#39;standard&#39;, text: &#39;this is a test&#39;},
+  method: :get
+}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="clear_cache/0">
@@ -617,15 +915,31 @@ the token breakdown.</p>
     </a>
     <span class="signature">clear_cache()</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L274" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L1011" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">clear_cache :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :post, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Clears all or specific cache associated with an index.</p>
+    <p>Clears all or specific cache associated with all indicies.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-clearcache.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.clear_cache()
+%Elastex.Builder {
+  url:    &quot;_cache/clear&quot;,
+  method: :post
+}</code></pre>
 
   </section>
 </div>
@@ -636,15 +950,32 @@ the token breakdown.</p>
     </a>
     <span class="signature">clear_cache(index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L276" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L1030" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">clear_cache(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :post, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    
+    <p>Clears all or specific cache associated with on or more indicies</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-clearcache.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.clear_cache(&quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_cache/clear&quot;,
+  method: :post
+}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="close/1">
@@ -654,15 +985,31 @@ the token breakdown.</p>
     </a>
     <span class="signature">close(index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L40" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L154" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">close(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :post, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Closes an index.</p>
+    <p>Closes an index</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-open-close.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.close(&quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_close&quot;,
+  method: :post,
+}</code></pre>
 
   </section>
 </div>
@@ -673,15 +1020,32 @@ the token breakdown.</p>
     </a>
     <span class="signature">create(index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L6" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L35" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">create(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: <a href="#t:body/0">body</a>, headers: term, id: term, index: term, method: :put, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Instantiates an index with or without a body.</p>
+    <p>Instantiates an index with default settings.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-create-index.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.create(&quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter&quot;,
+  body:   nil,
+  method: :put,
+}</code></pre>
 
   </section>
 </div>
@@ -692,15 +1056,34 @@ the token breakdown.</p>
     </a>
     <span class="signature">create(body, index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L8" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L57" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">create(<a href="#t:body/0">body</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: <a href="#t:body/0">body</a>, headers: term, id: term, index: term, method: :put, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    
+    <p>Instantiates an index with settings.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-create-index.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; settings = %{number_of_shards: 3}
+iex&gt; Elastex.Index.create(settings, &quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter&quot;,
+  body:   %{number_of_shards: 3},
+  method: :put,
+}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="delete/1">
@@ -710,15 +1093,31 @@ the token breakdown.</p>
     </a>
     <span class="signature">delete(index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L16" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L82" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">delete(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :delete, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Deletes an existing index.</p>
+    <p>Deletes an index.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-delete-index.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.delete(&quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter&quot;,
+  method: :delete,
+}</code></pre>
 
   </section>
 </div>
@@ -729,15 +1128,31 @@ the token breakdown.</p>
     </a>
     <span class="signature">delete_alias(index, name)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L118" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L556" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">delete_alias(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :delete, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Deletes an existing alias</p>
+    <p>Deletes an alias for an index.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-aliases.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.delete_alias(&quot;twitter&quot;, &quot;tw&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_alias/tw&quot;,
+  method: :delete
+}</code></pre>
 
   </section>
 </div>
@@ -748,34 +1163,31 @@ the token breakdown.</p>
     </a>
     <span class="signature">delete_template(template)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L168" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L764" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">delete_template(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :delete, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
   
   <section class="docstring">
     <p>Deletes a template.</p>
-
-  </section>
-</div>
-<div class="detail" id="delete_warmer/2">
-  <div class="detail-header">
-    <a href="#delete_warmer/2" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">delete_warmer(index, warmer)</span>
-    
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L208" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-  </div>
-  
-  <section class="docstring">
-    <p>Deletes warmer</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-templates.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.delete_template(&quot;template1&quot;)
+%Elastex.Builder {
+  url:    &quot;_template/template1&quot;,
+  method: :delete
+}</code></pre>
 
   </section>
 </div>
@@ -786,7 +1198,42 @@ the token breakdown.</p>
     </a>
     <span class="signature">exists(index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L32" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L130" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">exists(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :head, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
+  <section class="docstring">
+    <p>Checks if index exists</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-exists.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.exists(&quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter&quot;,
+  method: :head,
+}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="extend_url/2">
+  <div class="detail-header">
+    <a href="#extend_url/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">extend_url(builder, list)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L1238" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -794,7 +1241,7 @@ the token breakdown.</p>
   </div>
   
   <section class="docstring">
-    <p>Checks if index exists.</p>
+    <p>Callback implementation for <a href="Elastex.Extender.html#c:extend_url/2"><code class="inline">Elastex.Extender.extend_url/2</code></a>.</p>
 
   </section>
 </div>
@@ -805,15 +1252,31 @@ the token breakdown.</p>
     </a>
     <span class="signature">flush()</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L285" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L1054" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">flush :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :post, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Flushes one or more indices.</p>
+    <p>Flushes all indicies</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-flush.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.flush()
+%Elastex.Builder {
+  url:    &quot;_flush&quot;,
+  method: :post
+}</code></pre>
 
   </section>
 </div>
@@ -824,15 +1287,32 @@ the token breakdown.</p>
     </a>
     <span class="signature">flush(index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L287" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L1073" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">flush(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :post, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    
+    <p>Flushes one or more indicies</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-flush.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.flush(&quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_flush&quot;,
+  method: :post
+}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="force_merge/0">
@@ -842,15 +1322,31 @@ the token breakdown.</p>
     </a>
     <span class="signature">force_merge()</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L318" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L1184" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">force_merge :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :post, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Merges one or more indices</p>
+    <p>Merges all indicies</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-forcemerge.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.force_merge()
+%Elastex.Builder {
+  url:    &quot;_forcemerge&quot;,
+  method: :post
+}</code></pre>
 
   </section>
 </div>
@@ -861,15 +1357,32 @@ the token breakdown.</p>
     </a>
     <span class="signature">force_merge(index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L320" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L1203" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">force_merge(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :post, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    
+    <p>Merges one or more indicies</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-forcemerge.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.force_merge(&quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_forcemerge&quot;,
+  method: :post
+}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="get/1">
@@ -879,15 +1392,31 @@ the token breakdown.</p>
     </a>
     <span class="signature">get(index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L24" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L106" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">get(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
     <p>Retrieves information about one or more indices.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-get-index.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.get(&quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter&quot;,
+  method: :get,
+}</code></pre>
 
   </section>
 </div>
@@ -898,15 +1427,66 @@ the token breakdown.</p>
     </a>
     <span class="signature">get_alias(index, name)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L109" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L532" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">get_alias(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Retrieves existing alias</p>
+    <p>Gets an alias for an index.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-aliases.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.get_alias(&quot;twitter&quot;, &quot;tw&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_alias/tw&quot;,
+  method: :get
+}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="get_field_mapping/3">
+  <div class="detail-header">
+    <a href="#get_field_mapping/3" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">get_field_mapping(index, type, field)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L404" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">get_field_mapping(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
+  <section class="docstring">
+    <p>Gets type mappings for a field(s)</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-get-field-mapping.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.get_field_mapping(&quot;twitter&quot;, &quot;tweet&quot;, &quot;message&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_mapping/tweet/field/message&quot;,
+  method: :get
+}</code></pre>
 
   </section>
 </div>
@@ -917,15 +1497,31 @@ the token breakdown.</p>
     </a>
     <span class="signature">get_mapping(index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L72" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L359" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">get_mapping(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Retrieves mapping definitions for an index or index/type.</p>
+    <p>Gets type mappings for an index</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-get-mapping.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.get_mapping(&quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_mapping&quot;,
+  method: :get
+}</code></pre>
 
   </section>
 </div>
@@ -936,15 +1532,32 @@ the token breakdown.</p>
     </a>
     <span class="signature">get_mapping(index, type)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L74" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L380" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">get_mapping(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    
+    <p>Gets type mappings for an index and type</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-get-mapping.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.get_mapping(&quot;twitter&quot;, &quot;tweet&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_mapping/tweet&quot;,
+  method: :get
+}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="get_settings/1">
@@ -954,15 +1567,31 @@ the token breakdown.</p>
     </a>
     <span class="signature">get_settings(index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L138" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L660" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">get_settings(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Retrieves settings of index/indices.</p>
+    <p>Retrieves settings of index or indicies</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-get-settings.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.get_settings(&quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_settings&quot;,
+  method: :get
+}</code></pre>
 
   </section>
 </div>
@@ -973,53 +1602,32 @@ the token breakdown.</p>
     </a>
     <span class="signature">get_template(template)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L177" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L788" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">get_template(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
   
   <section class="docstring">
     <p>Retrieves a template</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-templates.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.get_template(&quot;template1&quot;)
+%Elastex.Builder {
+  url:    &quot;_template/template1&quot;,
+  method: :get
+}</code></pre>
 
-  </section>
-</div>
-<div class="detail" id="get_warmer/1">
-  <div class="detail-header">
-    <a href="#get_warmer/1" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">get_warmer(index)</span>
-    
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L217" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-  </div>
-  
-  <section class="docstring">
-    <p>Retrieves warmer</p>
-
-  </section>
-</div>
-<div class="detail" id="get_warmer/2">
-  <div class="detail-header">
-    <a href="#get_warmer/2" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">get_warmer(index, warmer)</span>
-    
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L219" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-  </div>
-  
-  <section class="docstring">
-    
   </section>
 </div>
 <div class="detail" id="open/1">
@@ -1029,7 +1637,42 @@ the token breakdown.</p>
     </a>
     <span class="signature">open(index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L49" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L178" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">open(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :post, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
+  <section class="docstring">
+    <p>Opens an index</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-open-close.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.open(&quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_open&quot;,
+  method: :post,
+}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="params/2">
+  <div class="detail-header">
+    <a href="#params/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">params(builder, params)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L1222" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -1037,7 +1680,7 @@ the token breakdown.</p>
   </div>
   
   <section class="docstring">
-    <p>Opens an index</p>
+    <p>Callback implementation for <a href="Elastex.Extender.html#c:params/2"><code class="inline">Elastex.Extender.params/2</code></a>.</p>
 
   </section>
 </div>
@@ -1048,16 +1691,33 @@ the token breakdown.</p>
     </a>
     <span class="signature">put_mapping(body, index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L59" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L306" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">put_mapping(<a href="#t:body/0">body</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: <a href="#t:body/0">body</a>, headers: term, id: term, index: term, method: :put, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Adds a new type to an exisiting index
-or new fields to an exisiting type.</p>
+    <p>Provides type mappings to an index</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-put-mapping.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; body = %{mappings: %{tweet:  %{properties: %{message: %{type: &quot;text&quot;}}}}}
+iex&gt; Elastex.Index.put_mapping(body, &quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter&quot;,
+  body: %{mappings: %{tweet:  %{properties: %{message: %{type: &quot;text&quot;}}}}},
+  method: :put
+}</code></pre>
 
   </section>
 </div>
@@ -1068,70 +1728,34 @@ or new fields to an exisiting type.</p>
     </a>
     <span class="signature">put_mapping(body, index, type)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L63" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L334" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
-  <section class="docstring">
-    
-  </section>
-</div>
-<div class="detail" id="put_warmer/2">
-  <div class="detail-header">
-    <a href="#put_warmer/2" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">put_warmer(body, warmer)</span>
-    
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L195" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-  </div>
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">put_mapping(<a href="#t:body/0">body</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: <a href="#t:body/0">body</a>, headers: term, id: term, index: term, method: :put, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
   
   <section class="docstring">
-    <p>Adds warmer to a specific index.</p>
+    <p>Provides type mappings to an index with type</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-put-mapping.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; body = %{mappings: %{tweet:  %{properties: %{message: %{type: &quot;text&quot;}}}}}
+iex&gt; Elastex.Index.put_mapping(body, &quot;twitter&quot;, &quot;tweet&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_mapping/tweet&quot;,
+  body: %{mappings: %{tweet:  %{properties: %{message: %{type: &quot;text&quot;}}}}},
+  method: :put
+}</code></pre>
 
-  </section>
-</div>
-<div class="detail" id="put_warmer/3">
-  <div class="detail-header">
-    <a href="#put_warmer/3" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">put_warmer(body, index, warmer)</span>
-    
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L197" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-  </div>
-  
-  <section class="docstring">
-    
-  </section>
-</div>
-<div class="detail" id="put_warmer/4">
-  <div class="detail-header">
-    <a href="#put_warmer/4" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">put_warmer(body, index, type, warmer)</span>
-    
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L199" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-  </div>
-  
-  <section class="docstring">
-    
   </section>
 </div>
 <div class="detail" id="recovery/0">
@@ -1141,15 +1765,31 @@ or new fields to an exisiting type.</p>
     </a>
     <span class="signature">recovery()</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L252" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L924" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">recovery :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Provides insight into on-going index shard recoveries.</p>
+    <p>Provides insight into on-going index shard recoveries cluster wide.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-recovery.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.recovery()
+%Elastex.Builder {
+  url:    &quot;_recovery&quot;,
+  method: :get
+}</code></pre>
 
   </section>
 </div>
@@ -1160,15 +1800,32 @@ or new fields to an exisiting type.</p>
     </a>
     <span class="signature">recovery(index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L254" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L943" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">recovery(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    
+    <p>Provides insight into on-going index shard recoveries for a specific index.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-recovery.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.recovery()
+%Elastex.Builder {
+  url:    &quot;_recovery&quot;,
+  method: :get
+}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="refresh/0">
@@ -1178,15 +1835,31 @@ or new fields to an exisiting type.</p>
     </a>
     <span class="signature">refresh()</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L307" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L1141" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">refresh :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :post, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Explicitly refreshes one or more index.</p>
+    <p>Explicitly refreshes all indicies</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-refresh.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.refresh()
+%Elastex.Builder {
+  url:    &quot;_refresh&quot;,
+  method: :post
+}</code></pre>
 
   </section>
 </div>
@@ -1197,15 +1870,106 @@ or new fields to an exisiting type.</p>
     </a>
     <span class="signature">refresh(index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L309" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L1160" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">refresh(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :post, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
+    <p>Explicitly refreshes one or more indicies</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-refresh.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.refresh(&quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_refresh&quot;,
+  method: :post
+}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="rollover/2">
+  <div class="detail-header">
+    <a href="#rollover/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">rollover(body, index)</span>
     
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L254" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">rollover(<a href="#t:body/0">body</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: <a href="#t:body/0">body</a>, headers: term, id: term, index: term, method: :post, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
+  <section class="docstring">
+    <p>Rollsover an index</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-rollover-index.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; body = %{conditions: %{max_age:  &quot;7d&quot;}}
+iex&gt; Elastex.Index.rollover(body, &quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_rollover&quot;,
+  body: %{conditions: %{max_age:  &quot;7d&quot;}},
+  method: :post
+}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="rollover/3">
+  <div class="detail-header">
+    <a href="#rollover/3" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">rollover(body, index, named_index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L278" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">rollover(<a href="#t:body/0">body</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: <a href="#t:body/0">body</a>, headers: term, id: term, index: term, method: :post, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
+  <section class="docstring">
+    <p>Rollsover an index</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-rollover-index.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; body = %{conditions: %{max_age: &quot;7d&quot;}}
+iex&gt; Elastex.Index.rollover(body, &quot;twitter&quot;, &quot;new_twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_rollover/new_twitter&quot;,
+  body: %{conditions: %{max_age:  &quot;7d&quot;}},
+  method: :post
+}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="segments/0">
@@ -1215,16 +1979,32 @@ or new fields to an exisiting type.</p>
     </a>
     <span class="signature">segments()</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L241" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L880" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">segments :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
     <p>Gets low level segment information that a Lucene index (shard-level) is
-built with.</p>
+built with for all indicies.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-segments.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.segments()
+%Elastex.Builder {
+  url:    &quot;_segments&quot;,
+  method: :get
+}</code></pre>
 
   </section>
 </div>
@@ -1235,15 +2015,33 @@ built with.</p>
     </a>
     <span class="signature">segments(index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L243" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L900" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">segments(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    
+    <p>Gets low level segment information that a Lucene index (shard-level) is
+built with for an index.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-segments.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.segments(&quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_segments&quot;,
+  method: :get
+}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="shard_stores/0">
@@ -1253,15 +2051,31 @@ built with.</p>
     </a>
     <span class="signature">shard_stores()</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L263" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L968" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">shard_stores :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Provides store information for shard copies of indices.</p>
+    <p>Provides store information for shard copies of all indices.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-shards-stores.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.shard_stores()
+%Elastex.Builder {
+  url:    &quot;_shard_stores&quot;,
+  method: :get
+}</code></pre>
 
   </section>
 </div>
@@ -1272,15 +2086,104 @@ built with.</p>
     </a>
     <span class="signature">shard_stores(index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L265" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L987" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">shard_stores(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
+    <p>Provides store information for shard copies of a specific index.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-shards-stores.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.shard_stores(&quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_shard_stores&quot;,
+  method: :get
+}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="shrink/2">
+  <div class="detail-header">
+    <a href="#shrink/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">shrink(source_index, target_index)</span>
     
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L202" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">shrink(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :post, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
+  <section class="docstring">
+    <p>Shrinks an index</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-shrink-index.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.shrink(&quot;twitter&quot;, &quot;new_twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_shrink/new_twitter&quot;,
+  method: :post,
+}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="shrink/3">
+  <div class="detail-header">
+    <a href="#shrink/3" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">shrink(body, source_index, target_index)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L226" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">shrink(<a href="#t:body/0">body</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: <a href="#t:body/0">body</a>, headers: term, id: term, index: term, method: :post, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
+  <section class="docstring">
+    <p>Shrinks an index with body</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-shrink-index.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; body = %{settings: %{&quot;index.number_of_replicas&quot; =&gt; 1}}
+iex&gt; Elastex.Index.shrink(body, &quot;twitter&quot;, &quot;new_twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_shrink/new_twitter&quot;,
+  body: %{settings: %{&quot;index.number_of_replicas&quot; =&gt; 1}},
+  method: :post
+}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="stats/0">
@@ -1290,15 +2193,31 @@ built with.</p>
     </a>
     <span class="signature">stats()</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L229" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L836" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">stats :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Provides statistics on different operations happening on an index.</p>
+    <p>Provides statistics on different operations happening on all indicies.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-stats.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.stats()
+%Elastex.Builder {
+  url:    &quot;_stats&quot;,
+  method: :get
+}</code></pre>
 
   </section>
 </div>
@@ -1309,15 +2228,32 @@ built with.</p>
     </a>
     <span class="signature">stats(index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L231" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L855" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">stats(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    
+    <p>Provides statistics on different operations happening on an index.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-stats.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.stats(&quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_stats&quot;,
+  method: :get
+}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="synced_flush/0">
@@ -1327,15 +2263,31 @@ built with.</p>
     </a>
     <span class="signature">synced_flush()</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L296" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L1097" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">synced_flush :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :post, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Initiates a synched flush manually.</p>
+    <p>Initiates a synched flush manually on all indicies</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-synced-flush.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.synced_flush()
+%Elastex.Builder {
+  url:    &quot;_flush/synced&quot;,
+  method: :post
+}</code></pre>
 
   </section>
 </div>
@@ -1346,15 +2298,32 @@ built with.</p>
     </a>
     <span class="signature">synced_flush(index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L298" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L1116" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">synced_flush(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :post, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    
+    <p>Initiates a synched flush manually on one or more indicies</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-synced-flush.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.synced_flush(&quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_flush/synced&quot;,
+  method: :post
+}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="template_exists/1">
@@ -1364,15 +2333,31 @@ built with.</p>
     </a>
     <span class="signature">template_exists(template)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L186" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L812" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">template_exists(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :head, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
     <p>Checks the existence of a template.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-templates.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.template_exists(&quot;template1&quot;)
+%Elastex.Builder {
+  url:    &quot;_template/template1&quot;,
+  method: :head
+}</code></pre>
 
   </section>
 </div>
@@ -1383,15 +2368,31 @@ built with.</p>
     </a>
     <span class="signature">type_exists(index, type)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L83" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L428" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">type_exists(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :head, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Checks if type exist in index.</p>
+    <p>Checks if type exists</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-types-exists.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Index.type_exists(&quot;twitter&quot;, &quot;tweet&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_mapping/tweet&quot;,
+  method: :head
+}</code></pre>
 
   </section>
 </div>
@@ -1402,15 +2403,33 @@ built with.</p>
     </a>
     <span class="signature">update_settings(body)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L127" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L607" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">update_settings(<a href="#t:body/0">body</a>) :: %Elastex.Builder{action: term, body: <a href="#t:body/0">body</a>, headers: term, id: term, index: term, method: :put, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Updates index level settings.</p>
+    <p>Changes all index level settings in real time.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-update-settings.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; body = %{index: %{number_of_replicas: 4}}
+iex&gt; Elastex.Index.update_settings(body)
+%Elastex.Builder {
+  url:    &quot;_settings&quot;,
+  body:   %{index: %{number_of_replicas: 4}},
+  method: :put
+}</code></pre>
 
   </section>
 </div>
@@ -1421,52 +2440,34 @@ built with.</p>
     </a>
     <span class="signature">update_settings(body, index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L129" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L635" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
-  <section class="docstring">
-    
-  </section>
-</div>
-<div class="detail" id="upgrade/0">
-  <div class="detail-header">
-    <a href="#upgrade/0" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">upgrade()</span>
-    
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L329" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-  </div>
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">update_settings(<a href="#t:body/0">body</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: <a href="#t:body/0">body</a>, headers: term, id: term, index: term, method: :put, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
   
   <section class="docstring">
-    <p>Upgrades one or more indices</p>
+    <p>Changes specific index level settings in real time.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-update-settings.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; body = %{index: %{number_of_replicas: 4}}
+iex&gt; Elastex.Index.update_settings(body, &quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;twitter/_settings&quot;,
+  body:   %{index: %{number_of_replicas: 4}},
+  method: :put
+}</code></pre>
 
-  </section>
-</div>
-<div class="detail" id="upgrade/1">
-  <div class="detail-header">
-    <a href="#upgrade/1" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">upgrade(index)</span>
-    
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L331" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-  </div>
-  
-  <section class="docstring">
-    
   </section>
 </div>
 
@@ -1475,6 +2476,84 @@ built with.</p>
 
       
 
+      
+        <section id="callbacks" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#callbacks">
+              <i class="icon-link"></i>
+            </a>
+            Callbacks
+          </h1>
+          <div class="detail" id="c:extend_url/2">
+  <div class="detail-header">
+    <a href="#c:extend_url/2" class="detail-link" title="Link to this callback">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">extend_url(%, list)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L1237" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">extend_url(%Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: term, options: term, params: term, type: term, url: term}, [<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>]) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: term, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
+  <section class="docstring">
+    <p>Extends the url of cluster builder</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; builder = %Elastex.Builder{url: &quot;twitter&quot;}
+iex&gt; Elastex.Index.extend_url(builder, [&quot;tweet&quot;])
+%Elastex.Builder {
+  url: &quot;twitter/tweet&quot;
+}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="c:params/2">
+  <div class="detail-header">
+    <a href="#c:params/2" class="detail-link" title="Link to this callback">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">params(%, keyword)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/index.ex#L1221" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">params(%Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: term, options: term, params: term, type: term, url: term}, keyword(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>)) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: term, options: term, params: keyword(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>), type: term, url: term}</code></pre>
+        
+      </div>
+    </div>
+  
+  <section class="docstring">
+    <p>Adds params to document builders</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; builder = %Elastex.Builder{}
+iex&gt; Elastex.Index.params(builder, [q: &quot;user:mike&quot;])
+%Elastex.Builder {
+  params: [q: &quot;user:mike&quot;]
+}</code></pre>
+
+  </section>
+</div>
+
+        </section>
       
           <footer class="footer">
         <p>

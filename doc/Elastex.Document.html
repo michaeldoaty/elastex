@@ -92,7 +92,7 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#t:body/0">body()</a>
+    <a href="#t:bulk_action/0">bulk_action()</a>
   </div>
   
 </div>
@@ -135,6 +135,15 @@
   </div>
   
     <div class="summary-synopsis"><p>Checks whether a specific document exists</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#extend_url/2">extend_url(builder, list)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Extends the url of document builder</p>
 </div>
   
 </div>
@@ -277,8 +286,12 @@ of a particular document using body options</p>
             Types
           </h1>
           <div class="types-list">
-            <div id="t:body/0" class="type-detail">
-  <pre><code class="elixir"><a href="#t:body/0">body</a> :: map | struct | nil</code></pre>
+            <div id="t:bulk_action/0" class="type-detail">
+  <pre><code class="elixir"><a href="#t:bulk_action/0">bulk_action</a> ::
+  :document_update |
+  :document_index |
+  :document_create |
+  :document_delete</code></pre>
   
 </div>
 <div id="t:int_or_string/0" class="type-detail">
@@ -305,7 +318,7 @@ of a particular document using body options</p>
     </a>
     <span class="signature">bulk(builders)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L255" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L309" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -316,7 +329,7 @@ of a particular document using body options</p>
       <h4 class="specs-title">Specs</h4>
       <div class="specs-list">
         
-          <pre><code class="elixir">bulk([<a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a>]) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+          <pre><code class="elixir">bulk([%Elastex.Builder{action: <a href="#t:bulk_action/0">bulk_action</a>, body: term, headers: term, id: term, index: term, method: term, options: term, params: term, type: term, url: term}]) :: %Elastex.Builder{action: :document_bulk, body: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, headers: term, id: term, index: term, method: :post, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
         
       </div>
     </div>
@@ -345,7 +358,7 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
     </a>
     <span class="signature">delete(index, type, id)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L135" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L164" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -356,7 +369,7 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
       <h4 class="specs-title">Specs</h4>
       <div class="specs-list">
         
-          <pre><code class="elixir">delete(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="#t:int_or_string/0">int_or_string</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+          <pre><code class="elixir">delete(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="#t:int_or_string/0">int_or_string</a>) :: %Elastex.Builder{action: :document_delete, body: term, headers: term, id: <a href="#t:int_or_string/0">int_or_string</a>, index: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, method: :delete, options: term, params: term, type: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
         
       </div>
     </div>
@@ -384,7 +397,7 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
     </a>
     <span class="signature">exists(index, type, id)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L110" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L132" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -395,7 +408,7 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
       <h4 class="specs-title">Specs</h4>
       <div class="specs-list">
         
-          <pre><code class="elixir">exists(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="#t:int_or_string/0">int_or_string</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+          <pre><code class="elixir">exists(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="#t:int_or_string/0">int_or_string</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :head, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
         
       </div>
     </div>
@@ -412,14 +425,14 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
 
   </section>
 </div>
-<div class="detail" id="get/3">
+<div class="detail" id="extend_url/2">
   <div class="detail-header">
-    <a href="#get/3" class="detail-link" title="Link to this function">
+    <a href="#extend_url/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">get(index, type, id)</span>
+    <span class="signature">extend_url(builder, list)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L89" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L515" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -430,7 +443,41 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
       <h4 class="specs-title">Specs</h4>
       <div class="specs-list">
         
-          <pre><code class="elixir">get(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="#t:int_or_string/0">int_or_string</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+          <pre><code class="elixir">extend_url(%Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: term, options: term, params: term, type: term, url: term}, [<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>]) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: term, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
+  <section class="docstring">
+    <p>Extends the url of document builder</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; builder = %Elastex.Builder{url: &quot;twitter&quot;}
+iex&gt; Elastex.Document.extend_url(builder, [&quot;tweet&quot;])
+%Elastex.Builder {
+  url: &quot;twitter/tweet&quot;
+}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="get/3">
+  <div class="detail-header">
+    <a href="#get/3" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">get(index, type, id)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L108" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">get(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="#t:int_or_string/0">int_or_string</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
         
       </div>
     </div>
@@ -454,7 +501,7 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
     </a>
     <span class="signature">index(body, index, type)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L33" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L41" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -465,7 +512,7 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
       <h4 class="specs-title">Specs</h4>
       <div class="specs-list">
         
-          <pre><code class="elixir">index(<a href="#t:body/0">body</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+          <pre><code class="elixir">index(map, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: :document_index, body: map, headers: term, id: term, index: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, method: :post, options: term, params: term, type: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
         
       </div>
     </div>
@@ -493,7 +540,7 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
     </a>
     <span class="signature">index(body, index, type, id)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L63" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L79" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -504,7 +551,7 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
       <h4 class="specs-title">Specs</h4>
       <div class="specs-list">
         
-          <pre><code class="elixir">index(<a href="#t:body/0">body</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="#t:int_or_string/0">int_or_string</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+          <pre><code class="elixir">index(map, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="#t:int_or_string/0">int_or_string</a>) :: %Elastex.Builder{action: :document_index, body: map, headers: term, id: <a href="#t:int_or_string/0">int_or_string</a>, index: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, method: :put, options: term, params: term, type: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
         
       </div>
     </div>
@@ -533,7 +580,7 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
     </a>
     <span class="signature">mget(body)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L193" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L234" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -544,7 +591,7 @@ iex&gt; Elastex.Document.bulk(bulk_requests)
       <h4 class="specs-title">Specs</h4>
       <div class="specs-list">
         
-          <pre><code class="elixir">mget(<a href="#t:body/0">body</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+          <pre><code class="elixir">mget(map) :: %Elastex.Builder{action: term, body: map, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
         
       </div>
     </div>
@@ -570,7 +617,7 @@ iex&gt; Elastex.Document.mget(docs)
     </a>
     <span class="signature">mget(body, index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L211" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L256" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -581,7 +628,7 @@ iex&gt; Elastex.Document.mget(docs)
       <h4 class="specs-title">Specs</h4>
       <div class="specs-list">
         
-          <pre><code class="elixir">mget(<a href="#t:body/0">body</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+          <pre><code class="elixir">mget(map, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: map, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
         
       </div>
     </div>
@@ -607,7 +654,7 @@ iex&gt; Elastex.Document.mget(docs, &quot;website&quot;)
     </a>
     <span class="signature">mget(body, index, type)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L229" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L278" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -618,7 +665,7 @@ iex&gt; Elastex.Document.mget(docs, &quot;website&quot;)
       <h4 class="specs-title">Specs</h4>
       <div class="specs-list">
         
-          <pre><code class="elixir">mget(<a href="#t:body/0">body</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+          <pre><code class="elixir">mget(map, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: map, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
         
       </div>
     </div>
@@ -644,7 +691,7 @@ iex&gt; Elastex.Document.mget(docs, &quot;website&quot;, &quot;blog&quot;)
     </a>
     <span class="signature">mterm_vectors(body)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L370" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L435" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -655,7 +702,7 @@ iex&gt; Elastex.Document.mget(docs, &quot;website&quot;, &quot;blog&quot;)
       <h4 class="specs-title">Specs</h4>
       <div class="specs-list">
         
-          <pre><code class="elixir">mterm_vectors(<a href="#t:body/0">body</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+          <pre><code class="elixir">mterm_vectors(map) :: %Elastex.Builder{action: term, body: map, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
         
       </div>
     </div>
@@ -681,7 +728,7 @@ iex&gt; Elastex.Document.mterm_vectors(body)
     </a>
     <span class="signature">mterm_vectors(body, index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L388" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L457" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -692,7 +739,7 @@ iex&gt; Elastex.Document.mterm_vectors(body)
       <h4 class="specs-title">Specs</h4>
       <div class="specs-list">
         
-          <pre><code class="elixir">mterm_vectors(<a href="#t:body/0">body</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+          <pre><code class="elixir">mterm_vectors(map, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: map, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
         
       </div>
     </div>
@@ -718,7 +765,7 @@ iex&gt; Elastex.Document.mterm_vectors(body, &quot;twitter&quot;)
     </a>
     <span class="signature">mterm_vectors(body, index, type)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L406" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L479" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -729,7 +776,7 @@ iex&gt; Elastex.Document.mterm_vectors(body, &quot;twitter&quot;)
       <h4 class="specs-title">Specs</h4>
       <div class="specs-list">
         
-          <pre><code class="elixir">mterm_vectors(<a href="#t:body/0">body</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+          <pre><code class="elixir">mterm_vectors(map, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: map, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
         
       </div>
     </div>
@@ -755,7 +802,7 @@ iex&gt; Elastex.Document.mterm_vectors(body, &quot;twitter&quot;, &quot;tweet&qu
     </a>
     <span class="signature">params(builder, params)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L419" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L499" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -766,13 +813,19 @@ iex&gt; Elastex.Document.mterm_vectors(body, &quot;twitter&quot;, &quot;tweet&qu
       <h4 class="specs-title">Specs</h4>
       <div class="specs-list">
         
-          <pre><code class="elixir">params(<a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/Keyword.html#t:t/0">Keyword.t</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+          <pre><code class="elixir">params(%Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: term, options: term, params: term, type: term, url: term}, keyword(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>)) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: term, options: term, params: keyword(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>), type: term, url: term}</code></pre>
         
       </div>
     </div>
   
   <section class="docstring">
     <p>Adds params to document builders</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; builder = %Elastex.Builder{}
+iex&gt; Elastex.Document.params(builder, [q: &quot;user:mike&quot;])
+%Elastex.Builder {
+  params: [q: &quot;user:mike&quot;]
+}</code></pre>
 
   </section>
 </div>
@@ -783,7 +836,7 @@ iex&gt; Elastex.Document.mterm_vectors(body, &quot;twitter&quot;, &quot;tweet&qu
     </a>
     <span class="signature">term_vectors(index, type, id)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L321" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L378" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -794,7 +847,7 @@ iex&gt; Elastex.Document.mterm_vectors(body, &quot;twitter&quot;, &quot;tweet&qu
       <h4 class="specs-title">Specs</h4>
       <div class="specs-list">
         
-          <pre><code class="elixir">term_vectors(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="#t:int_or_string/0">int_or_string</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+          <pre><code class="elixir">term_vectors(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="#t:int_or_string/0">int_or_string</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
         
       </div>
     </div>
@@ -819,7 +872,7 @@ of a particular document.</p>
     </a>
     <span class="signature">term_vectors(body, index, type, id)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L345" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L406" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -830,7 +883,7 @@ of a particular document.</p>
       <h4 class="specs-title">Specs</h4>
       <div class="specs-list">
         
-          <pre><code class="elixir">term_vectors(<a href="#t:body/0">body</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="#t:int_or_string/0">int_or_string</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+          <pre><code class="elixir">term_vectors(map, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="#t:int_or_string/0">int_or_string</a>) :: %Elastex.Builder{action: term, body: map, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
         
       </div>
     </div>
@@ -857,7 +910,7 @@ iex&gt; Elastex.Document.term_vectors(body, &quot;twitter&quot;, &quot;tweet&quo
     </a>
     <span class="signature">update(body, index, type, id)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L165" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/document.ex#L202" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -868,7 +921,7 @@ iex&gt; Elastex.Document.term_vectors(body, &quot;twitter&quot;, &quot;tweet&quo
       <h4 class="specs-title">Specs</h4>
       <div class="specs-list">
         
-          <pre><code class="elixir">update(<a href="#t:body/0">body</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="#t:int_or_string/0">int_or_string</a>) :: <a href="Elastex.Builder.html#t:t/0">Elastex.Builder.t</a></code></pre>
+          <pre><code class="elixir">update(map, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="#t:int_or_string/0">int_or_string</a>) :: %Elastex.Builder{action: :document_update, body: map, headers: term, id: <a href="#t:int_or_string/0">int_or_string</a>, index: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, method: :post, options: term, params: term, type: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
         
       </div>
     </div>

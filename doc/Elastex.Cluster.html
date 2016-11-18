@@ -70,6 +70,12 @@
       </h1>
 
       
+        <section id="moduledoc" class="docstring">
+          <p> Follows the Elasticsearch
+ <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster.html">Cluster API</a>.</p>
+
+        </section>
+      
 
       
         <section id="summary" class="details-list">
@@ -88,10 +94,28 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
+    <a href="#extend_url/2">extend_url(builder, list)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Extends the url of cluster builder</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_settings/0">get_settings()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Retrieves specific wide cluster settings</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="#health/0">health()</a>
   </div>
   
-    <div class="summary-synopsis"><p>Gets a very simple status on the health of a cluster</p>
+    <div class="summary-synopsis"><p>Gets a very simple status on the health of the cluster</p>
 </div>
   
 </div>
@@ -100,10 +124,22 @@
     <a href="#health/1">health(index)</a>
   </div>
   
+    <div class="summary-synopsis"><p>Gets a very simple status on the health of the cluster using on or more indicies</p>
+</div>
+  
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#node_hot_threads/1">node_hot_threads(node)</a>
+    <a href="#node_hot_threads/0">node_hot_threads()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Retrieves current hot threads on all nodes in the cluster</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#node_hot_threads/1">node_hot_threads(nodes)</a>
   </div>
   
     <div class="summary-synopsis"><p>Retrieves current hot threads on each node in the cluster</p>
@@ -115,20 +151,26 @@
     <a href="#node_info/0">node_info()</a>
   </div>
   
-    <div class="summary-synopsis"><p>Retrieve one or more (or all) of the cluster nodes statistics</p>
+    <div class="summary-synopsis"><p>Retrieves information of all the nodes in the cluster</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#node_info/1">node_info(attributes)</a>
+    <a href="#node_info/1">node_info(nodes)</a>
   </div>
+  
+    <div class="summary-synopsis"><p>Retrieves information of specific nodes in the cluster</p>
+</div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#node_info/2">node_info(attributes, nodes)</a>
+    <a href="#node_info/2">node_info(nodes, info)</a>
   </div>
+  
+    <div class="summary-synopsis"><p>Retrieves information of specific nodes and info in the cluster</p>
+</div>
   
 </div>
 <div class="summary-row">
@@ -136,20 +178,35 @@
     <a href="#node_stats/0">node_stats()</a>
   </div>
   
-    <div class="summary-synopsis"><p>Retrieve one or more (or all) of the cluster nodes statistics</p>
+    <div class="summary-synopsis"><p>Retrieve stats of all nodes in the cluster</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#node_stats/1">node_stats(stats)</a>
+    <a href="#node_stats/1">node_stats(nodes)</a>
   </div>
+  
+    <div class="summary-synopsis"><p>Retrieve nodes stats of specific nodes</p>
+</div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#node_stats/2">node_stats(stats, nodes)</a>
+    <a href="#node_stats/2">node_stats(nodes, stats)</a>
   </div>
+  
+    <div class="summary-synopsis"><p>Retrieve nodes stats of specific nodes and stats</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#params/2">params(builder, params)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Adds params to document builder</p>
+</div>
   
 </div>
 <div class="summary-row">
@@ -175,14 +232,26 @@
     <a href="#state/0">state()</a>
   </div>
   
-    <div class="summary-synopsis"><p>Gets comprehensive state information of cluster</p>
+    <div class="summary-synopsis"><p>Gets comprehensive state information of the whole cluster</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#state/2">state(index, metrics)</a>
+    <a href="#state/1">state(metrics)</a>
   </div>
+  
+    <div class="summary-synopsis"><p>Gets comprehensive state information of the whole cluster using metrics</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#state/2">state(metrics, index)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Gets comprehensive state information of the whole cluster using metrics</p>
+</div>
   
 </div>
 <div class="summary-row">
@@ -191,6 +260,15 @@
   </div>
   
     <div class="summary-synopsis"><p>Retrieves statistics from a cluster wide perspective</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#update_settings/1">update_settings(body)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Updates specific wide cluster settings</p>
 </div>
   
 </div>
@@ -215,22 +293,107 @@
             </a>
             Functions
           </h1>
-          <div class="detail" id="health/0">
+          <div class="detail" id="extend_url/2">
   <div class="detail-header">
-    <a href="#health/0" class="detail-link" title="Link to this function">
+    <a href="#extend_url/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">health()</span>
+    <span class="signature">extend_url(builder, list)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L6" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L386" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">extend_url(%Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: term, options: term, params: term, type: term, url: term}, [<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>]) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: term, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Gets a very simple status on the health of a cluster.</p>
+    <p>Extends the url of cluster builder</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; builder = %Elastex.Builder{url: &quot;twitter&quot;}
+iex&gt; Elastex.Cluster.extend_url(builder, [&quot;tweet&quot;])
+%Elastex.Builder {
+  url: &quot;twitter/tweet&quot;
+}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="get_settings/0">
+  <div class="detail-header">
+    <a href="#get_settings/0" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">get_settings()</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L182" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">get_settings :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
+  <section class="docstring">
+    <p>Retrieves specific wide cluster settings</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-update-settings.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Cluster.get_settings()
+%Elastex.Builder {
+  url:    &quot;_cluster/pending_tasks&quot;,
+  method: :get
+}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="health/0">
+  <div class="detail-header">
+    <a href="#health/0" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">health()</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L27" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">health :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
+  <section class="docstring">
+    <p>Gets a very simple status on the health of the cluster.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-health.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Cluster.health()
+%Elastex.Builder {
+  url:    &quot;_cluster/health&quot;,
+  method: :get,
+}</code></pre>
 
   </section>
 </div>
@@ -241,15 +404,67 @@
     </a>
     <span class="signature">health(index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L8" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L43" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">health(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
+    <p>Gets a very simple status on the health of the cluster using on or more indicies</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-health.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Cluster.health(&quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;_cluster/health/twitter&quot;,
+  method: :get,
+}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="node_hot_threads/0">
+  <div class="detail-header">
+    <a href="#node_hot_threads/0" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">node_hot_threads()</span>
     
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L335" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">node_hot_threads :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
+  <section class="docstring">
+    <p>Retrieves current hot threads on all nodes in the cluster.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-nodes-info.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Cluster.node_hot_threads()
+%Elastex.Builder {
+  url:    &quot;_nodes/hot_threads&quot;,
+  method: :get
+}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="node_hot_threads/1">
@@ -257,17 +472,33 @@
     <a href="#node_hot_threads/1" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">node_hot_threads(node)</span>
+    <span class="signature">node_hot_threads(nodes)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L79" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L351" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">node_hot_threads(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
     <p>Retrieves current hot threads on each node in the cluster.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-nodes-info.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Cluster.node_hot_threads(&quot;nodeId1,nodeId2&quot;)
+%Elastex.Builder {
+  url:    &quot;_nodes/hot_threads/process&quot;,
+  method: :get
+}</code></pre>
 
   </section>
 </div>
@@ -278,15 +509,31 @@
     </a>
     <span class="signature">node_info()</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L66" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L282" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">node_info :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Retrieve one or more (or all) of the cluster nodes statistics.</p>
+    <p>Retrieves information of all the nodes in the cluster</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-nodes-info.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Cluster.node_info()
+%Elastex.Builder {
+  url:    &quot;_node&quot;,
+  method: :get
+}</code></pre>
 
   </section>
 </div>
@@ -295,17 +542,34 @@
     <a href="#node_info/1" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">node_info(attributes)</span>
+    <span class="signature">node_info(nodes)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L68" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L298" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">node_info(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    
+    <p>Retrieves information of specific nodes in the cluster</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-nodes-info.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Cluster.node_info(&quot;nodeId1,nodeId2&quot;)
+%Elastex.Builder {
+  url:    &quot;_node/nodeId1,nodeId2&quot;,
+  method: :get
+}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="node_info/2">
@@ -313,17 +577,34 @@
     <a href="#node_info/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">node_info(attributes, nodes)</span>
+    <span class="signature">node_info(nodes, info)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L70" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L314" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">node_info(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    
+    <p>Retrieves information of specific nodes and info in the cluster</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-nodes-info.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Cluster.node_info(&quot;nodeId1,nodeId2&quot;, &quot;process&quot;)
+%Elastex.Builder {
+  url:    &quot;_node/nodeId1,nodeId2/process&quot;,
+  method: :get
+}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="node_stats/0">
@@ -333,15 +614,31 @@
     </a>
     <span class="signature">node_stats()</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L53" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L228" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">node_stats :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Retrieve one or more (or all) of the cluster nodes statistics.</p>
+    <p>Retrieve stats of all nodes in the cluster</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-nodes-stats.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Cluster.node_stats()
+%Elastex.Builder {
+  url:    &quot;_node/stats&quot;,
+  method: :get
+}</code></pre>
 
   </section>
 </div>
@@ -350,17 +647,34 @@
     <a href="#node_stats/1" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">node_stats(stats)</span>
+    <span class="signature">node_stats(nodes)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L55" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L244" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">node_stats(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    
+    <p>Retrieve nodes stats of specific nodes</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-nodes-stats.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Cluster.node_stats(&quot;nodeId1,nodeId2&quot;)
+%Elastex.Builder {
+  url:    &quot;_node/nodeId1,nodeId2/stats&quot;,
+  method: :get
+}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="node_stats/2">
@@ -368,17 +682,68 @@
     <a href="#node_stats/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">node_stats(stats, nodes)</span>
+    <span class="signature">node_stats(nodes, stats)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L57" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L260" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">node_stats(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
+    <p>Retrieve nodes stats of specific nodes and stats</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-nodes-stats.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Cluster.node_stats(&quot;nodeId1,nodeId2&quot;, &quot;process&quot;)
+%Elastex.Builder {
+  url:    &quot;_node/nodeId1,nodeId2/stats/process&quot;,
+  method: :get
+}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="params/2">
+  <div class="detail-header">
+    <a href="#params/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">params(builder, params)</span>
     
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L370" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">params(%Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: term, options: term, params: term, type: term, url: term}, keyword(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>)) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: term, options: term, params: keyword(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>), type: term, url: term}</code></pre>
+        
+      </div>
+    </div>
+  
+  <section class="docstring">
+    <p>Adds params to document builder</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; builder = %Elastex.Builder{}
+iex&gt; Elastex.Cluster.params(builder, [q: &quot;user:mike&quot;])
+%Elastex.Builder {
+  params: [q: &quot;user:mike&quot;]
+}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="pending_tasks/0">
@@ -388,15 +753,31 @@
     </a>
     <span class="signature">pending_tasks()</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L36" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L138" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">pending_tasks :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
     <p>Retrieves pending tasks from a cluster wide perspective.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-pending.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Cluster.pending_tasks()
+%Elastex.Builder {
+  url:    &quot;_cluster/pending_tasks&quot;,
+  method: :get,
+}</code></pre>
 
   </section>
 </div>
@@ -407,15 +788,32 @@
     </a>
     <span class="signature">reroute(body)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L44" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L160" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">reroute(map) :: %Elastex.Builder{action: term, body: map, headers: term, id: term, index: term, method: :post, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
     <p>Executes a reroute allocation command including specific commands.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-reroute.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; body = %{commands: [%{move: %{index: &quot;twitter&quot;, shard: 0}}]}
+iex&gt; Elastex.Cluster.reroute(body)
+%Elastex.Builder {
+  url:    &quot;_cluster/pending_tasks&quot;,
+  method: :get,
+}</code></pre>
 
   </section>
 </div>
@@ -426,15 +824,66 @@
     </a>
     <span class="signature">state()</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L17" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L64" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">state :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    <p>Gets comprehensive state information of cluster.</p>
+    <p>Gets comprehensive state information of the whole cluster.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-state.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Cluster.state()
+%Elastex.Builder {
+  url:    &quot;_cluster/state&quot;,
+  method: :get,
+}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="state/1">
+  <div class="detail-header">
+    <a href="#state/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">state(metrics)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L80" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">state(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
+  <section class="docstring">
+    <p>Gets comprehensive state information of the whole cluster using metrics.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-state.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Cluster.state(&quot;blocks&quot;)
+%Elastex.Builder {
+  url:    &quot;_cluster/state/blocks&quot;,
+  method: :get,
+}</code></pre>
 
   </section>
 </div>
@@ -443,17 +892,34 @@
     <a href="#state/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">state(index, metrics)</span>
+    <span class="signature">state(metrics, index)</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L19" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L96" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">state(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
-    
+    <p>Gets comprehensive state information of the whole cluster using metrics.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-state.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Cluster.state(&quot;metadata&quot;, &quot;twitter&quot;)
+%Elastex.Builder {
+  url:    &quot;_cluster/state/metadata/twitter&quot;,
+  method: :get,
+}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="stats/0">
@@ -463,15 +929,68 @@
     </a>
     <span class="signature">stats()</span>
     
-      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L28" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L117" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
   </div>
   
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">stats :: %Elastex.Builder{action: term, body: term, headers: term, id: term, index: term, method: :get, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
   <section class="docstring">
     <p>Retrieves statistics from a cluster wide perspective.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-stats.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; Elastex.Cluster.stats()
+%Elastex.Builder {
+  url:    &quot;_cluster/stats&quot;,
+  method: :get,
+}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="update_settings/1">
+  <div class="detail-header">
+    <a href="#update_settings/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">update_settings(body)</span>
+    
+      <a href="https://github.com/michaeldoaty/elastex/blob/master/lib/elastex/cluster.ex#L205" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+  </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">update_settings(map) :: %Elastex.Builder{action: term, body: map, headers: term, id: term, index: term, method: :put, options: term, params: term, type: term, url: <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>}</code></pre>
+        
+      </div>
+    </div>
+  
+  <section class="docstring">
+    <p>Updates specific wide cluster settings</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-update-settings.html">Elasticsearch Documentation</a></p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; body = %{persistant: %{persistant: %{&quot;discovery.zen.minimum_master_notes&quot; =&gt; 2}}}
+iex&gt; Elastex.Cluster.update_settings(body)
+%Elastex.Builder {
+  url:    &quot;_cluster/pending_tasks&quot;,
+  body:   %{persistant: %{persistant: %{&quot;discovery.zen.minimum_master_notes&quot; =&gt; 2}}},
+  method: :get
+}</code></pre>
 
   </section>
 </div>
