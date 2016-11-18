@@ -1,7 +1,7 @@
 defmodule Elastex.Cluster do
   @moduledoc """
    Follows the Elasticsearch
-   [Document API](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster.html).
+   [Cluster API](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster.html).
   """
 
   @behaviour Elastex.Extender

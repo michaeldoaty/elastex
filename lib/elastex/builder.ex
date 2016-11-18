@@ -1,4 +1,8 @@
 defmodule Elastex.Builder do
+  @moduledoc """
+   This module contains Elastex.Builder
+  """
+  
   defstruct [:url, :body, :method, :action, :params, :index, :type, :id, :options, :headers]
 
 
