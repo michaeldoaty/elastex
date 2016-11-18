@@ -2,11 +2,10 @@ defmodule Elastex do
   @moduledoc """
    This module contains the run functions used to make a HTTP request
   """
-  
-  use HTTPoison.Base
 
   alias Elastex.Helper
   alias Elastex.Builder
+  alias Elastex.Web
 
 
   @doc """
@@ -15,7 +14,7 @@ defmodule Elastex do
   @spec run(%Builder{}) :: any
   def run(req) do
     url = Application.get_env(:elastex, :url)
-    build(req, %{url: url}) |> http_call
+    build(req, %{url: url}) |> Web.http_call
   end
 
 
@@ -24,7 +23,7 @@ defmodule Elastex do
   """
   @spec run(%Builder{}, map()) :: any
   def run(req, conn) do
-    build(req, conn) |> http_call
+    build(req, conn) |> Web.http_call
   end
 
 
@@ -47,46 +46,6 @@ defmodule Elastex do
       headers: Keyword.merge([accept: "application/json"], headers),
       action: req.action
     }
-  end
-
-
-  @doc false
-  defp http_call(%{action: :multi_search} = m) do
-    request(m.method, m.url, m.body, m.headers, m.options)
-  end
-
-
-  @doc false
-  defp http_call(%{action: :document_bulk} = m) do
-    request(m.method, m.url, m.body, m.headers, m.options)
-  end
-
-
-  @doc false
-  defp http_call(m) do
-    case Poison.encode(m.body) do
-      # this case has a body of nil
-      {:ok, "null"} ->
-        request(m.method, m.url, "", m.headers, m.options)
-      {:ok, body} ->
-        request(m.method, m.url, body, m.headers, m.options)
-      err ->
-        err
-    end
-  end
-
-
-  #############################################
-  # Extending HTTPoison
-  #############################################
-
-
-  @doc false
-  defp process_response_body(unparsed_body) do
-    case Poison.decode(unparsed_body) do
-      {:ok, body} -> body
-      _ -> unparsed_body
-    end
   end
 
 
