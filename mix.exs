@@ -7,7 +7,7 @@ defmodule Elastex.Mixfile do
      name: "Elastex",
      source_url: "https://github.com/michaeldoaty/elastex",
      homepage_url: "https://github.com/michaeldoaty/elastex",
-     version: "0.1.2",
+     version: "0.2.0",
      description: "Data driven elixir client for Elasticsearch.",
      package: package,
      elixir: "~> 1.3.4",

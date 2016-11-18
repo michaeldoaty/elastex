@@ -15,7 +15,7 @@
   ```elixir
   config :elastex, url: "http://localhost:9200"
   ```
-  
+
 3.  Enjoy! (documentation is located here ...TODO add link)  
 
 
@@ -67,7 +67,7 @@ A great example of working with data is `Elastex.Search.multi_search/1`
       }
 ```
 
-Here bulk takes normal `Elastex.Search.query` functions and uses them as input for the multi search.  This same technique is used for `Elastex.Document.bulk`.
+Here multi search takes normal `Elastex.Search.query` functions and uses them as input.  This same technique is used for `Elastex.Document.bulk`.
 
 ## Examples
 
