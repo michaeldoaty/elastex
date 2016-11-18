@@ -11,6 +11,7 @@ use Mix.Config
 # You can configure for your application as:
 #
 #     config :elastex, key: :value
+config :elastex, url: "http://localhost:9200"
 #
 # And access this configuration in your application as:
 #

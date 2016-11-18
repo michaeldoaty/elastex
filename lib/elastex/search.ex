@@ -1,77 +1,564 @@
 defmodule Elastex.Search do
+  @moduledoc """
+   Follows the Elasticsearch
+   [Search API](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html).
+  """
+
+  @behaviour Elastex.Extender
+
+  alias Elastex.Helper
+  alias Elastex.Builder
+  alias Elastex.Extender
+
+  @type int_or_string :: non_neg_integer | String.t
+  @type body :: map() | nil
+  @type http_response :: {:ok, HTTPoison.Response} | {:error, HTTPoison.Error}
+
 
   @doc """
   Executes a search query.
+
+  Useful for URI searches.
+
+  ## Examples
+      iex> Elastex.Search.query
+      %Elastex.Builder {
+        url: "_search",
+        method: :post,
+        action: :search_query,
+      }
+
+  ##### with params
+      iex> Elastex.Search.query |> Elastex.Search.params([q: "user:kimchy"])
+      %Elastex.Builder {
+        url: "_search",
+        method: :post,
+        action: :search_query,
+        params: [q: "user:kimchy"]
+      }
   """
-  def query, do: query("", "", "")
+  @spec query() :: %Builder{
+    url: String.t,
+    method: :post,
+    action: :search_query
+  }
+  def query do
+    %Builder {
+      url: "_search",
+      method: :post,
+      action: :search_query
+    }
+  end
 
-  def query(body), do: query(body, "", "")
 
-  def query(body, index), do: query(body, index, "")
+  @doc """
+  Executes a search query with a body.
 
+  ## Examples
+      iex> body = %{query: %{term: %{user: "kimchy"}}}
+      iex> Elastex.Search.query(body)
+      %Elastex.Builder {
+        url: "_search",
+        body: %{query: %{term: %{user: "kimchy"}}},
+        method: :post,
+        action: :search_query,
+      }
+  """
+  @spec query(body) :: %Builder{
+    url: String.t,
+    body: body,
+    action: :search_query,
+    method: :post
+  }
+  def query(body) do
+    %Builder {
+      url: "_search",
+      body: body,
+      action: :search_query,
+      method: :post
+    }
+  end
+
+
+  @doc """
+  Executes a search query with a body and index.
+
+  ## Examples
+      iex> body = %{query: %{term: %{user: "kimchy"}}}
+      iex> Elastex.Search.query(body, "twitter")
+      %Elastex.Builder {
+        url: "twitter/_search",
+        body: %{query: %{term: %{user: "kimchy"}}},
+        method: :post,
+        index: "twitter",
+        action: :search_query
+      }
+  """
+  @spec query(body, String.t) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post,
+    index: String.t,
+    action: :search_query
+  }
+  def query(body, index) do
+    %Builder {
+      url: Helper.path([index, "_search"]),
+      body: body,
+      index: index,
+      action: :search_query,
+      method: :post
+    }
+  end
+
+
+  @doc """
+  Executes a search query with a body, index, and type.
+
+  ## Examples
+      iex> body = %{query: %{term: %{user: "kimchy"}}}
+      iex> Elastex.Search.query(body, "twitter", "tweet")
+      %Elastex.Builder {
+        url: "twitter/tweet/_search",
+        body: %{query: %{term: %{user: "kimchy"}}},
+        index: "twitter",
+        type: "tweet",
+        action: :search_query,
+        method: :post
+      }
+  """
+  @spec query(body, String.t, String.t) :: %Builder{
+    url: String.t,
+    body: body,
+    index: String.t,
+    type: String.t,
+    action: :search_query,
+    method: :post
+  }
   def query(body, index, type) do
-    url = Path.join([index, type, "_search"])
-    %{url: url, body: body, method: :get}
+    %Builder {
+      url: Helper.path([index, type, "_search"]),
+      body: body,
+      index: index,
+      type: type,
+      action: :search_query,
+      method: :post
+    }
   end
 
 
   @doc """
   Allows use of mustache templating language to pre-render search requests.
+
+  ## Examples
+      iex> body = %{inline: %{query: %{match: %{title: "{{query_string}}"}}}}
+      iex> Elastex.Search.template(body)
+      %Elastex.Builder {
+        url: "_search/template",
+        body: %{inline: %{query: %{match: %{title: "{{query_string}}"}}}},
+        method: :post
+      }
   """
+  @spec template(body) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
   def template(body) do
-    %{url: "template", body: body, method: :get}
+    %Builder {
+      url: "_search/template",
+      body: body,
+      method: :post
+    }
   end
 
 
   @doc """
-  Returns indices and shards that a search request would be executed against.
+  Returns indices and shards that a search request would be executed against
+  using an index.
+
+  ## Examples
+      iex> Elastex.Search.shards("twitter")
+      %Elastex.Builder {
+        url: "twitter/_search_shards",
+        method: :get,
+        index: "twitter",
+        type: ""
+      }
   """
+  @spec shards(String.t) :: %Builder{
+    url: String.t,
+    method: :get,
+    index: String.t,
+    type: String.t
+  }
   def shards(index), do: shards(index, "")
 
+
+  @doc """
+  Returns indices and shards that a search request would be executed against
+  using an index and a type.
+
+  ## Examples
+      iex> Elastex.Search.shards("twitter", "tweet")
+      %Elastex.Builder {
+        url: "twitter/tweet/_search_shards",
+        method: :get,
+        index: "twitter",
+        type: "tweet"
+      }
+  """
+  @spec shards(String.t, String.t) :: %Builder{
+    url: String.t,
+    method: :get,
+    index: String.t,
+    type: String.t
+  }
   def shards(index, type) do
-    url = Path.join([index, type, "_search_shards"])
-    %{url: url, method: :get}
+    url = Helper.path([index, type, "_search_shards"])
+    %Builder {
+      url: url,
+      index: index,
+      type: type,
+      method: :get
+    }
   end
 
 
   @doc """
   Suggests similar looking terms based on a provided text.
+
+  ## Examples
+      iex> body = %{"my-suggestion" => %{text: "hi", term: %{field: "body"}}}
+      iex> Elastex.Search.suggest(body)
+      %Elastex.Builder {
+        url: "_suggest",
+        body: %{"my-suggestion" => %{text: "hi", term: %{field: "body"}}},
+        method: :post
+      }
   """
+  @spec suggest(body) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
   def suggest(body) do
-    %{url: "_suggest", body: body, method: :get}
+    %Builder{
+      url: "_suggest",
+      body: body,
+      method: :post
+    }
+  end
+
+
+  @doc ~S"""
+  Executes several search request in a single call.
+
+  ## Examples
+      iex> query_builders = [
+      ...> Elastex.Search.query(%{hello: "world"}),
+      ...> Elastex.Search.query(%{hello: "world"}, "twitter", "tweet")
+      ...> ]
+      iex> Elastex.Search.multi_search(query_builders)
+      %Elastex.Builder {
+        url: "_msearch",
+        body: "{}\n{\"hello\":\"world\"}\n{\"index\":\"twitter\"}\n{\"hello\":\"world\"}\n",
+        method: :post,
+        action: :multi_search
+      }
+  """
+  @spec multi_search(list(%Builder{action: :search_query})) :: %Builder{
+    url: String.t,
+    body: String.t,
+    method: :post,
+    action: :multi_search
+  }
+  def multi_search(query_builders) do
+
+    bulk_request = Enum.map_join query_builders, "\n", fn(build) ->
+      body = build.body || %{}
+      new_body = Map.drop(body, [:search_type, :preference, :routing])
+
+      header = body
+        |> Map.merge(build)
+        |> Map.take([:index, :search_type, :search_type, :preference, :routing])
+        |> Enum.filter(fn {_, v} -> v != nil end)
+        |> Enum.into(%{})
+
+      Poison.encode!(header) <> "\n" <> Poison.encode!(new_body)
+    end
+
+    %Builder {
+      url: "_msearch",
+      body: bulk_request <> "\n",
+      method: :post,
+      action: :multi_search
+    }
   end
 
 
   @doc """
   Executes a query to get the number of matches for that query.
-  """
-  def count(index, type), do: count("", index, type)
 
+  Useful with params search.
+
+  ## Examples
+      iex> Elastex.Search.count()
+      %Elastex.Builder {
+        url: "_count",
+        method: :post
+      }
+  """
+  @spec count() :: %Builder{
+    url: String.t,
+    method: :post
+  }
+  def count(), do: count(nil, "", "")
+
+
+  @doc """
+  Executes a query to get the number of matches for that query with a body.
+
+  ## Examples
+      iex> body = %{"query" => %{term: %{user: "kimchy"}}}
+      iex> Elastex.Search.count(body)
+      %Elastex.Builder {
+        url: "_count",
+        body: %{"query" => %{term: %{user: "kimchy"}}},
+        method: :post
+      }
+  """
+  @spec count(body) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
+  def count(body), do: count(body, "", "")
+
+
+  @doc """
+  Executes a query to get the number of matches for that query with
+  a body and index.
+
+  ## Examples
+      iex> body = %{"query" => %{term: %{user: "kimchy"}}}
+      iex> Elastex.Search.count(body, "twitter")
+      %Elastex.Builder {
+        url: "twitter/_count",
+        body: %{"query" => %{term: %{user: "kimchy"}}},
+        method: :post
+      }
+  """
+  @spec count(body, String.t) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
+  def count(body, index), do: count(body, index, "")
+
+
+  @doc """
+  Executes a query to get the number of matches for that query
+  with body, index, and type.
+
+  ## Examples
+      iex> body = %{"query" => %{term: %{user: "kimchy"}}}
+      iex> Elastex.Search.count(body, "twitter", "tweet")
+      %Elastex.Builder {
+        url: "twitter/tweet/_count",
+        body: %{"query" => %{term: %{user: "kimchy"}}},
+        method: :post
+      }
+  """
+  @spec count(body, String.t, String.t) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
   def count(body, index, type) do
-    url = Path.join([index, type, "_count"])
-    %{url: url, body: body, method: :get}
+    %Builder{
+      url: Helper.path([index, type, "_count"]),
+      body: body,
+      method: :post
+    }
   end
 
 
   @doc """
   Validates a potentially expensive query without executing it.
+
+  ## Examples
+      iex> Elastex.Search.validate()
+      %Elastex.Builder {
+        url: "_validate/query",
+        body: nil,
+        method: :post
+      }
   """
+  @spec validate() :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
+  def validate(), do: validate(nil, "", "")
+
+
+  @doc """
+  Validates a potentially expensive query without executing it.
+
+  ## Examples
+      iex> body = %{"query" => %{term: %{user: "kimchy"}}}
+      iex> Elastex.Search.validate(body)
+      %Elastex.Builder {
+        url: "_validate/query",
+        body: %{"query" => %{term: %{user: "kimchy"}}},
+        method: :post
+      }
+  """
+  @spec validate(body) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
   def validate(body), do: validate(body, "", "")
 
+
+  @doc """
+  Validates a potentially expensive query without executing it with index.
+
+  ## Examples
+      iex> body = %{"query" => %{term: %{user: "kimchy"}}}
+      iex> Elastex.Search.validate(body, "twitter")
+      %Elastex.Builder {
+        url: "twitter/_validate/query",
+        body: %{"query" => %{term: %{user: "kimchy"}}},
+        method: :post
+      }
+  """
+  @spec validate(body, String.t) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
   def validate(body, index), do: validate(body, index, "")
 
+
+  @doc """
+  Validates a potentially expensive query without executing it with index.
+
+  ## Examples
+      iex> body = %{"query" => %{term: %{user: "kimchy"}}}
+      iex> Elastex.Search.validate(body, "twitter", "tweet")
+      %Elastex.Builder {
+        url: "twitter/tweet/_validate/query",
+        body: %{"query" => %{term: %{user: "kimchy"}}},
+        method: :post
+      }
+  """
+  @spec validate(body, String.t, String.t) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
   def validate(body, index, type) do
-    url = Path.join([index, type, "_validate/query"])
-    %{url: url, body: body, method: :get}
+    %Builder{
+      url: Helper.path([index, type, "_validate/query"]),
+      body: body,
+      method: :post
+    }
   end
 
 
   @doc """
   Computes a score explanation for a query and a specific document.
+
+  ## Examples
+      iex> Elastex.Search.explain("twitter", "tweet", 1)
+      %Elastex.Builder {
+        url: "twitter/tweet/1/_explain",
+        body: nil,
+        method: :post
+      }
   """
+  @spec explain(String.t, String.t, int_or_string) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
+  def explain(index, type, id), do: explain(nil, index, type, id)
+
+
+  @doc """
+  Computes a score explanation for a query and a specific document.
+
+  ## Examples
+      iex> body = %{"query" => %{term: %{user: "kimchy"}}}
+      iex> Elastex.Search.explain(body, "twitter", "tweet", 1)
+      %Elastex.Builder {
+        url: "twitter/tweet/1/_explain",
+        body: %{"query" => %{term: %{user: "kimchy"}}},
+        method: :post
+      }
+  """
+  @spec explain(body, String.t, String.t, int_or_string) :: %Builder{
+    url: String.t,
+    body: body,
+    method: :post
+  }
   def explain(body, index, type, id) do
-    url = Path.join([index, type, "#{id}", "_explain"])
-    %{url: url, body: body, method: :get}
+    %Builder {
+      url: Helper.path([index, type, id, "_explain"]),
+      body: body,
+      method: :post
+    }
   end
+
+
+  @doc """
+  Gets search hits from http response if present.
+  Returns error tuple with http response if not present.
+  """
+  @spec query_hits(http_response) :: {:ok, map()} | {:error, String.t}
+  def query_hits(http_response) do
+    case http_response do
+      {:ok, %HTTPoison.Response{body: %{"hits" => hits}}} ->
+        {:ok, hits}
+      _ ->
+        {:error, http_response}
+    end
+  end
+
+
+  @doc """
+  Adds params to search builders
+
+  ## Examples
+      iex> builder = %Elastex.Builder{}
+      iex> Elastex.Search.params(builder, [q: "user:mike"])
+      %Elastex.Builder {
+        params: [q: "user:mike"]
+      }
+  """
+  @spec params(%Builder{}, keyword(String.t)) :: %Builder{params: keyword(String.t)}
+  def params(builder, params) do
+    Extender.params(builder, params)
+  end
+
+
+  @doc """
+  Extends the url of search builder
+
+  ## Examples
+      iex> builder = %Elastex.Builder{url: "twitter"}
+      iex> Elastex.Search.extend_url(builder, ["tweet"])
+      %Elastex.Builder {
+        url: "twitter/tweet"
+      }
+  """
+  @spec extend_url(%Builder{}, list(String.t)) :: %Builder{url: String.t}
+  def extend_url(builder, list) do
+    Extender.extend_url(builder, list)
+  end
+
 
 end

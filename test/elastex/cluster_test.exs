@@ -1,6 +1,10 @@
 defmodule Elastex.ClusterTest do
   use ExUnit.Case, async: true
   alias Elastex.Cluster
+  alias Elastex.Builder
+
+
+  doctest Elastex.Builder
 
 
   def body do
@@ -10,99 +14,216 @@ defmodule Elastex.ClusterTest do
 
   test "health without index" do
     actual = Cluster.health()
-    expected = %{url: "_cluster/health", method: :get}
+    expected = %Builder{
+      url: "_cluster/health",
+      method: :get
+    }
     assert actual == expected
   end
 
 
   test "health with index" do
     actual = Cluster.health("twitter")
-    expected = %{url: "_cluster/health/twitter", method: :get}
+    expected = %Builder{
+      url: "_cluster/health/twitter",
+      method: :get
+    }
     assert actual == expected
   end
 
 
-  test "state with no arguments" do
+  test "state" do
     actual = Cluster.state()
-    expected = %{url: "_cluster/state", method: :get}
+    expected = %Builder{
+      url: "_cluster/state",
+      method: :get
+    }
+    assert actual == expected
+  end
+
+
+  test "state with metrics" do
+    actual = Cluster.state("metadata")
+    expected = %Builder{
+      url: "_cluster/state/metadata",
+      method: :get
+    }
     assert actual == expected
   end
 
 
   test "state with metrics and index" do
-    actual = Cluster.state("twitter", "metadata")
-    expected = %{url: "_cluster/state/metadata/twitter", method: :get}
+    actual = Cluster.state("metadata", "twitter")
+    expected = %Builder{
+      url: "_cluster/state/metadata/twitter",
+      method: :get
+    }
     assert actual == expected
   end
 
 
   test "stats" do
     actual = Cluster.stats()
-    expected = %{url: "_cluster/stats", method: :get}
+    expected = %Builder{
+      url: "_cluster/stats",
+      method: :get
+    }
     assert actual == expected
   end
 
 
   test "pending_tasks" do
     actual = Cluster.pending_tasks()
-    expected = %{url: "_cluster/pending_tasks", method: :get}
+    expected = %Builder{
+      url: "_cluster/pending_tasks",
+      method: :get
+    }
     assert actual == expected
   end
 
 
   test "reroute" do
     actual = Cluster.reroute(body)
-    expected = %{url: "_cluster/reroute", method: :post, body: body}
+    expected = %Builder{
+      url: "_cluster/reroute",
+      method: :post,
+      body: body
+    }
+    assert actual == expected
+  end
+
+
+  test "update_settings" do
+    actual = Cluster.update_settings(body)
+    expected = %Builder{
+      url: "_cluster/settings",
+      method: :put,
+      body: body
+    }
+    assert actual == expected
+  end
+
+
+  test "get_settings" do
+    actual = Cluster.get_settings()
+    expected = %Builder{
+      url: "_cluster/settings",
+      method: :get
+    }
     assert actual == expected
   end
 
 
   test "node_stats" do
     actual = Cluster.node_stats()
-    expected = %{url: "_nodes/stats", method: :get}
+    expected = %Builder{
+      url: "_nodes/stats",
+      method: :get
+    }
     assert actual == expected
   end
 
 
-  test "node_stats with stats" do
-    actual = Cluster.node_stats("os,process")
-    expected = %{url: "_nodes/stats/os,process", method: :get}
+  test "node_stats with nodes" do
+    actual = Cluster.node_stats("nodeId1,nodeId2")
+    expected = %Builder{
+      url: "_nodes/nodeId1,nodeId2/stats",
+      method: :get
+    }
     assert actual == expected
   end
 
 
-  test "node_stats with stats and nodes" do
-    actual = Cluster.node_stats("os,process", "nodeId1")
-    expected = %{url: "_nodes/nodeId1/stats/os,process", method: :get}
+  test "node_stats with nodes and stats" do
+    actual = Cluster.node_stats("nodeId1,nodeId2", "process")
+    expected = %Builder{
+      url: "_nodes/nodeId1,nodeId2/stats/process",
+      method: :get
+    }
     assert actual == expected
   end
 
 
   test "node_info" do
     actual = Cluster.node_info()
-    expected = %{url: "_nodes", method: :get}
+    expected = %Builder{
+      url: "_nodes",
+      method: :get
+    }
     assert actual == expected
   end
 
 
-  test "node_info with attributes" do
+  test "node_info with nodes" do
     actual = Cluster.node_info("jvm,process")
-    expected = %{url: "_nodes/jvm,process", method: :get}
+    expected = %Builder{
+      url: "_nodes/jvm,process",
+      method: :get
+    }
     assert actual == expected
   end
 
 
-  test "node_info with attributes and nodes" do
-    actual = Cluster.node_info("jvm,process", "nodeId1")
-    expected = %{url: "_nodes/nodeId1/jvm,process", method: :get}
+  test "node_info with nodes and info" do
+    actual = Cluster.node_info("nodeId1", "jvm,process")
+    expected = %Builder{
+      url: "_nodes/nodeId1/jvm,process",
+      method: :get
+    }
     assert actual == expected
   end
 
 
   test "node_hot_threads" do
-    actual = Cluster.node_hot_threads("nodeId1")
-    expected = %{url: "_nodes/nodeId1/hot_threads", method: :get}
+    actual = Cluster.node_hot_threads()
+    expected = %Builder{
+      url: "_nodes/hot_threads",
+      method: :get
+    }
     assert actual == expected
   end
+
+
+  test "node_hot_threads with threads" do
+    actual = Cluster.node_hot_threads("nodeId1")
+    expected = %Builder{
+      url: "_nodes/nodeId1/hot_threads",
+      method: :get
+    }
+    assert actual == expected
+  end
+
+
+  test "params" do
+    expected = Cluster.params(%Builder{}, [q: "search"])
+    assert expected == %Builder{
+      params: [q: "search"]
+    }
+  end
+
+
+  test "params with existing data" do
+    expected = Cluster.params(%Builder{params: [routing: "user"]}, [q: "search"])
+    assert expected == %Builder{
+      params: [routing: "user", q: "search"]
+    }
+  end
+
+
+  test "extend_url" do
+    expected = Cluster.extend_url(%Builder{}, ["twitter"])
+    assert expected == %Builder{
+      url: "twitter"
+    }
+  end
+
+
+  test "extend_url with existing data" do
+    expected = Cluster.extend_url(%Builder{url: "twitter"}, ["tweet"])
+    assert expected == %Builder{
+      url: "twitter/tweet"
+    }
+  end
+
 
 end

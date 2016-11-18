@@ -1,76 +1,52 @@
 defmodule Elastex do
-  alias Elastex.Web
+  @moduledoc """
+   This module contains the run functions used to make a HTTP request
+  """
+
   alias Elastex.Helper
+  alias Elastex.Builder
+  alias Elastex.Web
 
 
   @doc """
-  Creates a custom request.
+  Runs the request using the elastex url from config file
   """
-  def custom(method, url), do: custom("", method, url)
-
-  def custom(body, method, url) do
-    %{url: url, method: method, body: body}
+  @spec run(%Builder{}) :: any
+  def run(req) do
+    url = Application.get_env(:elastex, :url)
+    build(req, %{url: url}) |> Web.http_call
   end
 
 
   @doc """
-  Add params to request.
+  Runs the request using the url from the conn map parameter
   """
-  def params(m, params_list) do
-    Map.put(m, :params, params_list)
-  end
-
-
-  @doc """
-  Adds headers to request
-  """
-  def headers(m, headers_list) do
-    Map.put(m, :headers, headers_list)
-  end
-
-
-  @doc """
-  Adds http options to request
-  """
-  def http_options(m, options_list) do
-    Map.put(m, :options, options_list)
-  end
-
-
-  @doc """
-  Extends url by appending to current url.
-  """
-  def extend_url(req, url) do
-    current_url = Map.get(req, :url, "")
-    new_url = Path.join([current_url, url])
-    Map.put(req, :url, new_url)
-  end
-
-
-  @doc """
-  Builds the request and makes an http call.
-
-  This function returns `{:ok, response}` or `{:error, response}`.
-  Response will be a map containing body, headers, and status code.
-  Body will be `{:ok, value}` or `{:error, value}`.
-  """
-  def run(%{method: nil}), do: {:error, "unknown method name"}
-
-  def run(%{url: ""}), do: {:error, "missing url argument"}
-
+  @spec run(%Builder{}, map()) :: any
   def run(req, conn) do
-    Helper.build(req, conn) |> Web.http_call
+    build(req, conn) |> Web.http_call
   end
 
 
   @doc """
-  Builds the request and makes an http call throwing if any errors are found.
+  Builds request for http call.
   """
-  def run!(req, conn) do
-    #TODO:MD Fix
-    # b = Helper.build(req, conn)
-    # body = Poison.encode!(Map.get(req, :body, ""))
-    # Elastex.Web.request(b.method, b.url, body, b.headers, b.options)
+  @spec build(%Builder{}, map()) :: %Builder{}
+  def build(req, conn) do
+    conn_url = Map.get(conn, :url, "")
+    req_url  = req.url     || ""
+    headers  = req.headers || []
+    options  = req.options || []
+    params   = req.params  || []
+
+    %Builder{
+      body:    req.body,
+      method:  req.method,
+      url:     Helper.path([conn_url, req_url]),
+      options: Keyword.merge([params: params], options),
+      headers: Keyword.merge([accept: "application/json"], headers),
+      action: req.action
+    }
   end
+
 
 end
