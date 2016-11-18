@@ -18,6 +18,22 @@ defmodule ElastexTest do
   end
 
 
+  test "run from config" do
+    resp = Elastex.Search.query() |> Elastex.run
+
+    {:ok, %HTTPoison.Response{status_code: status_code}} = resp
+    assert status_code == 200
+  end
+
+
+  test "run with conn argument" do
+    resp = Elastex.Search.query() |> Elastex.run(%{url: "http://localhost:9200"})
+
+    {:ok, %HTTPoison.Response{status_code: status_code}} = resp
+    assert status_code == 200
+  end
+
+
   test "build" do
     expected = Elastex.build(req, %{url: "http://localhost:9200"})
 
