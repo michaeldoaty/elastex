@@ -16,7 +16,7 @@
   config :elastex, url: "http://localhost:9200"
   ```
 
-3.  Enjoy! (documentation is located here ...TODO add link)  
+3.  Enjoy! (documentation is located [here](https://hexdocs.pm/elastex/))  
 
 
 ## Data driven?
